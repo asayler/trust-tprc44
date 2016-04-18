@@ -1,33 +1,39 @@
 REPORT=report
 LATEX=pdflatex
 BIBTEX=bibtex
+FIG_TMP = tmp.eps
 
 CLS = $(wildcard *.cls)
 TEX = $(wildcard *.tex)
-SRCS = $(TEX) refs.bib
-
-FIG_TMP = tmp.eps
-FIGS = $(patsubst %, figs/pdf/%.pdf, examplefig1)
+REFS = $(wildcard *.bib)
+FIGS = $(patsubst %, figs/out/%.pdf, examplefig1)
+SRCS = $(CLS) $(TEX) $(REFS) $(FIGS)
 
 all: pdf
 
 figs: $(FIGS)
 
-pdf: $(SRCS) $(CLS) $(FIGS)
+pdf: $(SRCS)
 	$(LATEX) $(REPORT)
 	$(BIBTEX) $(REPORT)
 	$(LATEX) $(REPORT)
 	$(LATEX) $(REPORT)
+	$(LATEX) $(REPORT)
 
-figs/pdf/%.pdf: figs/svg/%.svg
+figs/out/%.pdf: figs/src/%.svg
 	inkscape --export-area-drawing --export-eps="$(FIG_TMP)" --file="$<"
 	epstopdf "$(FIG_TMP)" --outfile="$@"
 	rm "$(FIG_TMP)"
 
-bibsort: refs.bib
-	bibtool -s -o ./refs.bib -i ./refs.bib
+bibsort: $(REFS)
+	$(foreach ref, $(REFS), bibtool -s -o $(ref) -i $(ref))
 
-clean:
-	$(RM) figs/pdf/*.pdf *.eps
+clean-tex:
 	$(RM) *.dvi *.aux *.log *.blg *.bbl *.out *.lof *.lot *.toc
+
+clean-fig:
+	$(RM) figs/out/*.pdf *.eps
+
+clean: clean-tex clean-fig
+	$(RM) $(REPORT).pdf
 	$(RM) *~ .*~
