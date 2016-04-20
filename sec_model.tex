@@ -1,2 +1,75 @@
 \section{Modeling Trust}
 \label{sec:model}
+
+Generally, when users leverage modern computing devices and services,
+they must trust third party manufacturers and service providers with
+their data. The privacy of user data relies on this trust via has two
+main factor: how much trust must a user place in third parties
+(e.g. how much of their personal data do they grant the third party
+access to), and in what manners can the third party violate this trust
+(e.g. how can the third party abuse the access they have been
+granted). A model of third party trust must therefore evaluate trust
+across two axes: the \emph{degree} of trust users must place in third
+parties, and the manner in which this trust might be
+\emph{violated}. The ideal privacy and security enhancing trust model
+for a given use case will minimize the degree of third party trust
+while also minimizing the likelihood that such trust will be violated.
+
+In terms of degree of trust, third parties can be trusted with the
+following data-related capabilities:
+
+\begin{packed_desc}
+\item[Storage (S):] \hfill \\ Can a third party faithfully store
+  private user data and make it available to the user upon request?
+  Misuse of this capability may result in a loss of user data, but
+  won't necessarily result in the exposure of user data.
+\item[Access (R):] \hfill \\ Can a third party read and interpret the
+  private user data they store? Misuse of this capability may result
+  in the exposure of user data.
+\item[Manipulation (W):] \hfill \\ Can a third party modify the
+  private user data to which they have access? Misuse of this
+  capability may result in the ability to manipulate a user
+  (e.g. changing appointments on a user's calendar, etc).
+\item[Meta-analysis (M):] \hfill \\ Can a third party gather user
+  metadata related to any stored user data or user behavior
+  interacting with this data? Misuse of this capability may result in
+  the ability to infer private user data (e.g. who a user's friends
+  are based on data sharing patterns).
+\end{packed_desc}
+
+Trust violation occurs when a third party exercises any of the above
+capabilities without explicit user knowledge and permission. Put
+another way, a trust violation occurs whenever a third party leverages
+a capability with which they are entrusted in a manner in which the
+user does not expect the capability to be leveraged.
+
+There are several types of trust violations. Each is defined by the
+manner in which the violation occurs and the motivations behind it:
+
+\begin{packed_desc}
+\item[Implicit (P):] \hfill \\ This class of trust violation occurs
+  when a third party violates a user's trust in a manner approved by
+  the third party. An example might be sharing user data with a
+  business partner (e.g. an advertiser). Often these forms of
+  violations aren't really ``violations'' in the sense that a user may
+  have clicked through a Terms of Service agreement that granted
+  implicit permission for such use, but if the third party is engaging
+  in behavior that the user would not generally expect, an implicit
+  trust violation has occurred.
+\item[Compelled (C):] \hfill \\ This class of trust violation occurs
+  when a third party is compelled by another actor to violate a user's
+  trust. The most common example would be a third party being forced
+  to turn over user data or records in response to a request from the
+  government with jurisdiction over the party. Another example might
+  include a company going bankrupt and being forced to sell its user
+  data to another entity~\cite{solove2015}.
+\item[Unintentional (U):] \hfill \\ This form of violation occurs when
+  a third party unintentionally discloses or manipulates user data. An
+  example would be a coding error that allows either the loss of or
+  unfettered access to user data.
+\item[Colluding (L):] \hfill \\ This class of violation occurs when
+  multiple third parties collude to gain capabilities over user data
+  beyond what the user intended each to have individually. (An example
+  would be an SSP sharing the user's encryption keys with the feature
+  provider storing the corresponding encrypted data.)
+\end{packed_desc}
