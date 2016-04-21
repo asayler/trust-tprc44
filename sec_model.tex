@@ -1,19 +1,60 @@
 \section{Modeling Trust}
 \label{sec:model}
 
-Generally, when users leverage modern computing devices and services,
-they must trust third party manufacturers and service providers with
-their data. The privacy of user data relies on this trust via has two
-main factor: how much trust must a user place in third parties
-(e.g. how much of their personal data do they grant the third party
-access to), and in what manners can the third party violate this trust
-(e.g. how can the third party abuse the access they have been
-granted). A model of third party trust must therefore evaluate trust
-across two axes: the \emph{degree} of trust users must place in third
-parties, and the manner in which this trust might be
-\emph{violated}. The ideal privacy and security enhancing trust model
-for a given use case will minimize the degree of third party trust
-while also minimizing the likelihood that such trust will be violated.
+Researchers from a variety of disciplines have proposed a range of
+trust definitions and models~\cite{grandison2000, camp2003,
+  sabater2005, flowerday2006}. These models range from technical
+models for calculating reputations via machine-learning algorithms to
+sociological models for exploring legal and social noticing of
+trust. In this section, I propose a trust model tailored to the manner
+in which user interact with third parties across the modern computing
+landscape. In particular, this model aims to provide a basis for
+describing how users trust third parties with access to their digital
+data and the manner sin which this trust might be violated.
+
+Before defining a model for trust, it is useful to define some of the
+relevant terms used in this model. To start, I'll define
+\textit{trust} as the expectation that a given entity will behave in a
+promised manner. \textit{Violations} of trust thus occur whenever said
+entities deviate from this expectation. Trust is closely related to
+two other properties inherent in modern computing ecosystems: security
+and privacy. Like trust, these terms have wide-ranging meanings across
+a variety of disciplines. For the purposes of this discussion, I'll
+define \textit{security} as the notion of user control over the
+behavior of a given system. A \textit{secure system} is thus a system
+that behaves in the manner the user desires. Facets of this notion of
+security include \textit{confidentiality}, the ability to control who
+can read user data, and \textit{authenticity}, the ability to control
+the integrity and verifiable modification of user data. Finally,
+confidentiality and authenticity provide for a definition of
+\textit{privacy} as the ability to control both the access and
+modification of user data as well as the ability to control the
+historical record of such access or modification.
+
+When users leverage modern computing devices and services, they must
+trust third party manufacturers and service providers to be good
+stewards of a variety of digital data, from stored files to location
+information to communications. The nature of this trust has two main
+factors:
+
+\begin{packed_desc}
+\item[Degree:] How much trust must a user place in a third party
+  (e.g. what capabilities do they allow a third party to exercises with
+  respect to user data)?
+\item[Risk:] In what manners can the third party violate this trust
+  (e.g. how can the third party abuse the capabilities they have been
+  granted)?
+\end{packed_desc}
+
+The security and privacy of a user's data is generally dependent on
+these two axis: the higher the degree of trust a user places in a
+third party, the more power that party has to violate the privacy or
+security of a user's data. Similarly, the higher the risk of trust
+violations, the higher the risk of a violation of the security or
+privacy of a user's data.  Intuitively, the best way to enhance the
+privacy of user data is thus to aim to either minimize degree of third
+party trust, to minimize risk of third party trust violations, or to
+minimize both.
 
 In terms of degree of trust, third parties can be trusted with the
 following data-related capabilities:
@@ -69,7 +110,5 @@ manner in which the violation occurs and the motivations behind it:
   unfettered access to user data.
 \item[Colluding (L):] \hfill \\ This class of violation occurs when
   multiple third parties collude to gain capabilities over user data
-  beyond what the user intended each to have individually. (An example
-  would be an SSP sharing the user's encryption keys with the feature
-  provider storing the corresponding encrypted data.)
+  beyond what the user intended each to have individually.
 \end{packed_desc}
