@@ -1,2 +1,108 @@
-\section{Analysis of Violations}
-\label{sec:violations}
+\section{Analysis of Services}
+\label{sec:analysis}
+
+The trust model proposed in \S~\ref{sec:model} is primarily useful for
+what it can tell us about the nature of user trust and the modern
+computing landscape. As such, I apply the model to analyze the
+capabilities granted to a number of popular third party computing
+services.
+
+\subsection{Third Party Capabilities}
+\label{sec:analysis:capabilites}
+
+Third party based ``cloud'' computing services have become extremely
+popular over the previous 10 years.  The question of how
+\textit{trustworthy} these services are is addressed later in
+~\S~\ref{sec:analysis:violations}. In this section, I explore how
+\textit{trusted} such service are. That is, how much trust must users
+place in such services? The capability axis of my proposed model is
+useful to quantify this trust.
+
+\subsubsection{Cloud File Storage}
+
+Cloud file storage is a popular third party use case. Services such as
+Dropbox~\cite{dropbox}, Google Drive~\cite{google-drive}, and
+Microsoft OneDrive~\cite{microsoft-onedrive} all provide users with
+mechanisms for storing their files in the cloud, often for the purpose
+of keeping files synced across multiple devices or to provide the
+ability to share files or collaboratively edit them with other
+users. Traditional cloud storage services such as Dropbox, Drive, and
+OneDrive are similar enough in their operation that I will use Dropbox
+as a stand in for the analysis of all three.
+
+What capabilities is a normal Dropbox user entrusting to Dropbox?
+Clearly, users must trust Dropbox to faithfully store their data since
+that is Dropbox's core purpose. Users therefore grant Dropbox the
+\emph{S} capability. Furthermore, users must also grant Dropbox the
+ability to read and access their data (i.e. the \emph{R} capability)
+in order to support Dropbox's sharing and syncing features. While
+Dropbox doesn't generally utilize it, users are also effectively
+granting Dropbox the manipulation (\emph{W}) capability as well since
+the user has no mechanisms for ensuring that Dropbox can't manipulate
+their data. Finally, Dropbox has full access to user metadata related
+to their usage of the service, granting them the \emph{M}
+capability. Therefore, Dropbox users must trust Dropbox with all
+possible capabilities. Traditional cloud storage services such as
+Dropbox, Drive, and OneDrive are thus classified as ``fully trusted''
+services: service that require the highest possible level of user
+trust. Such services, are thus also in a position to do the greatest
+degree of damage to user privacy should a users trust in them as
+faithful stewards of private data turn out to be misplaced.
+
+The level of trust requested by tradition cloud storage servers
+rightfully makes some user nervous or unwilling to use such
+services. In response to such aversion, a number of systems have been
+developed with the aim of overcoming third party trust challenges in
+the storage space. These systems include ``end-to-end'' encrypted file
+storage services such as Tresorit~\cite{tresorit}, or
+SpiderOak~\cite{spideroak}. These systems aim to place limits on a
+third party's ability to leverage the access (\emph{R}) capability
+through the use of client-side encryption. Likewise, they aim to limit
+third party access to the manipulation (\emph{W}) capability through
+the use of client-side cryptographic
+authentication.\footnote{E.g. asymmetric cryptographic signatures such
+  as those provided by GnuPG~\cite{gnupg} or symmetric cryptographic
+  message authentication codes (MACs) available via a variety of
+  algorithms~\cite{dworkin2005, dworkin2007, dworkin2008}.}  In the
+base case where a user merely wishes to store data on a single device
+and not share it with others, these systems are fairly successful in
+achieving their desired trust mitigations. In order to sync data
+across multiple devices using such systems, a user must manually
+provide some secret (e.g. a password, etc) on each device to secure
+its operation. While potentially burdensome and inconvenient, this
+practice is in line with these services trusted capabilities
+mitigation since it does not require any additional third party trust.
+
+The place where these systems falter at mitigating third party trust
+is via their support for multi-user sharing and collaboration. Such
+services tend to accomplish multi-user sharing by acting as a trusted
+certificate authority (CA) in charge of issuing user
+certificates.\footnote{A certificate is a combination of a user's
+  public key and certain metadata signed by a trusted issuer. See for
+  more information.}These certificates are then used with various
+asymmetric cryptographic primitives) to exchange the necessary secrets
+for bootstrapping sharing between users. Unfortunately, as a trusted
+CA, these services are capable of issuing fraudulent user certificates
+to themselves or other parties. This allows them to mount
+man-in-the-middle (MitM) attacks on any user trying to share data by
+impersonating the recipient of the shared data. This deficiency is
+discussed in depth at~\cite{wilson2014}, and leads to a breakdown of
+such services' claim that their users need not trust them, at least
+when employing multi-user sharing. By mounting a MitM attack on a user
+trying to share data with another user, such service providers can
+regain the \emph{R} and \emph{W} capabilities they claim not to
+have. Furthermore, these services do little to mitigate their access
+to metadata (\emph{M} capability). Nor do they provide ways for users
+to avoid data loss in the event that one of the services goes offline
+or shuts down (\emph{S} capability).
+
+``Secure'' cloud file storage service such as Tresorit this do more to
+minimize the required degree of third party trust then traditional
+services such as Dropbox. In single-user scenarios, such services
+succeed at reducing the degree of user trust from full (all four
+capabilities) to partial (only requiring the \emph{S} and \emph{M}
+capabilities). Yet, when implementing multi-user use cases, such
+services fall back to requiring a more-or-less full degree of trust,
+leaving much to be desired.
+
+%%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM
