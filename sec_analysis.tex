@@ -105,49 +105,42 @@ capabilities). Yet, when implementing multi-user use cases, such
 services fall back to requiring a more-or-less full degree of trust,
 leaving much to be desired.
 
-%% \subsubsection{Social Media}
+\subsubsection{Social Media}
 
-%% Social media sites such as Facebook, Google Plus, etc have become
-%% popular since the early 2000s. Such sites maintain a ``social-graph''
-%% of connections between users, and facilitate communication and sharing
-%% of pictures, events, and other data between users. Such sites are
-%% generally ``free'' to users -- monetizing user data and interactions
-%% for the purpose of selling targeted advertising. Given their ubiquity
-%% in the modern Internet landscape, as well as their position as
-%% ad-supported services, it is useful to evaluate the trust profile of
-%% modern social media sites. Facebook is the largest social media site
-%% today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
-%% such, Facebook serves as an example of the variety of social media
-%% sites available today.
+Social media sites such as Facebook, Google Plus, etc have become
+popular since the early 2000s. Such sites maintain a ``social-graph''
+of connections between users, and facilitate communication and sharing
+of pictures, events, and other data between users. Such sites are
+generally ``free'' to users -- monetizing user data and interactions
+for the purpose of selling targeted advertising. Given their ubiquity
+in the modern Internet landscape, as well as their position as
+ad-supported services, it is useful to evaluate the trust profile of
+modern social media sites. Facebook is the largest social media site
+today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
+such, Facebook serves as an example of the variety of social media
+sites available today.
 
-%% In terms of capabilities, Facebook, like Dropbox and other traditional
-%% cloud services, must be trusted with a full range of
-%% capabilities. Facebook is responsible for faithfully storing user
-%% data, Facebook can access and read all data it stores, Facebook can
-%% manipulate the data it stores, and Facebook is capable of performing
-%% meta-analysis of what data users are accessing and of how they are
-%% accessing it.
+In terms of capabilities, Facebook, like Dropbox and other traditional
+cloud services, must be trusted with a full range of capabilities.
+Facebook is responsible for faithfully storing user data such as
+photos, videos, and messages. Facebook can access and read all data it
+stores, and indeed relies on the ability to read such data as the
+basis of their advertising-based business model. Facebook can
+manipulate the data it stores, and routinely does so for the purpose
+of curating user ``news feeds'' or even integrating user pictures into
+targets ads~\cite{mashable-socialads}. Finally, Facebook is capable of
+applying a range of meta-analytic techniques to acquire additional
+data about users for the purpose of targeting both ads as well as
+content from other users.
 
-%% In terms of likelihood of trust violations, Facebook differs a bit
-%% from cloud-based system like Dropbox in that it is an ad-supported
-%% system. This increases the likelihood of implicit trust failures due
-%% to Facebook's business model being based around the sale of user
-%% data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
-%% Facebook has a record of implicit trust violations ranging from the
-%% Emotional Contagion Study~\cite{goel2014} to its use of users' photos
-%% in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
-%% violations, Facebook's trust violation profile is again similar to
-%% other traditional cloud services such as Dropbox. Like
-%% Dropbox~\cite{dropbox-transparency}, compelled violations are known to
-%% occur~\cite{facebook-transparency}. Unintentional, insider, and
-%% outsider violations are all possible, but Facebook has an active
-%% interest in avoiding them. Collusion violations aren't really
-%% applicable since Facebook is a single-party actor.
-
-%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
-%% summary of the Facebook trust model analysis. Google
-%% Plus~\cite{google-plus} and related social media services have similar
-%% trust profiles to Facebook.
+Other social media sites such as Google+~\cite{google-plus}
+require similar levels of trust. And since all mainstream social media
+services operate on add-supported business models, there are
+business-related barriers to reducing this level of trust where doing
+so would also reduce the level of access to user data. Thus, unlike in
+the storage space, there are not really any options for ``secure''
+social media platforms that specifically aim to minimize third party
+trust.
 
 %% \subsubsection{Communications}
 
@@ -423,6 +416,27 @@ leaving much to be desired.
 %% version of their code due to a wide range of trust violations
 %% (e.g. they could be compelled to ship such code, or it could be an
 %% honest unintentional mistake).
+
+%% In terms of likelihood of trust violations, Facebook differs a bit
+%% from cloud-based system like Dropbox in that it is an ad-supported
+%% system. This increases the likelihood of implicit trust failures due
+%% to Facebook's business model being based around the sale of user
+%% data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
+%% Facebook has a record of implicit trust violations ranging from the
+%% Emotional Contagion Study~\cite{goel2014} to its use of users' photos
+%% in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
+%% violations, Facebook's trust violation profile is again similar to
+%% other traditional cloud services such as Dropbox. Like
+%% Dropbox~\cite{dropbox-transparency}, compelled violations are known to
+%% occur~\cite{facebook-transparency}. Unintentional, insider, and
+%% outsider violations are all possible, but Facebook has an active
+%% interest in avoiding them. Collusion violations aren't really
+%% applicable since Facebook is a single-party actor.
+
+%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
+%% summary of the Facebook trust model analysis. Google
+%% Plus~\cite{google-plus} and related social media services have similar
+%% trust profiles to Facebook.
 
 \subsubsection{Implicit Violations}
 
