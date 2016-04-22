@@ -5,12 +5,12 @@ Researchers from a variety of disciplines have proposed a range of
 trust definitions and models~\cite{grandison2000, camp2003,
   sabater2005, flowerday2006}. These models range from technical
 models for calculating reputations via machine-learning algorithms to
-sociological models for exploring legal and social noticing of
-trust. In this section, I propose a trust model tailored to the manner
-in which user interact with third parties across the modern computing
-landscape. In particular, this model aims to provide a basis for
-describing how users trust third parties with access to their digital
-data and the manner sin which this trust might be violated.
+sociological models for exploring legal and societal notions of
+trust. In this section, I propose a trust model for exploring the
+manner in which users interact with third parties across the modern
+computing landscape. In particular, this model aims to provide a basis
+for describing how users trust third parties with access to their
+digital data and the manners in which this trust might be violated.
 
 Before defining a model for trust, it is useful to define some of the
 relevant terms used in this model. To start, I'll define
@@ -33,7 +33,7 @@ historical record of such access or modification.
 
 When users leverage modern computing devices and services, they must
 trust third party manufacturers and service providers to be good
-stewards of a variety of digital data, from stored files to location
+stewards of digital data ranging from stored files to location
 information to communications. The nature of this trust has two main
 factors:
 
@@ -56,26 +56,26 @@ privacy of user data is thus to aim to either minimize degree of third
 party trust, to minimize risk of third party trust violations, or to
 minimize both.
 
-In terms of degree of trust, third parties can be trusted with the
-following data-related capabilities:
+In terms of degree of trust, I propose that third parties can be
+trusted with the following data-related capabilities:
 
 \begin{packed_desc}
-\item[Storage (S):] \hfill \\ Can a third party faithfully store
-  private user data and make it available to the user upon request?
+\item[Storage (S-Capability):] \hfill \\ Can a third party faithfully
+  store user data and make it available to the user upon request?
   Misuse of this capability may result in a loss of user data, but
   won't necessarily result in the exposure of user data.
-\item[Access (R):] \hfill \\ Can a third party read and interpret the
-  private user data they store? Misuse of this capability may result
-  in the exposure of user data.
-\item[Manipulation (W):] \hfill \\ Can a third party modify the
-  private user data to which they have access? Misuse of this
+\item[Access (R-Capability):] \hfill \\ Can a third party read and
+  interpret the user data they store? Misuse of this capability may
+  result in the exposure of user data.
+\item[Manipulation (W-Capability):] \hfill \\ Can a third party modify
+  the private user data to which they have access? Misuse of this
   capability may result in the ability to manipulate a user
   (e.g. changing appointments on a user's calendar, etc).
-\item[Meta-analysis (M):] \hfill \\ Can a third party gather user
-  metadata related to any stored user data or user behavior
-  interacting with this data? Misuse of this capability may result in
-  the ability to infer private user data (e.g. who a user's friends
-  are based on data sharing patterns).
+\item[Meta-analysis (M-Capability):] \hfill \\ Can a third party
+  gather user metadata related to any stored user data or user
+  behavior interacting with this data? Misuse of this capability may
+  result in the ability to infer information about a user (e.g. who a
+  user's friends are based on data sharing patterns).
 \end{packed_desc}
 
 Trust violation occurs when a third party exercises any of the above
@@ -84,31 +84,47 @@ another way, a trust violation occurs whenever a third party leverages
 a capability with which they are entrusted in a manner in which the
 user does not expect the capability to be leveraged.
 
-There are several types of trust violations. Each is defined by the
-manner in which the violation occurs and the motivations behind it:
+In order to aid in the analysis of trust violations, I propose
+classifying such violations into four high-level categories. Each
+category is defined by the manner in which the violation occurs and
+the motivations behind it:
 
 \begin{packed_desc}
-\item[Implicit (P):] \hfill \\ This class of trust violation occurs
-  when a third party violates a user's trust in a manner approved by
-  the third party. An example might be sharing user data with a
-  business partner (e.g. an advertiser). Often these forms of
+\item[Implicit (P-Violation):] \hfill \\ This class of trust violation
+  occurs when a third party violates a user's trust in a manner
+  approved by the third party. An example might be sharing user data
+  with a business partner (e.g. an advertiser). Often these forms of
   violations aren't really ``violations'' in the sense that a user may
-  have clicked through a Terms of Service agreement that granted
-  implicit permission for such use, but if the third party is engaging
-  in behavior that the user would not generally expect, an implicit
-  trust violation has occurred.
-\item[Compelled (C):] \hfill \\ This class of trust violation occurs
-  when a third party is compelled by another actor to violate a user's
-  trust. The most common example would be a third party being forced
-  to turn over user data or records in response to a request from the
-  government with jurisdiction over the party. Another example might
-  include a company going bankrupt and being forced to sell its user
-  data to another entity~\cite{solove2015}.
-\item[Unintentional (U):] \hfill \\ This form of violation occurs when
-  a third party unintentionally discloses or manipulates user data. An
-  example would be a coding error that allows either the loss of or
-  unfettered access to user data.
-\item[Colluding (L):] \hfill \\ This class of violation occurs when
-  multiple third parties collude to gain capabilities over user data
-  beyond what the user intended each to have individually.
+  have clicked through a Terms of Service agreement that ``granted''
+  permission for such use, but if the third party is engaging in
+  behavior that the user would not generally expect, an implicit trust
+  violation has occurred.
+\item[Compelled (C-Violation):] \hfill \\ This class of trust
+  violation occurs when a third party is compelled by another actor to
+  violate a user's trust. The most common example would be a third
+  party being forced to turn over user data or records in response to
+  a request from the government with jurisdiction over the
+  party. Another example might include a company going bankrupt and
+  being forced to sell its user data to another entity.
+\item[Unintentional (U-Violation):] \hfill \\ This form of violation
+  occurs when a third party unintentionally discloses or manipulates
+  user data. An example would be a coding error that allows either the
+  loss of or unfettered access to user data. Traditional ``hacking''
+  attacks also fall into this class insofar that such attacks are
+  often possible due to intentional flaws in the design of a
+  ``secure'' system.
+\item[Colluding (L-Violation):] \hfill \\ This class of violation
+  occurs when multiple third parties collude to gain capabilities over
+  user data beyond what the user intended each to have
+  individually. An example of such a volition might occur if a user
+  has granted two separate parties access to different portions of
+  user data (e.g. location data stored with their cellar service
+  provider and credit and transaction data stored with their bank)
+  that could be combined to reveal more about the user to both parties
+  than the user intended either party to know.
 \end{packed_desc}
+
+While this list of violation categories is far from exhaustive, it
+does provide a good high-level mapping useful for exploring the
+patterns underlying trust violations and potential methods of
+mitigation.
