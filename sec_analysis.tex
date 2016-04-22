@@ -105,17 +105,458 @@ capabilities). Yet, when implementing multi-user use cases, such
 services fall back to requiring a more-or-less full degree of trust,
 leaving much to be desired.
 
+%% \subsubsection{Social Media}
+
+%% Social media sites such as Facebook, Google Plus, etc have become
+%% popular since the early 2000s. Such sites maintain a ``social-graph''
+%% of connections between users, and facilitate communication and sharing
+%% of pictures, events, and other data between users. Such sites are
+%% generally ``free'' to users -- monetizing user data and interactions
+%% for the purpose of selling targeted advertising. Given their ubiquity
+%% in the modern Internet landscape, as well as their position as
+%% ad-supported services, it is useful to evaluate the trust profile of
+%% modern social media sites. Facebook is the largest social media site
+%% today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
+%% such, Facebook serves as an example of the variety of social media
+%% sites available today.
+
+%% In terms of capabilities, Facebook, like Dropbox and other traditional
+%% cloud services, must be trusted with a full range of
+%% capabilities. Facebook is responsible for faithfully storing user
+%% data, Facebook can access and read all data it stores, Facebook can
+%% manipulate the data it stores, and Facebook is capable of performing
+%% meta-analysis of what data users are accessing and of how they are
+%% accessing it.
+
+%% In terms of likelihood of trust violations, Facebook differs a bit
+%% from cloud-based system like Dropbox in that it is an ad-supported
+%% system. This increases the likelihood of implicit trust failures due
+%% to Facebook's business model being based around the sale of user
+%% data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
+%% Facebook has a record of implicit trust violations ranging from the
+%% Emotional Contagion Study~\cite{goel2014} to its use of users' photos
+%% in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
+%% violations, Facebook's trust violation profile is again similar to
+%% other traditional cloud services such as Dropbox. Like
+%% Dropbox~\cite{dropbox-transparency}, compelled violations are known to
+%% occur~\cite{facebook-transparency}. Unintentional, insider, and
+%% outsider violations are all possible, but Facebook has an active
+%% interest in avoiding them. Collusion violations aren't really
+%% applicable since Facebook is a single-party actor.
+
+%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
+%% summary of the Facebook trust model analysis. Google
+%% Plus~\cite{google-plus} and related social media services have similar
+%% trust profiles to Facebook.
+
+%% \subsubsection{Communications}
+
+%% Communication systems ranging from email and chat to voice and video
+%% calling are another popular use case. The privacy and security of
+%% these systems are a matter of great public concern, and indeed many of
+%% the current privacy and security related legal battles revolve around
+%% the ability to communicates in a private and secure manner
+%% (e.g.~\cite{apple-fbiletter, greenwald-prism, levsion-lavabit}). It is
+%% useful to analyze the trust of several such services. To illustrate a
+%% range of profiles, it is useful to analyze both traditional (Gmail)
+%% and secure (GPG/PGP) email services, as well as traditional (Google
+%% Hangouts) and secure (TextSecure) chat/messaging
+%% applications. Tables~\ref{tab:trust:app:cap}
+%% and~\ref{tab:trust:app:threats} show a summary of these profiles.
+
+%% Gmail~\cite{google-gmail} and Hangouts~\cite{google-hangouts} are both
+%% Google-hosted communication services, placing them fairly soundly in
+%% the ``traditional cloud services'' camp. As such, their profiles are
+%% similar to those of Dropbox and Facebook. Both services require
+%% granting Google a full range of capabilities over user data.
+
+%% Like Facebook, both services are ad-supported, increasing the
+%% likelihood of implicit trust violations (although unlike Facebook,
+%% Google seems to have a better track record of not committing such
+%% violations). Similarly, both services are known to be subject to
+%% compelled violations~\cite{google-transparency},\footnote{It is
+%%   possible such cloud communication services are actually at an
+%%   increased risk of compelled violations relative to other cloud
+%%   services due to the existence of laws such as the Communications
+%%   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
+%%     calea-fcc} specifically designed to aid the government in
+%%   obtaining a user's communications.}and are disincentivized, although
+%% by no means immune, from committing unintentional, insider, and
+%% outsider violations.\footnote{Google has taken steps to ensure
+%%   communication between all of its data centers and between mail
+%%   servers are encrypted in transit, helping to minimize outsider
+%%   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
+%%   started providing end users with information as to whether or not
+%%   encrypted email transmission was possible and whether or not an
+%%   email's sender has been authenticated~\cite{gmail-blog-indicators}.
+%%   In both cases however, third parties, not end users, remain in full
+%%   control of all the necessary cryptographic keys, limiting this
+%%   protection to the mitigation of outsider violations, and doing
+%%   little to mitigate Implicit, Compelled, Unintentional, or Insider
+%%   violations.}Thus, Google is able to analyze, alter, and expose any
+%% data that travels across its network using either service -- either of
+%% its own volition or due to a compelled order or unauthorized data
+%% breach.
+
+%% The OpenPGP protocol~\cite{callas2007} is one of the traditional
+%% mechanisms for securing digital communications. It is most widely used
+%% with email and is implemented via a variety of applications from
+%% desktop apps such as Enigmail~\cite{enigmail} (powered by GnuPG
+%% (GPG)~\cite{gnupg}) to browser-based plugins such as
+%% Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes public-key
+%% cryptography to end-to-end encrypt and authenticate messages traveling
+%% across untrusted mediums. It can be applied atop mail traversing
+%% traditional email systems such as Gmail, as well as to messages
+%% traversing chat applications such as Google Hangouts. When used with
+%% such service, PGP provides an additional level of trust mitigation
+%% above and beyond what is possible to achieve via the native services
+%% themselves. In terms of trusted capabilities, a user employing PGP
+%% atop a traditional third party cloud service such as Gmail minimizes
+%% both the third party's access (via encryption) and manipulation (via
+%% authentication) capabilities. In such a scenario, only the end users
+%% involved in a given communication, and not any third party through
+%% which that communication might pass, have access to the necessary
+%% cryptographic keys required to read or alter the message. The third
+%% party, however, can still capture metadata about the communication
+%% since such metadata is outside of the scope of the message content
+%% that PGP is capable of securing. The third party is also still capable
+%% of dropping or deleting the communication all together, and thus still
+%% possesses the ``storage'' capability.
+
+%% Since the OpenPGP protocol and associated implementations are not
+%% controlled by any single third party, there is no straightforward
+%% analysis of its likelihood of PGP-related trust violations. In
+%% general, however, PGP implementations are controlled by parties with a
+%% vested interest in maintaining user security and privacy. Such parties
+%% are strongly disincentivized from committing implicit or compelled
+%% violations. Most OpenPGP implementations are also open source. This
+%% helps to mitigate\footnote{Although it does not necessarily prevent
+%%   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
+%%   Thompson style attack~\cite{thompson1984}.}unintentional, insider,
+%% and outsider violations by maximizing the number of eyes on the code
+%% and reducing the likelihood of mistakes or intentionally coded
+%% vulnerabilities and back doors.
+
+%% Due to the numerous challenges and deficiencies associated with using
+%% OpenPGP-based systems~\cite{green-pgp}, developers have created a
+%% number of alternate secure communication protocols. These protocols
+%% aim to provide forward-secrecy, metadata privacy, deniability, contact
+%% authentication, and message encryption and authentication for
+%% (primarily) real-time communication such as instant messaging and chat
+%% systems. Examples of such protocol include OTR~\cite{otr-v3} and
+%% OTR-derived protocols like TextSecure~\cite{otr-advanced-ratchet}. The
+%% TextSecure protocol is used by several apps such Open Whisper System's
+%% Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. As such,
+%% TextSecure is thus a useful target for trust profile analysis.
+
+%% TextSecure uses various forms of asymmetric cryptography to provide
+%% users with end-to-end encrypted and authenticated individual and group
+%% messaging capabilities. TextSecure has been formally analyzed and
+%% proven to provide secure encryption and message
+%% authentication~\cite{frosch2014}. Use of TextSecure denies any third
+%% party through which TextSecure messages might pass (including the
+%% TextSecure server itself) the access or manipulation
+%% capabilities. Furthermore, TextSecure makes efforts to secure all
+%% metadata from third party actors, including the server itself. This
+%% strongly curtails a third party's ability to analyze message
+%% metadata. It is still possible for a network-level adversary or the
+%% TextSecure server to discover the raw network (e.g. IP) endpoints
+%% involved in a TextSecure exchange, but higher level details are not
+%% available. It is also possible to couple TextSecure with existing
+%% network anonymity systems such as Tor~\cite{dingledine2004} to
+%% mitigate such network-level
+%% meta-analysis~\cite{intercept-chatting}. TextSecure users are still
+%% dependent on a third party to operate a TextSecure server in order to
+%% communicate in the first place (e.g. it is not a fully distributed
+%% protocol), but beyond this ``storage''-like capability, TextSecure
+%% grants no other capabilities to any third party.
+
+%% Like OpenPGP, TextSecure is a protocol implemented by several
+%% different apps. Such application providers (e.g. Open Whisper Systems)
+%% specifically market their products as being a secure alternative to
+%% more traditional chat systems, and are thus strongly dissuaded from
+%% committing any kind of implicit or compelled trust
+%% violation. Furthermore, most TextSecure implementations are open
+%% source, which mitigates the likelihood of
+%% unintentional,\footnote{Researchers have discovered bugs in
+%%   TextSecure, but these bugs were quickly
+%%   patched~\cite{frosch2014}.}insider, or outsider
+%% violations. TextSecure has also undergone external audits and reviews,
+%% further decreasing the likelihood of an unintentional or insider
+%% violation~\cite{frosch2014}. As in OpenPGP, even if a violation
+%% occurred, the capability restrictions discussed above severely limit
+%% what data the violation would expose. Therefore, TextSecure represents
+%% a successful effort to reduce third party trust exposure and secure
+%% user communications.
+
+%% \subsubsection{Password Managers}
+
+%% Password management programs are commonly used by end users wishing to
+%% both manage and increase the security of the credentials they use to
+%% access web-based resources. Such programs are useful for helping end
+%% users remember passwords, and by extension, for encouraging users to
+%% use stronger (i.e. longer and/or more random)
+%% passwords~\cite{brodkin-passman, krebs-passwords,
+%%   schneier-passwords}. It is useful to evaluate the trust profile
+%% surrounding such programs. LastPass~\cite{lastpass} is one of the most
+%% popular cloud-based password managers. The results of evaluating
+%% LastPass's trust profile are summarized in
+%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. Other
+%% cloud-based password managers (e.g. 1Password~\cite{onepassword}) have
+%% similar profiles.
+
+%% LastPass operates by storing encrypted user passwords on a
+%% LastPass-controlled server. Passwords are enciphered on the client and
+%% only encrypted passwords are sent to LastPass. Each password is
+%% encrypted using a key derived from a user-supplied ``master''
+%% password. LastPass never stores this master password directly, making
+%% it difficult for them to derive the key necessary to decrypt the
+%% encrypted data they store. Thus, LastPass limits its ``access'' to
+%% user data. LastPass does not, however, appear to perform any kind of
+%% cryptographic authentication on the data it stores, meaning it still
+%% has full capabilities over the ``manipulation''
+%% capability.\footnote{In realty, it is somewhat difficult for LastPass
+%%   to modify user data intelligently since they lack the ability to
+%%   read the result of their modifications. Nonetheless, the lack of any
+%%   client-side cryptographic protections against modification leaves
+%%   the door open to a range of potential attack on LastPass's client
+%%   side encryption as per the ``cryptographic doom''
+%%   principle~\cite{marlinspike-doom}.}Similarly, LastPass is fully
+%% responsible for faithfully storing user data and has full access to
+%% all user metadata associated with any stored password.
+
+%% In terms of likelihood of trust violations, LastPass has a very
+%% similar profile to a service like Tresorit. LastPass is a ``freemium''
+%% service that generates its income off its ability to faithfully store
+%% and protect user passwords, encouraging users to pay for higher level
+%% service tiers. This disincentivizes implicit trust
+%% violations. LastPass also has a strong incentive to minimize (at least
+%% public) compelled violations, although it is still subject to such
+%% violations. Unintentional, insider, and outsider violations are
+%% similarly disincentivized, although they have occurred
+%% before~\cite{lastpass-blog-breach}.
+
+%% Like Tresorit, LastPass is neither open source\footnote{Although parts
+%%   of LastPass are build using JavaScript, which by its very nature
+%%   exposes the source code to users. Nonetheless, such code can be
+%%   obfuscated to make it difficult to read, and users lack most of the
+%%   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
+%%   associated with ``open source'' code.}nor subject to public code
+%% audits. As such, the user is required to trust that LastPass has
+%% faithfully coded its software not to expose additional capabilities
+%% via hidden back doors. It is possible that LastPass could be compelled
+%% to modify the LastPass client program to do something like send copies
+%% of a user's master password back to LastPass where it could be used to
+%% decrypt all of the user's data. It is also possible that the lack of
+%% cryptographic authentication on user data would allow LastPass to
+%% mount a range of attacks on a user - potentially revealing one or more
+%% of the passwords they store with LastPass in the process.
 
 \subsection{Violation Examples}
 \label{sec:analysis:violations}
 
+%% But how likely is it that Dropbox might misuse any of these
+%% capabilities, thus violating the user's trust? In terms of implicit
+%% violations (\emph{I}), Dropbox charges users for storage, and thus
+%% shouldn't generally rely on reading or sharing user data for
+%% advertising purposes. Furthermore, such a business model relies on
+%% Dropbox remaining in its paying users' good graces, disincentivizing
+%% potentially questionable behavior. Nonetheless, the user has no way to
+%% prevent an \emph{I} violation when using Dropbox, so users can do no
+%% more than give Dropbox the benefit of the doubt in this area.
+
+%% In terms of compelled (\emph{C}) violations, Dropbox is a U.S.-based
+%% company, and is thus susceptible to a variety of government-sponsored
+%% data requests, from subpoenas issued under the Third Party
+%% Doctrine~\cite{thompson-thirdparty}, to probable cause search
+%% warrants~\cite{us-constitution-amend4}, to National Security
+%% Letters~\cite{fbi-nsl}, to Foreign Intelligence Surveillance Court
+%% (FISC)~\cite{fisc} orders. Dropbox publishes a transparency
+%% report~\cite{dropbox-transparency} indicating how frequently they are
+%% compelled to violate user privacy. Recent versions of this report
+%% indicate that Dropbox receives a few hundred requests for various user
+%% data every six months.
+
+%% Unintentional (\emph{U}), Insider (\emph{I}), or Outsider (\emph{O})
+%% violations are all possibilities when using Dropbox. On the \emph{U}
+%% front, Dropbox had an incident in 2011 that allowed anyone to log into
+%% the service using any password for a five hour
+%% period~\cite{dropbox-authbug}. So far, Dropbox appears to have
+%% avoided any \emph{I}-type violations, but it has been the target of
+%% various \emph{O}-type attempted violations, primarily built around
+%% advisories who obtain common user
+%% passwords~\cite{dropbox-passwords}. Needless to say, while Dropbox
+%% works to avoid these kinds of violations, they are certainly still
+%% possible, have occurred in the past, and may well occur in the future.
+
+
+%% In terms of trust violations, such ``secure'' cloud storage services
+%% are being paid to store user data, disincentivizing implicit
+%% violations. Compelled violations are possible, although as services
+%% that market themselves as ``privacy'' products, compelled violations
+%% (assuming they are public) are also disincentivized. Due to the CA
+%% trust requirements that exists in such services' sharing
+%% implementations, however, it is possible that such a service could be
+%% compelled to mount a MitM attack on one of their users in order to
+%% provide such data to the compelling party (similar to government
+%% efforts to compel Apple to create a flawed version of iOS that would
+%% be vulnerable to brute force attacks~\cite{ars-cookvfbi}). Similarly,
+%% such a service could be compelled to surrender their CA private key,
+%% allowing the compelling party to take over the trusted CA role and
+%% mount such a MitM attack themselves (similar to the how Lavabit was
+%% compelled to turn over their private TLS keys to facilitate government
+%% access to the data they controlled~\cite{levsion-lavabit}). The fact
+%% that such capabilities have been exploited for the purpose of
+%% committing compelled violations in the past raises the likelihood of
+%% such violations when using services such as Tresorit in the
+%% future. Unintentional, Insider, and Outsider violations are all
+%% similar to the traditional use case: such violations are technically
+%% possible, but the third party has a vested interest in avoiding such
+%% violations for reputation-related reasons. Collusion violations aren't
+%% really applicable since Tresorit is a single-party actor.
+
+%% Furthermore, since services such as Tresorit are not open source or
+%% widely audited by independent parties, the user must trust that the
+%% code they are running to access these services is faithfully
+%% implementing the security guarantees the services claim to
+%% support. It is possible that such a service could ship a flawed
+%% version of their code due to a wide range of trust violations
+%% (e.g. they could be compelled to ship such code, or it could be an
+%% honest unintentional mistake).
+
 \subsubsection{Implicit Violations}
+
+%% \begin{packed_desc}
+%% \item[Facebook Emotional Contagion Study:] In 2014, it came to light
+%%   that Facebook had engaged in research that involved manipulating
+%%   what users saw in their newsfeeds in order to study the effects of
+%%   one user's emotions on other users~\cite{goel2014}. The study was
+%%   performed on $\approx700$ users without their knowledge or
+%%   consent. Facebook misused the trust placed in it by its users by
+%%   leveraging and manipulating their data in unforeseen ways.
+%% \item[Uber User Travel History:] In 2014, ride-share app
+%%   Uber~\cite{uber} made headlines when it used the travel history of a
+%%   number of its more prominent users to display a live user-location
+%%   map at a launch party~\cite{sims2014}. Similarly, the company also
+%%   used stored user travel history to compose a blog post detailing its
+%%   ability to detect a given user's proclivity for ``one night
+%%   stands''~\cite{pagliery2014}. In both cases, Uber leveraged data it
+%%   had about users in manners users did not approve of or intend.
+%% \item[Target Pregnancy Prediction:] In 2012, it became public that
+%%   Target had developed a statistical system for predicting if its
+%%   shoppers were pregnant based on the kind of items they
+%%   bought. Target would then leverage this data to send customers
+%%   coupons optimized for pregnant individuals. In one case, this
+%%   practice lead to the outing of a pregnant teenager to her previously
+%%   unaware father~\cite{hill2012}. Clearly such outcomes are not within
+%%   the realm of what most shoppers expect when purchasing items at
+%%   Target.
+%% \end{packed_desc}
 
 \subsection{Compelled Violations}
 
+%% \begin{packed_desc}
+%% \item[PRISM and MUSCULAR:] The NSA PRISM program was/is a Foreign
+%%   Intelligence Surveillance Court (FISC)~\cite{fisc} approved system
+%%   for compelling service providers to provide user data to the
+%%   government~\cite{greenwald-prism}. It is believed to be one of the
+%%   largest programs used by the government to extract user data from
+%%   various cloud-based services (e.g. Google, Yahoo, Microsoft,
+%%   etc). Similarly, MUSCULAR was/is a joint NSA and U.K. Government
+%%   Communication Headquarters (GCHQ) effort to intercept and monitor
+%%   traffic traversing Google's and Yahoo's inter-datacenter
+%%   networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure,
+%%   this intra-datacenter traffic was not generally encrypted, and thus
+%%   was an ideal point for a third party (e.g. the government) to
+%%   intercept and monitor user data. Both cases demonstrate a concerted
+%%   government effort to access and monitor user data atop popular cloud
+%%   services.
+%% \item[Lavabit:] Lavabit was a private email service with 400,000 users
+%%   premised on the idea that popular free email services such as Gmail
+%%   lacked adequate security and privacy guarantees (in part due to the
+%%   lesser legal protections such communications receive under the U.S.
+%%   third party doctrine~\cite{thompson-thirdparty}). In August 2013
+%%   Lavabit shuttered its service in response to a U.S. government
+%%   subpoena requiring Lavabit to turn over all of its encrypted user
+%%   traffic as well as the associated SSL encryption keys necessary to
+%%   decrypt it~\cite{lavabit, levsion-lavabit}. After a legal fight,
+%%   Lavabit founder Ladar Levison was forced to disclose the encryption
+%%   keys protecting his service. The Lavabit example shows the
+%%   government's willingness to compel service operators to aid in the
+%%   monitoring and collection of user data.
+%% \item[Apple v. FBI:] In response to the 2015 San Bernardino shootings,
+%%   the FBI attempted to compel Apple to help it decrypt one of the
+%%   shooters' iPhone~\cite{ars-cookvfbi}. The form of encryption Apple
+%%   uses to protect the iPhone involves a hardware-linked encryption key
+%%   that can not be easily extracted from the phone, limiting
+%%   out-of-band cracking opportunities. Furthermore, this key can not be
+%%   used on the phone without a user-provided passcode. By default,
+%%   Apple limits the number of guesses a user may make at this passcode
+%%   and throttles the speed at which a user may guess passcodes. The FBI
+%%   wished to compel Apple to update the software on the iPhone so that
+%%   they could try to guess an unlimited number of passcodes at a high
+%%   rate of speed~\cite{eff-applecrypto}.\footnote{Due to Apple's use of
+%%     signature-verified code, it is not possible for the FBI (or anyone
+%%     else) to update the Apple's software themselves. Instead, Apple
+%%     (or the holder of Apple's cryptographic code signing key)must
+%%     approve and sign any updated code before the iPhone will run
+%%     it.}Apple was disinclined to acquiesce to this
+%%   request~\cite{apple-fbiletter}. The case wound up being dropped by
+%%   the FBI after they were able to leverage an undisclosed security
+%%   vulnerability to bypass Apple's passcode guessing limits
+%%   directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
+%%   Lavabit case, this case demonstrates the government's interest in
+%%   compelling companies to assist them in accessing private user data,
+%%   even going so far as to potentially require companies to avoid the
+%%   use of certain forms of encryption or security-enhancing features
+%%   that would make such assistance difficult or impossible to provide.
+%% \end{packed_desc}
+
 \subsubsection{Unintentional Violations}
 
+%% \begin{packed_desc}
+%% \item[Apple iCloud Celebrity Photo Leak:] In 2014, a number of
+%%   celebrity users of Apple's iCloud data storage
+%%   service~\cite{apple-icloud} were subject to a public release of
+%%   personal photos they had stored with the service. This leak was the
+%%   result of a targeted attack on the corresponding users' passwords
+%%   and iCloud accounts~\cite{apple-icloudleak}. These attacks appear to
+%%   have been propagated over several months prior to the public
+%%   release. While this leak was not a result of an overt flaw in
+%%   Apple's iCloud system, the weak default security requirements for
+%%   iCloud accounts made it relatively simple for attackers to
+%%   compromise such accounts and steal data.
+%% \item[Office of Personnel Management Breach:] In 2015, the U.S. Office
+%%   of Personnel Management (OPM) announced that their systems had been
+%%   breached, exposing the personal data of essentially anyone who had
+%%   held or currently holds a U.S. Government security
+%%   clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This
+%%   breach, in addition to having high strategic value to foreign
+%%   attackers, reveled sensitive personnel data of a huge number of U.S.
+%%   government employees and contractors. This leak was largely due to
+%%   the use of old and outdated storage and security systems employed by
+%%   the OPM.
+%% \item[Anthem and Premera Blue Cross Breaches:] In early 2015 two major
+%%   U.S. health insurance companies were subject to attacks that breached
+%%   their user records, allowing the release of personal, financial, and
+%%   medical information on millions of users~\cite{krebs-anthem,
+%%     krebs-premera}. While the details of the breaches were not made
+%%   public, such attacks demonstrate the risk of trusting a third party
+%%   with the storage of large quantities of sensitive data.
+%% \item[Heartbleed, Shellshock, etc:] In addition to targeted attacks,
+%%   third parties are also susceptible to software flaws. Prominent
+%%   examples of such flaws include Heartbleed~\cite{heartbleed}, a flaw
+%%   in OpenSSL~\cite{openssl} that allowed attackers to steal private
+%%   data from many secure servers, and
+%%   Shellshock~\cite{symantec-shellshock}, a GNU bash~\cite{gnu-bash}
+%%   flaw that allowed user to execute arbitrary code on many web
+%%   servers. Both flaws were widespread and effected large swaths of
+%%   web-connected sites and services, potentially exposing many users to
+%%   attacks and data breaches.
+%% \end{packed_desc}
+
 \subsubsection{Collusion Violations}
+
 
 \subsection{Risk Analysis}
 
