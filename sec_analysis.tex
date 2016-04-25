@@ -37,7 +37,7 @@ that is Dropbox's core purpose. Users therefore grant Dropbox the
 ability to read and access their data (i.e. the \emph{R} capability)
 in order to support Dropbox's sharing and syncing features. While
 Dropbox doesn't generally utilize it, users are also effectively
-granting Dropbox the manipulation (\emph{W}) capability as well since
+granting Dropbox the manipulation (\emph{W} capability) as well since
 the user has no mechanisms for ensuring that Dropbox can't manipulate
 their data. Finally, Dropbox has full access to user metadata related
 to their usage of the service, granting them the \emph{M}
@@ -96,7 +96,7 @@ to metadata (\emph{M} capability). Nor do they provide ways for users
 to avoid data loss in the event that one of the services goes offline
 or shuts down (\emph{S} capability).
 
-``Secure'' cloud file storage service such as Tresorit this do more to
+``Secure'' cloud file storage service such as Tresorit do more to
 minimize the required degree of third party trust then traditional
 services such as Dropbox. In single-user scenarios, such services
 succeed at reducing the degree of user trust from full (all four
@@ -142,145 +142,108 @@ the storage space, there are not really any options for ``secure''
 social media platforms that specifically aim to minimize third party
 trust.
 
-%% \subsubsection{Communications}
+\subsubsection{Communications}
 
-%% Communication systems ranging from email and chat to voice and video
-%% calling are another popular use case. The privacy and security of
-%% these systems are a matter of great public concern, and indeed many of
-%% the current privacy and security related legal battles revolve around
-%% the ability to communicates in a private and secure manner
-%% (e.g.~\cite{apple-fbiletter, greenwald-prism, levsion-lavabit}). It is
-%% useful to analyze the trust of several such services. To illustrate a
-%% range of profiles, it is useful to analyze both traditional (Gmail)
-%% and secure (GPG/PGP) email services, as well as traditional (Google
-%% Hangouts) and secure (TextSecure) chat/messaging
-%% applications. Tables~\ref{tab:trust:app:cap}
-%% and~\ref{tab:trust:app:threats} show a summary of these profiles.
+Communication systems ranging from email and chat to voice and video
+calling are another popular set of third party services. The privacy
+and security of these systems are a matter of great public concern,
+and indeed many of the current privacy and security related legal
+battles revolve around the ability to communicates in a private and
+secure manner (e.g.~\cite{apple-fbiletter, greenwald-prism,
+  levsion-lavabit}). Communication systems range from traditional
+communications services such as Gmail~\cite{google-gmail} to recent
+privacy-enhancing services such as
+TextSecure~\cite{otr-advanced-ratchet}.
 
-%% Gmail~\cite{google-gmail} and Hangouts~\cite{google-hangouts} are both
-%% Google-hosted communication services, placing them fairly soundly in
-%% the ``traditional cloud services'' camp. As such, their profiles are
-%% similar to those of Dropbox and Facebook. Both services require
-%% granting Google a full range of capabilities over user data.
+Email services such as Gmail~\cite{google-gmail} or chat services such
+as Hangouts~\cite{google-hangouts} represent a fairly traditional
+approach to third party communication services. As was the case with
+Dropbox and Facebook, users of such services must rely on the third
+party service provider (in this case, Google) to properly store
+(\emph{S} capability) their messages while the design of these systems
+do nothing to prevent the service provider from accessing (\emph{R}
+capability) or manipulating (\emph{W} capability) user
+messages.\footnote{Similar to Facebook, many communication services
+  are ad-based, and thus the service provider often relies on their
+  ability to access user data as the basis of their business
+  models.}Furthermore, since all communication flows through the
+service provider's servers, these providers have access to a range of
+potentially reveling meta-data about their users (\emph{M}
+capability).
 
-%% Like Facebook, both services are ad-supported, increasing the
-%% likelihood of implicit trust violations (although unlike Facebook,
-%% Google seems to have a better track record of not committing such
-%% violations). Similarly, both services are known to be subject to
-%% compelled violations~\cite{google-transparency},\footnote{It is
-%%   possible such cloud communication services are actually at an
-%%   increased risk of compelled violations relative to other cloud
-%%   services due to the existence of laws such as the Communications
-%%   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
-%%     calea-fcc} specifically designed to aid the government in
-%%   obtaining a user's communications.}and are disincentivized, although
-%% by no means immune, from committing unintentional, insider, and
-%% outsider violations.\footnote{Google has taken steps to ensure
-%%   communication between all of its data centers and between mail
-%%   servers are encrypted in transit, helping to minimize outsider
-%%   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
-%%   started providing end users with information as to whether or not
-%%   encrypted email transmission was possible and whether or not an
-%%   email's sender has been authenticated~\cite{gmail-blog-indicators}.
-%%   In both cases however, third parties, not end users, remain in full
-%%   control of all the necessary cryptographic keys, limiting this
-%%   protection to the mitigation of outsider violations, and doing
-%%   little to mitigate Implicit, Compelled, Unintentional, or Insider
-%%   violations.}Thus, Google is able to analyze, alter, and expose any
-%% data that travels across its network using either service -- either of
-%% its own volition or due to a compelled order or unauthorized data
-%% breach.
+The need to place a high degree of trust in various third parties in
+order to leverage digital communication services has long been a
+concern. Indeed many early privacy-enhancing software projects,
+including the venerable PGP~\cite{zimmermann-pgp10,
+  zimmermann-pgpsource}, were created in response to the lack of
+privacy inherent in most digital communication systems. Modern
+implementation of such systems, such as those conforming to the
+OpenPGP protocol~\cite{callas2007}, aim to reduce the amount users
+must trust third party communication providers by adding end-to-end
+encryption and cryptographic authentication support to traditional
+digital communication mediums. The OpenPGP protocol can be applied
+atop mail traversing traditional email systems such as Gmail, as well
+as to messages traversing chat applications such as Hangouts. When
+used with such services, OpenPGP provides a level of trust mitigation
+above and beyond what is possible to achieve via the native services
+themselves. In terms of trusted capabilities, a user employing PGP
+atop a traditional third party cloud service such as Gmail minimizes
+both the third party's access (via encryption) and manipulation (via
+authentication) capabilities. In such a scenario, only the end users
+involved in a given communication, and not any third party through
+which that communication might pass, have access to the necessary
+cryptographic keys required to read or alter the message. The third
+party, however, can still capture metadata (\emph{M} capability) about
+the communication since such metadata is outside of the scope of the
+message content that PGP is capable of securing. The third party is
+also still capable of dropping or deleting the communication all
+together, and thus still possesses the \emph{S} capability.
 
-%% The OpenPGP protocol~\cite{callas2007} is one of the traditional
-%% mechanisms for securing digital communications. It is most widely used
-%% with email and is implemented via a variety of applications from
-%% desktop apps such as Enigmail~\cite{enigmail} (powered by GnuPG
-%% (GPG)~\cite{gnupg}) to browser-based plugins such as
-%% Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes public-key
-%% cryptography to end-to-end encrypt and authenticate messages traveling
-%% across untrusted mediums. It can be applied atop mail traversing
-%% traditional email systems such as Gmail, as well as to messages
-%% traversing chat applications such as Google Hangouts. When used with
-%% such service, PGP provides an additional level of trust mitigation
-%% above and beyond what is possible to achieve via the native services
-%% themselves. In terms of trusted capabilities, a user employing PGP
-%% atop a traditional third party cloud service such as Gmail minimizes
-%% both the third party's access (via encryption) and manipulation (via
-%% authentication) capabilities. In such a scenario, only the end users
-%% involved in a given communication, and not any third party through
-%% which that communication might pass, have access to the necessary
-%% cryptographic keys required to read or alter the message. The third
-%% party, however, can still capture metadata about the communication
-%% since such metadata is outside of the scope of the message content
-%% that PGP is capable of securing. The third party is also still capable
-%% of dropping or deleting the communication all together, and thus still
-%% possesses the ``storage'' capability.
+Due to the numerous challenges and deficiencies associated with using
+OpenPGP-based systems~\cite{green-pgp, borisov2004, whitten1999},
+developers have created a number of alternate secure communication
+protocols. These protocols aim to provide forward-secrecy, metadata
+privacy, deniability, contact authentication, and message encryption
+and authentication for (primarily) real-time communication such as
+instant messaging and chat systems. Examples of such protocol include
+OTR~\cite{otr-v3} and OTR-derived protocols like
+TextSecure~\cite{otr-advanced-ratchet}. The TextSecure protocol is
+used by several apps such Open Whisper System's
+Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. TextSecure
+uses various forms of asymmetric cryptography to provide users with
+end-to-end encrypted and authenticated individual and group messaging
+capabilities. Use of TextSecure denies any third party through which
+TextSecure messages might pass (including the TextSecure server
+itself) the access or manipulation capabilities. Furthermore,
+TextSecure makes efforts to secure metadata from third party actors,
+including the TextSecure server provider itself. These efforts curtail
+a third party's ability to analyze message metadata. It is still
+possible for a network-level adversary or the TextSecure server
+provider to discover the raw network (e.g. IP) endpoints involved in a
+TextSecure exchange, but higher level details are not
+available.\footnote{It is possible to couple TextSecure with existing
+  network anonymity systems such as Tor~\cite{dingledine2004} to
+  mitigate such network-level
+  meta-analysis~\cite{intercept-chatting}.}TextSecure users are still
+dependent on a third party to operate a TextSecure server in order to
+communicate in the first place (e.g. it is not a distributed
+protocol), but beyond this ``storage''-like capability, TextSecure
+grants no other capabilities to any third party.
 
-%% Since the OpenPGP protocol and associated implementations are not
-%% controlled by any single third party, there is no straightforward
-%% analysis of its likelihood of PGP-related trust violations. In
-%% general, however, PGP implementations are controlled by parties with a
-%% vested interest in maintaining user security and privacy. Such parties
-%% are strongly disincentivized from committing implicit or compelled
-%% violations. Most OpenPGP implementations are also open source. This
-%% helps to mitigate\footnote{Although it does not necessarily prevent
-%%   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
-%%   Thompson style attack~\cite{thompson1984}.}unintentional, insider,
-%% and outsider violations by maximizing the number of eyes on the code
-%% and reducing the likelihood of mistakes or intentionally coded
-%% vulnerabilities and back doors.
-
-%% Due to the numerous challenges and deficiencies associated with using
-%% OpenPGP-based systems~\cite{green-pgp}, developers have created a
-%% number of alternate secure communication protocols. These protocols
-%% aim to provide forward-secrecy, metadata privacy, deniability, contact
-%% authentication, and message encryption and authentication for
-%% (primarily) real-time communication such as instant messaging and chat
-%% systems. Examples of such protocol include OTR~\cite{otr-v3} and
-%% OTR-derived protocols like TextSecure~\cite{otr-advanced-ratchet}. The
-%% TextSecure protocol is used by several apps such Open Whisper System's
-%% Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. As such,
-%% TextSecure is thus a useful target for trust profile analysis.
-
-%% TextSecure uses various forms of asymmetric cryptography to provide
-%% users with end-to-end encrypted and authenticated individual and group
-%% messaging capabilities. TextSecure has been formally analyzed and
-%% proven to provide secure encryption and message
-%% authentication~\cite{frosch2014}. Use of TextSecure denies any third
-%% party through which TextSecure messages might pass (including the
-%% TextSecure server itself) the access or manipulation
-%% capabilities. Furthermore, TextSecure makes efforts to secure all
-%% metadata from third party actors, including the server itself. This
-%% strongly curtails a third party's ability to analyze message
-%% metadata. It is still possible for a network-level adversary or the
-%% TextSecure server to discover the raw network (e.g. IP) endpoints
-%% involved in a TextSecure exchange, but higher level details are not
-%% available. It is also possible to couple TextSecure with existing
-%% network anonymity systems such as Tor~\cite{dingledine2004} to
-%% mitigate such network-level
-%% meta-analysis~\cite{intercept-chatting}. TextSecure users are still
-%% dependent on a third party to operate a TextSecure server in order to
-%% communicate in the first place (e.g. it is not a fully distributed
-%% protocol), but beyond this ``storage''-like capability, TextSecure
-%% grants no other capabilities to any third party.
-
-%% Like OpenPGP, TextSecure is a protocol implemented by several
-%% different apps. Such application providers (e.g. Open Whisper Systems)
-%% specifically market their products as being a secure alternative to
-%% more traditional chat systems, and are thus strongly dissuaded from
-%% committing any kind of implicit or compelled trust
-%% violation. Furthermore, most TextSecure implementations are open
-%% source, which mitigates the likelihood of
-%% unintentional,\footnote{Researchers have discovered bugs in
-%%   TextSecure, but these bugs were quickly
-%%   patched~\cite{frosch2014}.}insider, or outsider
-%% violations. TextSecure has also undergone external audits and reviews,
-%% further decreasing the likelihood of an unintentional or insider
-%% violation~\cite{frosch2014}. As in OpenPGP, even if a violation
-%% occurred, the capability restrictions discussed above severely limit
-%% what data the violation would expose. Therefore, TextSecure represents
-%% a successful effort to reduce third party trust exposure and secure
-%% user communications.
+Following the trend set by traditional cloud services such as Dropbox
+and Facebook, traditional communication systems such as Gmail (and
+email in general) or Hangouts (and related chat systems) require user
+to place a high degree of trust in the corresponding third party
+service providers. Overlay privacy-enhancing systems such as those
+implementation the OpenPGP protocol allow users to reduce this level
+of trust by leveraging client-side cryptography to prevent third
+parties from levering the access (\emph{R}) or manipulation (\emph{W})
+capabilities. Modern full-stack privacy-focused communication
+protocols such as those implementing flavors of the OTR protocol take
+these privacy-preserving cryptography techniques a step further by
+providing primitives for limiting third party metadata access in
+addition to protecting user data from third party access or
+manipulation.
 
 %% \subsubsection{Password Managers}
 
@@ -433,10 +396,69 @@ trust.
 %% interest in avoiding them. Collusion violations aren't really
 %% applicable since Facebook is a single-party actor.
 
-%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
-%% summary of the Facebook trust model analysis. Google
-%% Plus~\cite{google-plus} and related social media services have similar
-%% trust profiles to Facebook.
+
+%% Like Facebook, both services are ad-supported, increasing the
+%% likelihood of implicit trust violations (although unlike Facebook,
+%% Google seems to have a better track record of not committing such
+%% violations). Similarly, both services are known to be subject to
+%% compelled violations~\cite{google-transparency},\footnote{It is
+%%   possible such cloud communication services are actually at an
+%%   increased risk of compelled violations relative to other cloud
+%%   services due to the existence of laws such as the Communications
+%%   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
+%%     calea-fcc} specifically designed to aid the government in
+%%   obtaining a user's communications.}and are disincentivized, although
+%% by no means immune, from committing unintentional, insider, and
+%% outsider violations.\footnote{Google has taken steps to ensure
+%%   communication between all of its data centers and between mail
+%%   servers are encrypted in transit, helping to minimize outsider
+%%   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
+%%   started providing end users with information as to whether or not
+%%   encrypted email transmission was possible and whether or not an
+%%   email's sender has been authenticated~\cite{gmail-blog-indicators}.
+%%   In both cases however, third parties, not end users, remain in full
+%%   control of all the necessary cryptographic keys, limiting this
+%%   protection to the mitigation of outsider violations, and doing
+%%   little to mitigate Implicit, Compelled, Unintentional, or Insider
+%%   violations.}Thus, Google is able to analyze, alter, and expose any
+%% data that travels across its network using either service -- either of
+%% its own volition or due to a compelled order or unauthorized data
+%% breach.
+
+
+%% Since the OpenPGP protocol and associated implementations are not
+%% controlled by any single third party, there is no straightforward
+%% analysis of its likelihood of PGP-related trust violations. In
+%% general, however, PGP implementations are controlled by parties with a
+%% vested interest in maintaining user security and privacy. Such parties
+%% are strongly disincentivized from committing implicit or compelled
+%% violations. Most OpenPGP implementations are also open source. This
+%% helps to mitigate\footnote{Although it does not necessarily prevent
+%%   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
+%%   Thompson style attack~\cite{thompson1984}.}unintentional, insider,
+%% and outsider violations by maximizing the number of eyes on the code
+%% and reducing the likelihood of mistakes or intentionally coded
+%% vulnerabilities and back doors.
+
+
+%% Like OpenPGP, TextSecure is a protocol implemented by several
+%% different apps. Such application providers (e.g. Open Whisper Systems)
+%% specifically market their products as being a secure alternative to
+%% more traditional chat systems, and are thus strongly dissuaded from
+%% committing any kind of implicit or compelled trust
+%% violation. Furthermore, most TextSecure implementations are open
+%% source, which mitigates the likelihood of
+%% unintentional,\footnote{Researchers have discovered bugs in
+%%   TextSecure, but these bugs were quickly
+%%   patched~\cite{frosch2014}.}insider, or outsider
+%% violations. TextSecure has also undergone external audits and reviews,
+%% further decreasing the likelihood of an unintentional or insider
+%% violation~\cite{frosch2014}. As in OpenPGP, even if a violation
+%% occurred, the capability restrictions discussed above severely limit
+%% what data the violation would expose. Therefore, TextSecure represents
+%% a successful effort to reduce third party trust exposure and secure
+%% user communications.
+
 
 \subsubsection{Implicit Violations}
 
@@ -574,4 +596,5 @@ trust.
 
 \subsection{Risk Analysis}
 
-%%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM
+%%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
+%%  LocalWords:  TextSecure WhatsApp
