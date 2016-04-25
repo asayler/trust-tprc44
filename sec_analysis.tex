@@ -18,7 +18,7 @@ popular over the previous 10 years.  The question of how
 place in such services? The capability axis of my proposed model is
 useful to quantify this trust.
 
-\subsubsection{Cloud File Storage}
+\subsubsection{File Storage}
 
 Cloud file storage is a popular third party use case. Services such as
 Dropbox~\cite{dropbox}, Google Drive~\cite{google-drive}, and
@@ -245,68 +245,57 @@ providing primitives for limiting third party metadata access in
 addition to protecting user data from third party access or
 manipulation.
 
-%% \subsubsection{Password Managers}
+\subsubsection{Password Managers}
 
-%% Password management programs are commonly used by end users wishing to
-%% both manage and increase the security of the credentials they use to
-%% access web-based resources. Such programs are useful for helping end
-%% users remember passwords, and by extension, for encouraging users to
-%% use stronger (i.e. longer and/or more random)
-%% passwords~\cite{brodkin-passman, krebs-passwords,
-%%   schneier-passwords}. It is useful to evaluate the trust profile
-%% surrounding such programs. LastPass~\cite{lastpass} is one of the most
-%% popular cloud-based password managers. The results of evaluating
-%% LastPass's trust profile are summarized in
-%% Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. Other
-%% cloud-based password managers (e.g. 1Password~\cite{onepassword}) have
-%% similar profiles.
+Password management programs are commonly used by end users wishing to
+both manage and increase the security of the credentials they use to
+access web-based resources. Such programs are useful for helping end
+users remember passwords, and by extension, for encouraging users to
+use stronger (i.e. longer and/or more random)
+passwords~\cite{brodkin-passman, krebs-passwords,
+  schneier-passwords}. Since Password managers potentially have access
+to user credentials -- access to which would allow an adversary to
+access a range of user data, including many of the cloud services
+previously discussed, it is worth evaluating the trust user much place
+in such services.
 
-%% LastPass operates by storing encrypted user passwords on a
-%% LastPass-controlled server. Passwords are enciphered on the client and
-%% only encrypted passwords are sent to LastPass. Each password is
-%% encrypted using a key derived from a user-supplied ``master''
-%% password. LastPass never stores this master password directly, making
-%% it difficult for them to derive the key necessary to decrypt the
-%% encrypted data they store. Thus, LastPass limits its ``access'' to
-%% user data. LastPass does not, however, appear to perform any kind of
-%% cryptographic authentication on the data it stores, meaning it still
-%% has full capabilities over the ``manipulation''
-%% capability.\footnote{In realty, it is somewhat difficult for LastPass
-%%   to modify user data intelligently since they lack the ability to
-%%   read the result of their modifications. Nonetheless, the lack of any
-%%   client-side cryptographic protections against modification leaves
-%%   the door open to a range of potential attack on LastPass's client
-%%   side encryption as per the ``cryptographic doom''
-%%   principle~\cite{marlinspike-doom}.}Similarly, LastPass is fully
-%% responsible for faithfully storing user data and has full access to
-%% all user metadata associated with any stored password.
+LastPass~\cite{lastpass} is one of the most popular cloud-based
+password managers. LastPass operates by storing encrypted user
+passwords on a LastPass-controlled server. Passwords are encrypted on
+the client and only encrypted passwords are sent to LastPass. Each
+password is encrypted using a key derived from a user-supplied
+``master'' password. LastPass never stores this master password
+directly, making it difficult for them to derive the key necessary to
+decrypt the encrypted data they store. Thus, LastPass intentionally
+limits its ``access'' (\emph{R} capability) to user
+passwords. LastPass does not, however, appear to perform any kind of
+cryptographic authentication on the data it stores, meaning it still
+has full capabilities over the ``manipulation'' (\emph{W})
+capability.\footnote{Such a lack of client-side cryptographic
+  protections against modification leaves the door open to a range of
+  potential attacks on LastPass's client side encryption as per the
+  ``cryptographic doom'' principle~\cite{marlinspike-doom}.}Similarly,
+LastPass is fully responsible for faithfully storing user data and has
+full access to all user metadata associated with any stored
+password. Thus LastPass, requires users to trust it with three of the
+possible four capabilities -- less trust than cloud services such as
+Facebook or Dropbox, but more than is strictly necessary to perform
+its password storage duties.
 
-%% In terms of likelihood of trust violations, LastPass has a very
-%% similar profile to a service like Tresorit. LastPass is a ``freemium''
-%% service that generates its income off its ability to faithfully store
-%% and protect user passwords, encouraging users to pay for higher level
-%% service tiers. This disincentivizes implicit trust
-%% violations. LastPass also has a strong incentive to minimize (at least
-%% public) compelled violations, although it is still subject to such
-%% violations. Unintentional, insider, and outsider violations are
-%% similarly disincentivized, although they have occurred
-%% before~\cite{lastpass-blog-breach}.
-
-%% Like Tresorit, LastPass is neither open source\footnote{Although parts
-%%   of LastPass are build using JavaScript, which by its very nature
-%%   exposes the source code to users. Nonetheless, such code can be
-%%   obfuscated to make it difficult to read, and users lack most of the
-%%   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
-%%   associated with ``open source'' code.}nor subject to public code
-%% audits. As such, the user is required to trust that LastPass has
-%% faithfully coded its software not to expose additional capabilities
-%% via hidden back doors. It is possible that LastPass could be compelled
-%% to modify the LastPass client program to do something like send copies
-%% of a user's master password back to LastPass where it could be used to
-%% decrypt all of the user's data. It is also possible that the lack of
-%% cryptographic authentication on user data would allow LastPass to
-%% mount a range of attacks on a user - potentially revealing one or more
-%% of the passwords they store with LastPass in the process.
+Other open-source password managers such as KeePass~\cite{keepass},
+Password Safe~\cite{passwordsafe}, or Pass~\cite{pass} exist with the
+aim toward reducing the need to trust one or more third parties. Such
+systems accomplish this by either requiring no third party support at
+all (e.g. a purely local password manager)\footnote{Such purely
+  client-side solutions limit third party trust, but do so at the
+  expense of usability -- e.g. such solutions rarely provide users
+  with the ability to access their passwords from multiple devices or
+  to share passwords with colleagues.}or by allowing the user to
+decouple encryption and authentication operation from optional third
+party backend data storage and sync providers such as Dropbox. In
+addition to liming third party access capability via encryption, such
+services often aim to limit both manipulation and metadata
+capabilities via the use of client-side cryptography.
 
 \subsection{Violation Examples}
 \label{sec:analysis:violations}
@@ -460,6 +449,35 @@ manipulation.
 %% user communications.
 
 
+
+%% In terms of likelihood of trust violations, LastPass has a very
+%% similar profile to a service like Tresorit. LastPass is a ``freemium''
+%% service that generates its income off its ability to faithfully store
+%% and protect user passwords, encouraging users to pay for higher level
+%% service tiers. This disincentivizes implicit trust
+%% violations. LastPass also has a strong incentive to minimize (at least
+%% public) compelled violations, although it is still subject to such
+%% violations. Unintentional, insider, and outsider violations are
+%% similarly disincentivized, although they have occurred
+%% before~\cite{lastpass-blog-breach}.
+
+%% Like Tresorit, LastPass is neither open source\footnote{Although parts
+%%   of LastPass are build using JavaScript, which by its very nature
+%%   exposes the source code to users. Nonetheless, such code can be
+%%   obfuscated to make it difficult to read, and users lack most of the
+%%   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
+%%   associated with ``open source'' code.}nor subject to public code
+%% audits. As such, the user is required to trust that LastPass has
+%% faithfully coded its software not to expose additional capabilities
+%% via hidden back doors. It is possible that LastPass could be compelled
+%% to modify the LastPass client program to do something like send copies
+%% of a user's master password back to LastPass where it could be used to
+%% decrypt all of the user's data. It is also possible that the lack of
+%% cryptographic authentication on user data would allow LastPass to
+%% mount a range of attacks on a user - potentially revealing one or more
+%% of the passwords they store with LastPass in the process.
+
+
 \subsubsection{Implicit Violations}
 
 %% \begin{packed_desc}
@@ -597,4 +615,4 @@ manipulation.
 \subsection{Risk Analysis}
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
-%%  LocalWords:  TextSecure WhatsApp
+%%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass
