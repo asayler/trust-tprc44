@@ -300,185 +300,53 @@ capabilities via the use of client-side cryptography.
 \subsection{Violation Examples}
 \label{sec:analysis:violations}
 
-%% But how likely is it that Dropbox might misuse any of these
-%% capabilities, thus violating the user's trust? In terms of implicit
-%% violations (\emph{I}), Dropbox charges users for storage, and thus
-%% shouldn't generally rely on reading or sharing user data for
-%% advertising purposes. Furthermore, such a business model relies on
-%% Dropbox remaining in its paying users' good graces, disincentivizing
-%% potentially questionable behavior. Nonetheless, the user has no way to
-%% prevent an \emph{I} violation when using Dropbox, so users can do no
-%% more than give Dropbox the benefit of the doubt in this area.
-
-%% In terms of compelled (\emph{C}) violations, Dropbox is a U.S.-based
-%% company, and is thus susceptible to a variety of government-sponsored
-%% data requests, from subpoenas issued under the Third Party
-%% Doctrine~\cite{thompson-thirdparty}, to probable cause search
-%% warrants~\cite{us-constitution-amend4}, to National Security
-%% Letters~\cite{fbi-nsl}, to Foreign Intelligence Surveillance Court
-%% (FISC)~\cite{fisc} orders. Dropbox publishes a transparency
-%% report~\cite{dropbox-transparency} indicating how frequently they are
-%% compelled to violate user privacy. Recent versions of this report
-%% indicate that Dropbox receives a few hundred requests for various user
-%% data every six months.
-
-%% Unintentional (\emph{U}), Insider (\emph{I}), or Outsider (\emph{O})
-%% violations are all possibilities when using Dropbox. On the \emph{U}
-%% front, Dropbox had an incident in 2011 that allowed anyone to log into
-%% the service using any password for a five hour
-%% period~\cite{dropbox-authbug}. So far, Dropbox appears to have
-%% avoided any \emph{I}-type violations, but it has been the target of
-%% various \emph{O}-type attempted violations, primarily built around
-%% advisories who obtain common user
-%% passwords~\cite{dropbox-passwords}. Needless to say, while Dropbox
-%% works to avoid these kinds of violations, they are certainly still
-%% possible, have occurred in the past, and may well occur in the future.
-
-
-%% In terms of trust violations, such ``secure'' cloud storage services
-%% are being paid to store user data, disincentivizing implicit
-%% violations. Compelled violations are possible, although as services
-%% that market themselves as ``privacy'' products, compelled violations
-%% (assuming they are public) are also disincentivized. Due to the CA
-%% trust requirements that exists in such services' sharing
-%% implementations, however, it is possible that such a service could be
-%% compelled to mount a MitM attack on one of their users in order to
-%% provide such data to the compelling party (similar to government
-%% efforts to compel Apple to create a flawed version of iOS that would
-%% be vulnerable to brute force attacks~\cite{ars-cookvfbi}). Similarly,
-%% such a service could be compelled to surrender their CA private key,
-%% allowing the compelling party to take over the trusted CA role and
-%% mount such a MitM attack themselves (similar to the how Lavabit was
-%% compelled to turn over their private TLS keys to facilitate government
-%% access to the data they controlled~\cite{levsion-lavabit}). The fact
-%% that such capabilities have been exploited for the purpose of
-%% committing compelled violations in the past raises the likelihood of
-%% such violations when using services such as Tresorit in the
-%% future. Unintentional, Insider, and Outsider violations are all
-%% similar to the traditional use case: such violations are technically
-%% possible, but the third party has a vested interest in avoiding such
-%% violations for reputation-related reasons. Collusion violations aren't
-%% really applicable since Tresorit is a single-party actor.
-
-%% Furthermore, since services such as Tresorit are not open source or
-%% widely audited by independent parties, the user must trust that the
-%% code they are running to access these services is faithfully
-%% implementing the security guarantees the services claim to
-%% support. It is possible that such a service could ship a flawed
-%% version of their code due to a wide range of trust violations
-%% (e.g. they could be compelled to ship such code, or it could be an
-%% honest unintentional mistake).
-
-%% In terms of likelihood of trust violations, Facebook differs a bit
-%% from cloud-based system like Dropbox in that it is an ad-supported
-%% system. This increases the likelihood of implicit trust failures due
-%% to Facebook's business model being based around the sale of user
-%% data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
-%% Facebook has a record of implicit trust violations ranging from the
-%% Emotional Contagion Study~\cite{goel2014} to its use of users' photos
-%% in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
-%% violations, Facebook's trust violation profile is again similar to
-%% other traditional cloud services such as Dropbox. Like
-%% Dropbox~\cite{dropbox-transparency}, compelled violations are known to
-%% occur~\cite{facebook-transparency}. Unintentional, insider, and
-%% outsider violations are all possible, but Facebook has an active
-%% interest in avoiding them. Collusion violations aren't really
-%% applicable since Facebook is a single-party actor.
-
-
-%% Like Facebook, both services are ad-supported, increasing the
-%% likelihood of implicit trust violations (although unlike Facebook,
-%% Google seems to have a better track record of not committing such
-%% violations). Similarly, both services are known to be subject to
-%% compelled violations~\cite{google-transparency},\footnote{It is
-%%   possible such cloud communication services are actually at an
-%%   increased risk of compelled violations relative to other cloud
-%%   services due to the existence of laws such as the Communications
-%%   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
-%%     calea-fcc} specifically designed to aid the government in
-%%   obtaining a user's communications.}and are disincentivized, although
-%% by no means immune, from committing unintentional, insider, and
-%% outsider violations.\footnote{Google has taken steps to ensure
-%%   communication between all of its data centers and between mail
-%%   servers are encrypted in transit, helping to minimize outsider
-%%   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
-%%   started providing end users with information as to whether or not
-%%   encrypted email transmission was possible and whether or not an
-%%   email's sender has been authenticated~\cite{gmail-blog-indicators}.
-%%   In both cases however, third parties, not end users, remain in full
-%%   control of all the necessary cryptographic keys, limiting this
-%%   protection to the mitigation of outsider violations, and doing
-%%   little to mitigate Implicit, Compelled, Unintentional, or Insider
-%%   violations.}Thus, Google is able to analyze, alter, and expose any
-%% data that travels across its network using either service -- either of
-%% its own volition or due to a compelled order or unauthorized data
-%% breach.
-
-
-%% Since the OpenPGP protocol and associated implementations are not
-%% controlled by any single third party, there is no straightforward
-%% analysis of its likelihood of PGP-related trust violations. In
-%% general, however, PGP implementations are controlled by parties with a
-%% vested interest in maintaining user security and privacy. Such parties
-%% are strongly disincentivized from committing implicit or compelled
-%% violations. Most OpenPGP implementations are also open source. This
-%% helps to mitigate\footnote{Although it does not necessarily prevent
-%%   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
-%%   Thompson style attack~\cite{thompson1984}.}unintentional, insider,
-%% and outsider violations by maximizing the number of eyes on the code
-%% and reducing the likelihood of mistakes or intentionally coded
-%% vulnerabilities and back doors.
-
-
-%% Like OpenPGP, TextSecure is a protocol implemented by several
-%% different apps. Such application providers (e.g. Open Whisper Systems)
-%% specifically market their products as being a secure alternative to
-%% more traditional chat systems, and are thus strongly dissuaded from
-%% committing any kind of implicit or compelled trust
-%% violation. Furthermore, most TextSecure implementations are open
-%% source, which mitigates the likelihood of
-%% unintentional,\footnote{Researchers have discovered bugs in
-%%   TextSecure, but these bugs were quickly
-%%   patched~\cite{frosch2014}.}insider, or outsider
-%% violations. TextSecure has also undergone external audits and reviews,
-%% further decreasing the likelihood of an unintentional or insider
-%% violation~\cite{frosch2014}. As in OpenPGP, even if a violation
-%% occurred, the capability restrictions discussed above severely limit
-%% what data the violation would expose. Therefore, TextSecure represents
-%% a successful effort to reduce third party trust exposure and secure
-%% user communications.
-
-
-
-%% In terms of likelihood of trust violations, LastPass has a very
-%% similar profile to a service like Tresorit. LastPass is a ``freemium''
-%% service that generates its income off its ability to faithfully store
-%% and protect user passwords, encouraging users to pay for higher level
-%% service tiers. This disincentivizes implicit trust
-%% violations. LastPass also has a strong incentive to minimize (at least
-%% public) compelled violations, although it is still subject to such
-%% violations. Unintentional, insider, and outsider violations are
-%% similarly disincentivized, although they have occurred
-%% before~\cite{lastpass-blog-breach}.
-
-%% Like Tresorit, LastPass is neither open source\footnote{Although parts
-%%   of LastPass are build using JavaScript, which by its very nature
-%%   exposes the source code to users. Nonetheless, such code can be
-%%   obfuscated to make it difficult to read, and users lack most of the
-%%   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
-%%   associated with ``open source'' code.}nor subject to public code
-%% audits. As such, the user is required to trust that LastPass has
-%% faithfully coded its software not to expose additional capabilities
-%% via hidden back doors. It is possible that LastPass could be compelled
-%% to modify the LastPass client program to do something like send copies
-%% of a user's master password back to LastPass where it could be used to
-%% decrypt all of the user's data. It is also possible that the lack of
-%% cryptographic authentication on user data would allow LastPass to
-%% mount a range of attacks on a user - potentially revealing one or more
-%% of the passwords they store with LastPass in the process.
-
+Beyond the capabilities with with users must trust modern cloud
+services lie the analysis of the likelihood that such trust will be
+violated. In this section, I present an analysis of the factors and
+incentivize and disincentive certain classes of trust violation (as
+outlined in \S~\ref{sec:model}). I also provide examples of specific
+trust violation events that have occurred over the previous ten years.
 
 \subsubsection{Implicit Violations}
+
+Implicit trust violations represent the most direct form of trust
+violation. Implicit violation occur when a trust party intentionally
+misuses a trusted capability in a eminent the user did not intend. As
+the most direct for of violation, implicit violates are also present
+the simplest analysis of incentives and disincentive regarding such
+violations.
+
+One of the clearest potential incentives for companies to commit
+implicit trust violation comes via advertising-supported business
+models employed by many cloud services. In these models, the user is
+provided with access to a cloud service for ``free''. The service
+provider monetizes their service either by selling advertising space
+on the service directly or by collecting and selling user data to
+third party advertising firms. In contrast to more traditional
+mass-media based advertising schemes, cloud services are often
+designed as platforms for highly targeted advertising. That is, cloud
+services can leverage the vast amount of user data to which they have
+access as a mechanism for building detailed dossiers on each user and
+using these dossiers as the basis for serving personally tailored
+adds. Advertisers are generally willing to pay higher prices for more
+carefully tag red ads, incentivizing cloud providers to harvest user
+data is pursuit of such targeting.
+
+While such advertising practices do not inherently represents an
+implicit trust violation, they do setup a series of perverse
+incentives where companies can benefit by leveraging the access
+(\emph{R}) capability to harvest user data. Most ad-support cloud
+service require the user to agree to a terms of service that grants
+the service provider the right to harvest user data for advertising
+purposes. But it's well known that few, if any users, actually read
+such terms, leading to situations where users are often surprised by
+the way in which their data is used~\cite{hern2015}. Thus, while the
+user may have technically ``agreed'' to certain advertising practices,
+it is reasonable to still fault a service provider with having commit
+ed an implicit trust violation in situations where their use of user
+data deviations from that which the user would generally expect.
+
+
 
 %% \begin{packed_desc}
 %% \item[Facebook Emotional Contagion Study:] In 2014, it came to light
