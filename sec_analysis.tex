@@ -342,38 +342,54 @@ purposes. But it's well known that few, if any users, actually read
 such terms, leading to situations where users are often surprised by
 the way in which their data is used~\cite{hern2015}. Thus, while the
 user may have technically ``agreed'' to certain advertising practices,
-it is reasonable to still fault a service provider with having commit
-ed an implicit trust violation in situations where their use of user
-data deviations from that which the user would generally expect.
+it is reasonable to still fault a service provider with having
+committed an implicit trust violation in situations where their use of
+user data deviations from that which the user would generally expect.
 
+Target provides an example of an implicit trust violation triggered by
+ad-motivated misuses of access to user data. In 2012, it became public
+that Target had developed a statistical system for predicting if its
+shoppers were pregnant based on the kind of items they bought. Target
+would then leverage this data to send customers coupons optimized for
+pregnant individuals. In one case, this practice lead to the outing of
+a pregnant teenager to her previously unaware
+father~\cite{hill2012}. Clearly such outcomes are not within the realm
+of what most shoppers expect when purchasing items at Target. Facebook
+committed a similar ad-motivated implicit trust violations when it
+begin to incorporate user-provided images into the ads it served to
+other users~\cite{mashable-socialads}. These actions caught many users
+by sup rise as one does not normally expect their personal photos to
+be re-purposed for the purpose of endorsing third party products.
 
+Not all implicit violations are tied to the kinds of preference
+incentives user-data driven advertising often elicits. Sometimes third
+parties just make poor decisions about the manner in which to use the
+capabilities a user has granted them. One of the more infamous
+examples of such misuse comes from Facebook's ability to manipulate
+(\emph{W} capability) user news feeds. In 2014, it came to light that
+Facebook had engaged in research that involved manipulating what users
+saw in their news feeds in order to study the effects of one user's
+emotions on other users~\cite{goel2014}. The ``emotional contagion''
+study was performed on $\approx700$ users without their knowledge or
+consent. Facebook misused the trust placed in it by its users to
+faithfully curates their news feeds to instead manipulate these feeds
+in unforeseen and potentially behavior altering ways.
 
-%% \begin{packed_desc}
-%% \item[Facebook Emotional Contagion Study:] In 2014, it came to light
-%%   that Facebook had engaged in research that involved manipulating
-%%   what users saw in their newsfeeds in order to study the effects of
-%%   one user's emotions on other users~\cite{goel2014}. The study was
-%%   performed on $\approx700$ users without their knowledge or
-%%   consent. Facebook misused the trust placed in it by its users by
-%%   leveraging and manipulating their data in unforeseen ways.
-%% \item[Uber User Travel History:] In 2014, ride-share app
-%%   Uber~\cite{uber} made headlines when it used the travel history of a
-%%   number of its more prominent users to display a live user-location
-%%   map at a launch party~\cite{sims2014}. Similarly, the company also
-%%   used stored user travel history to compose a blog post detailing its
-%%   ability to detect a given user's proclivity for ``one night
-%%   stands''~\cite{pagliery2014}. In both cases, Uber leveraged data it
-%%   had about users in manners users did not approve of or intend.
-%% \item[Target Pregnancy Prediction:] In 2012, it became public that
-%%   Target had developed a statistical system for predicting if its
-%%   shoppers were pregnant based on the kind of items they
-%%   bought. Target would then leverage this data to send customers
-%%   coupons optimized for pregnant individuals. In one case, this
-%%   practice lead to the outing of a pregnant teenager to her previously
-%%   unaware father~\cite{hill2012}. Clearly such outcomes are not within
-%%   the realm of what most shoppers expect when purchasing items at
-%%   Target.
-%% \end{packed_desc}
+Some cloud coma pines rely on charging their users for access to a
+given service, and are thus particular disincentivized from committing
+implicit violations -- the revelations of which might harm their
+business prospects. But such companies are not immune to committing
+implicit violations. For example, in 2014, ride-share app
+Uber~\cite{uber} made headlines when it used the travel history of a
+number of its more prominent users to display a live user-location map
+at a launch party~\cite{sims2014}. This map allowed party guests to
+track these users in real time -- an outcome the average Uber user
+certainly does not expect. Similarly, Uber also used stored user
+travel history to compose a blog post detailing its ability to detect
+a given user's proclivity for ``one night
+stands''~\cite{pagliery2014}. In both cases, Uber committed implicit
+trust violations by leveraging data it had about users in manners
+users did not approve of or intend.
 
 \subsection{Compelled Violations}
 
@@ -483,4 +499,4 @@ data deviations from that which the user would generally expect.
 \subsection{Risk Analysis}
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
-%%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass
+%%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
