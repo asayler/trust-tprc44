@@ -375,7 +375,7 @@ consent. Facebook misused the trust placed in it by its users to
 faithfully curates their news feeds to instead manipulate these feeds
 in unforeseen and potentially behavior altering ways.
 
-Some cloud coma pines rely on charging their users for access to a
+Some cloud companies rely on charging their users for access to a
 given service, and are thus particular disincentivized from committing
 implicit violations -- the revelations of which might harm their
 business prospects. But such companies are not immune to committing
@@ -395,7 +395,7 @@ users did not approve of or intend.
 
 While implicit trust violations are perhaps the most egregious form of
 violations, they are certainly not the most pervasive. Instead, that
-honor likes falls to compelled violations. As discussed in
+honor likely falls to compelled violations. As discussed in
 \S~\ref{sec:model}, compelled violations occur when an entity other
 than the third party the user is trusting forces the third party to
 manipulate or provide user data in a manner of which the user does not
@@ -407,55 +407,157 @@ probable cause search warrants~\cite{us-constitution-amend4}, National
 Security Letters~\cite{fbi-nsl}, and Foreign Intelligence Surveillance
 Court (FISC)~\cite{fisc} orders.
 
-%% Dropbox publishes a transparency report~\cite{dropbox-transparency}
-%% indicating how frequently they are compelled to violate user
-%% privacy. Recent versions of this report indicate that Dropbox
-%% receives a few hundred requests for various user data every six
-%% months.
+\begin{table}[thb]
+  \footnotesize
+  \centering
+  \tabulinesep = 3pt
+  \begin{tabu} to \textwidth
+    { | X[2,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | }
+    \hline
+    \textbf{Company}
+    & \textbf{2011}
+    & \textbf{2012}
+    & \textbf{2013}
+    & \textbf{2014}
+    & \textbf{2015}
+    \\ \hline 
+    Facebook
+    & Unknown
+    & Unknown
+    & 19292
+    & 23666
+    & Incomplete
+    \\ \hline
+    Google
+    & 11413
+    & 14612
+    & 17749
+    & 18300
+    & Incomplete
+    \\ \hline
+    Twitter
+    & Unknown
+    & 1072
+    & 1179
+    & 2203
+    & 4060
+    \\ \hline 
+    Dropbox
+    & Unknown
+    & 71
+    & 198
+    & 404
+    & Incomplete
+    \\ \hline 
+    Amazon
+    & Unknown
+    & Unknown
+    & Unknown
+    & Unknown
+    & Incomplete
+    \\ \hline 
+ \end{tabu}
+  \caption{ U.S. Government Data Requests Resulting in User Data Being
+    Provided By Year }
+  \label{tab:analysis:violations:reports}
+\end{table}
 
-%% \begin{packed_desc}
-%% \item[Lavabit:] Lavabit was a private email service with 400,000 users
-%%   premised on the idea that popular free email services such as Gmail
-%%   lacked adequate security and privacy guarantees (in part due to the
-%%   lesser legal protections such communications receive under the U.S.
-%%   third party doctrine~\cite{thompson-thirdparty}). In August 2013
-%%   Lavabit shuttered its service in response to a U.S. government
-%%   subpoena requiring Lavabit to turn over all of its encrypted user
-%%   traffic as well as the associated SSL encryption keys necessary to
-%%   decrypt it~\cite{lavabit, levsion-lavabit}. After a legal fight,
-%%   Lavabit founder Ladar Levison was forced to disclose the encryption
-%%   keys protecting his service. The Lavabit example shows the
-%%   government's willingness to compel service operators to aid in the
-%%   monitoring and collection of user data.
-%% \item[Apple v. FBI:] In response to the 2015 San Bernardino shootings,
-%%   the FBI attempted to compel Apple to help it decrypt one of the
-%%   shooters' iPhone~\cite{ars-cookvfbi}. The form of encryption Apple
-%%   uses to protect the iPhone involves a hardware-linked encryption key
-%%   that can not be easily extracted from the phone, limiting
-%%   out-of-band cracking opportunities. Furthermore, this key can not be
-%%   used on the phone without a user-provided passcode. By default,
-%%   Apple limits the number of guesses a user may make at this passcode
-%%   and throttles the speed at which a user may guess passcodes. The FBI
-%%   wished to compel Apple to update the software on the iPhone so that
-%%   they could try to guess an unlimited number of passcodes at a high
-%%   rate of speed~\cite{eff-applecrypto}.\footnote{Due to Apple's use of
-%%     signature-verified code, it is not possible for the FBI (or anyone
-%%     else) to update the Apple's software themselves. Instead, Apple
-%%     (or the holder of Apple's cryptographic code signing key)must
-%%     approve and sign any updated code before the iPhone will run
-%%     it.}Apple was disinclined to acquiesce to this
-%%   request~\cite{apple-fbiletter}. The case wound up being dropped by
-%%   the FBI after they were able to leverage an undisclosed security
-%%   vulnerability to bypass Apple's passcode guessing limits
-%%   directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
-%%   Lavabit case, this case demonstrates the government's interest in
-%%   compelling companies to assist them in accessing private user data,
-%%   even going so far as to potentially require companies to avoid the
-%%   use of certain forms of encryption or security-enhancing features
-%%   that would make such assistance difficult or impossible to
-%%   provide.
-%%  \item[Bankruptcy]
-%% \end{packed_desc}
+The scope of compelled violation can be partially evaluated by
+studying the transparency reports published by many cloud
+companies. Companies such as Dropbox~\cite{dropbox-transparency},
+Amazon~\cite{amazon-transparency},
+Facebook~\cite{facebook-transparency},
+Google~\cite{google-transparency}, and
+Twitter~\cite{twitter-transparency} all published bi-annual
+transparency reports detailing the number of type of data requests
+they received as well as the frequency at which they turn over user
+data or metadata in response to these requests. While the requests
+outlined in these reports are generally lawful, and in some cases, are
+likely important for protecting the public, turning over data in
+response to such requests without user permissions represents a
+compelled violation since users do not generally intend for third
+parties to provide their data to government
+actors. Table~\ref{tab:analysis:violations:reports} shows the number
+of instances in which several major third parity service providers
+were compelled to turn over user data or metadata over the previous
+five years. As shown, the largest third party service providers turn
+over user data on the order of 10s of thousands of times per
+year. Furthermore, the number of compelled violations committed each
+year has steadily risen from year to year.
+
+The high numbers of compelled violations that occur each year likely
+represent a fairly significant increase in the amount of user data
+being provided to government actors relative to pre-cloud computing
+times. While it is possible that governments would serve the same
+number of data request on individual users were we to live in a world
+where most Eur data was individually stored instead of held by third
+parties, it seems unlikely that this would be the case. The
+concentration of user data in a handful of third parties greatly
+reduces the effort required by government actors to request access to
+such data. Furthermore, while certain types of compelled legal orders,
+e.g. probable cause warrants, could in fact be served on individuals
+instead of third parties, other legal orders, e.g.  subpoenas served
+under the third party doctrine, would not be legally valid if served
+on an individual.
+
+Beyond the kinds of direct requests for user data discussed in
+published transparency reports, there are also several notable
+examples of governments seeking to compel individual third parties to
+modify their services in order to enable compelled access to user
+data. Lavabit provides an example of one such case from 2013. Lavabit
+was a private email service with 400,000 users premised on the idea
+that popular free email services such as Gmail lacked adequate
+security and privacy guarantees. In August 2013 Lavabit shuttered its
+service in response to a U.S. government subpoena requiring Lavabit to
+turn over all of its encrypted user traffic as well as the associated
+SSL encryption keys necessary to decrypt it~\cite{lavabit,
+  levsion-lavabit}. After a legal fight, Lavabit founder Ladar Levison
+was forced to disclose the encryption keys protecting his service.
+
+Similarly, the recent (and ongoing) Apple v. FBI fight illustrates the
+lengths governments might be willing to go to to ensure they can
+compel access to user data.  In response to the 2015 San Bernardino
+shootings, the FBI attempted to compel Apple to help it decrypt one of
+the shooters' iPhone~\cite{ars-cookvfbi}. The form of encryption Apple
+uses to protect the iPhone involves a hardware-linked encryption key
+that can not be easily extracted from the phone, limiting out-of-band
+cracking opportunities. Furthermore, this key can not be used on the
+phone without a user-provided passcode. By default, Apple limits the
+number of guesses a user may make at this passcode and throttles the
+speed at which a user may guess passcodes. The FBI wished to compel
+Apple to update the software on the iPhone so that they could try to
+guess an unlimited number of passcodes at a high rate of
+speed~\cite{eff-applecrypto}. Apple was disinclined to acquiesce to
+this request~\cite{apple-fbiletter}. The case wound up being dropped
+by the FBI after they were able to leverage an undisclosed security
+vulnerability to bypass Apple's passcode guessing limits
+directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
+Lavabit case, this case demonstrates the government's interest in
+compelling companies to assist them in accessing private user data,
+even going so far as to potentially require companies to avoid the use
+of certain forms of encryption or security-enhancing features that
+would make such assistance difficult or impossible to provide.
+
+Not all compelled trust violations inherently involve government
+requests for user data. Sometimes third parties may be compelled to
+turn over user data due to business circumstances. In particular, it
+is not unusual for user data to be bought or sold in the event that a
+third party goes bankrupt~\cite{singer2015, solove2015,
+  nguyen2004}. Since the sale of such data in a bankrupt situation or
+acquisition is often beyond the direct control of the third party,
+such data transfers represent a compelled trust violation (as opposed
+to the implicit trust violation that would occur if a third party
+willfully sold or shared user data in a manner the user does to expect
+their data to be sold or shared).
+
+Regardless of the method in which they occur, compelled violations are
+one of the most common form of third party trust violations.
 
 \subsubsection{Unintentional Violations}
 
@@ -524,3 +626,4 @@ Court (FISC)~\cite{fisc} orders.
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
+%%  LocalWords:  Lavabit Ladar Levison Bernardino
