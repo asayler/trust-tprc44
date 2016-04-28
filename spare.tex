@@ -21,78 +21,26 @@
 %% violations for reputation-related reasons. Collusion violations aren't
 %% really applicable since Tresorit is a single-party actor.
 
-%% Furthermore, since services such as Tresorit are not open source or
-%% widely audited by independent parties, the user must trust that the
-%% code they are running to access these services is faithfully
-%% implementing the security guarantees the services claim to
-%% support. It is possible that such a service could ship a flawed
-%% version of their code due to a wide range of trust violations
-%% (e.g. they could be compelled to ship such code, or it could be an
-%% honest unintentional mistake).
 
-%% Like Facebook, both services are ad-supported, increasing the
-%% likelihood of implicit trust violations (although unlike Facebook,
-%% Google seems to have a better track record of not committing such
-%% violations). Similarly, both services are known to be subject to
-%% compelled violations~\cite{google-transparency},\footnote{It is
-%%   possible such cloud communication services are actually at an
-%%   increased risk of compelled violations relative to other cloud
-%%   services due to the existence of laws such as the Communications
-%%   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
-%%     calea-fcc} specifically designed to aid the government in
-%%   obtaining a user's communications.}and are disincentivized, although
-%% by no means immune, from committing unintentional, insider, and
-%% outsider violations.\footnote{Google has taken steps to ensure
-%%   communication between all of its data centers and between mail
-%%   servers are encrypted in transit, helping to minimize outsider
-%%   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
-%%   started providing end users with information as to whether or not
-%%   encrypted email transmission was possible and whether or not an
-%%   email's sender has been authenticated~\cite{gmail-blog-indicators}.
-%%   In both cases however, third parties, not end users, remain in full
-%%   control of all the necessary cryptographic keys, limiting this
-%%   protection to the mitigation of outsider violations, and doing
-%%   little to mitigate Implicit, Compelled, Unintentional, or Insider
-%%   violations.}Thus, Google is able to analyze, alter, and expose any
-%% data that travels across its network using either service -- either of
-%% its own volition or due to a compelled order or unauthorized data
-%% breach.
+%% It is possible such cloud communication services are actually at an
+%% increased risk of compelled violations relative to other cloud
+%% services due to the existence of laws such as the Communications
+%% Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
+%% calea-fcc} specifically designed to aid the government in obtaining
+%% a user's communications.
 
-
-%% Since the OpenPGP protocol and associated implementations are not
-%% controlled by any single third party, there is no straightforward
-%% analysis of its likelihood of PGP-related trust violations. In
-%% general, however, PGP implementations are controlled by parties with a
-%% vested interest in maintaining user security and privacy. Such parties
-%% are strongly disincentivized from committing implicit or compelled
-%% violations. Most OpenPGP implementations are also open source. This
-%% helps to mitigate\footnote{Although it does not necessarily prevent
-%%   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
-%%   Thompson style attack~\cite{thompson1984}.}unintentional, insider,
-%% and outsider violations by maximizing the number of eyes on the code
-%% and reducing the likelihood of mistakes or intentionally coded
-%% vulnerabilities and back doors.
-
-
-%% Like OpenPGP, TextSecure is a protocol implemented by several
-%% different apps. Such application providers (e.g. Open Whisper Systems)
-%% specifically market their products as being a secure alternative to
-%% more traditional chat systems, and are thus strongly dissuaded from
-%% committing any kind of implicit or compelled trust
-%% violation. Furthermore, most TextSecure implementations are open
-%% source, which mitigates the likelihood of
-%% unintentional,\footnote{Researchers have discovered bugs in
-%%   TextSecure, but these bugs were quickly
-%%   patched~\cite{frosch2014}.}insider, or outsider
-%% violations. TextSecure has also undergone external audits and reviews,
-%% further decreasing the likelihood of an unintentional or insider
-%% violation~\cite{frosch2014}. As in OpenPGP, even if a violation
-%% occurred, the capability restrictions discussed above severely limit
-%% what data the violation would expose. Therefore, TextSecure represents
-%% a successful effort to reduce third party trust exposure and secure
-%% user communications.
-
-
+%% Google has taken steps to ensure
+%% communication between all of its data centers and between mail
+%% servers are encrypted in transit, helping to minimize outsider
+%% violations~\cite{gmail-blog-encryption}. Similarly, it has recently
+%% started providing end users with information as to whether or not
+%% encrypted email transmission was possible and whether or not an
+%% email's sender has been authenticated~\cite{gmail-blog-indicators}.
+%% In both cases however, third parties, not end users, remain in full
+%% control of all the necessary cryptographic keys, limiting this
+%% protection to the mitigation of outsider violations, and doing
+%% little to mitigate Implicit, Compelled, Unintentional, or Insider
+%% violations.
 
 %% In terms of likelihood of trust violations, LastPass has a very
 %% similar profile to a service like Tresorit. LastPass is a ``freemium''
@@ -104,19 +52,3 @@
 %% violations. Unintentional, insider, and outsider violations are
 %% similarly disincentivized, although they have occurred
 %% before~\cite{lastpass-blog-breach}.
-
-%% Like Tresorit, LastPass is neither open source\footnote{Although parts
-%%   of LastPass are build using JavaScript, which by its very nature
-%%   exposes the source code to users. Nonetheless, such code can be
-%%   obfuscated to make it difficult to read, and users lack most of the
-%%   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
-%%   associated with ``open source'' code.}nor subject to public code
-%% audits. As such, the user is required to trust that LastPass has
-%% faithfully coded its software not to expose additional capabilities
-%% via hidden back doors. It is possible that LastPass could be compelled
-%% to modify the LastPass client program to do something like send copies
-%% of a user's master password back to LastPass where it could be used to
-%% decrypt all of the user's data. It is also possible that the lack of
-%% cryptographic authentication on user data would allow LastPass to
-%% mount a range of attacks on a user - potentially revealing one or more
-%% of the passwords they store with LastPass in the process.

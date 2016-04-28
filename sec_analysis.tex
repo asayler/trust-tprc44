@@ -479,9 +479,9 @@ transparency reports detailing the number of type of data requests
 they received as well as the frequency at which they turn over user
 data or metadata in response to these requests. While the requests
 outlined in these reports are generally lawful, and in some cases, are
-likely important for protecting the public, turning over data in
-response to such requests without user permissions represents a
-compelled violation since users do not generally intend for third
+likely important for protecting the safety of the public, turning over
+data in response to such requests without user permissions represents
+a compelled violation since users do not generally intend for third
 parties to provide their data to government
 actors. Table~\ref{tab:analysis:violations:reports} shows the number
 of instances in which several major third parity service providers
@@ -613,7 +613,7 @@ of trust mitigation since they allow the user to reduce the trust they
 must place in third party provided code itself in favor of using
 publicly reviewable code. While open source implementations alone do
 not guarantee the lack of such bugs~\cite{frosch2014} or
-backdoors~\cite{thompson1984}, it does help to maximize the number of
+back doors~\cite{thompson1984}, it does help to maximize the number of
 eye on the code base, making such violation harder to hide.
 
 Internal unintentional violations often pave the way of external
@@ -639,44 +639,58 @@ information on millions of users~\cite{krebs-anthem,
 public, it is likelihood that mistakes on the apart of the third party
 storing the data paved the way for external actors to steal user
 data. Recent investigations of common data breach causes list errors
-on the apart of third party data stewards as the leading cause of
+on the part of third party data stewards as the leading cause of
 breaches~\cite{verizon-2016breach, gallagher-blame}.
 
-%% Dropbox has been the target of
-%% various \emph{O}-type attempted violations, primarily built around
-%% advisories who obtain common user
-%% passwords~\cite{dropbox-passwords}.
+Some external unintentional violations occur not due to the fault of the
+third parties, but due to a fault of the user themselves. The most
+common example of such failures involve the use of weak passwords by
+users to protect their accounts on third-party services.  Dropbox has
+been the target of various external trust violations built around
+advisories who obtain common and exploit user
+passwords~\cite{dropbox-passwords}. While it is tempting to not
+attribute these faults to third parties themselves, third party service
+providers must shoulder at least some of the blame for allowing users
+to utilize weak credentials or similar error-prone authentication
+mechanisms. For example in 2014, a number of celebrity users of
+Apple's iCloud data storage service~\cite{apple-icloud} were subject
+to a public release of personal photos they had stored with the
+service. This leak was the result of a targeted attack on the
+corresponding users' passwords and iCloud
+accounts~\cite{apple-icloudleak}. These attacks appear to have been
+propagated over several months prior to the public release. While this
+leak was not a result of an overt flaw in Apple's iCloud system, the
+weak default security requirements for iCloud accounts made it
+relatively simple for attackers to compromise such accounts and steal
+data.
 
-%% \item[PRISM and MUSCULAR:] The NSA PRISM program was/is a Foreign
-%%   Intelligence Surveillance Court (FISC)~\cite{fisc} approved system
-%%   for compelling service providers to provide user data to the
-%%   government~\cite{greenwald-prism}. It is believed to be one of the
-%%   largest programs used by the government to extract user data from
-%%   various cloud-based services (e.g. Google, Yahoo, Microsoft,
-%%   etc). Similarly, MUSCULAR was/is a joint NSA and U.K. Government
-%%   Communication Headquarters (GCHQ) effort to intercept and monitor
-%%   traffic traversing Google's and Yahoo's inter-datacenter
-%%   networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure,
-%%   this intra-datacenter traffic was not generally encrypted, and thus
-%%   was an ideal point for a third party (e.g. the government) to
-%%   intercept and monitor user data. Both cases demonstrate a concerted
-%%   government effort to access and monitor user data atop popular cloud
-%%   services.
-
-
-%% \begin{packed_desc}
-%% \item[Apple iCloud Celebrity Photo Leak:] In 2014, a number of
-%%   celebrity users of Apple's iCloud data storage
-%%   service~\cite{apple-icloud} were subject to a public release of
-%%   personal photos they had stored with the service. This leak was the
-%%   result of a targeted attack on the corresponding users' passwords
-%%   and iCloud accounts~\cite{apple-icloudleak}. These attacks appear to
-%%   have been propagated over several months prior to the public
-%%   release. While this leak was not a result of an overt flaw in
-%%   Apple's iCloud system, the weak default security requirements for
-%%   iCloud accounts made it relatively simple for attackers to
-%%   compromise such accounts and steal data.
-%% \end{packed_desc}
+Finally, some external unintentional violations occur due to an
+adversaries use of techniques that many third parities could not be
+reasonably expected to defend against. Nation-state level outsider
+attacks generally fall into this category. While governments are
+generally able to access user data via by compelling third parties to
+turn it over, in some cases, they prefer to attack the third party
+directly, triggering an unintentional outsider type violation. For
+example, the NSA PRISM program was/is a Foreign Intelligence
+Surveillance Court (FISC)~\cite{fisc} approved system for compelling
+service providers to provide user data to the
+government~\cite{greenwald-prism}. It is believed to be one of the
+largest programs used by the government to extract user data from
+various cloud-based services (e.g. Google, Yahoo, Microsoft,
+etc). Similarly, MUSCULAR was/is a joint NSA and U.K. Government
+Communication Headquarters (GCHQ) effort to intercept and monitor
+traffic traversing Google's and Yahoo's inter-datacenter
+networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure, this
+intra-datacenter traffic was not generally encrypted, and thus was an
+ideal point for the government to intercept and monitor user data,
+especially in cases where the government is able to utilities such
+far-reaching technique as tapping undersea communication tables or
+forcing access to ``secure'' Internet exchange facilities. These types
+of violations are often bootstrapped either via internal unintentional
+violations (e.g. exploitable bugs in a crypto algorithm used by a
+third party) or via compelled orders (e.g. such as those granting
+government access to the underlying infrastructure mounting such
+attacks).
 
 \subsubsection{Collusion Violations}
 
@@ -686,4 +700,4 @@ breaches~\cite{verizon-2016breach, gallagher-blame}.
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
 %%  LocalWords:  Lavabit Ladar Levison Bernardino Heartbleed OpenSSL
-%%  LocalWords:  Shellshock OPM
+%%  LocalWords:  Shellshock OPM iCloud NSA GCHQ MUSCULAR's
