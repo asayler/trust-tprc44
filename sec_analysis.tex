@@ -561,6 +561,66 @@ one of the most common form of third party trust violations.
 
 \subsubsection{Unintentional Violations}
 
+As mentioned in \S~\ref{sec:model}, unintentional violations occur
+when a third party violates a user trust in a manner that they neither
+intended or were forced to do. Unintentional violations can be broadly
+sorted into two subcategories: external and internal
+violations. External violations are caused by an external actor
+(e.g. an adversarial attacker) leveraging a third parties capabilities
+to cause a trust violation. Internal violations are caused by mistakes
+within the third party (e.g. a coding error) leading to a trust
+violation. Often, internal violations beget external violations -- for
+example, a security bug caused by a programming mistake could open the
+door to external attacks that leverage the bug to expose user data.
+
+There have been a number of notable internal unintentional trust
+violations committed by third parties over the past ten years. For
+example, in 2011 Dropbox introduced a bug into their authentication
+system that allowed anyone to log into the service using any password
+for a five hour period~\cite{dropbox-authbug}. While Dropbox certainly
+did not intend to share many users files with the entire world, they
+unintentionally did so via a coding error. In some cases, internal
+violations occur due to factors beyond the third parties direct
+control. For example, third parties are susceptible to a range of
+software flaws in externally maintained libraries they rely
+on. Prominent examples of such flaws include
+Heartbleed~\cite{heartbleed}, a flaw in OpenSSL~\cite{openssl} that
+allowed attackers to steal private data from many secure servers, and
+Shellshock~\cite{symantec-shellshock}, a GNU bash~\cite{gnu-bash} flaw
+that allowed user to execute arbitrary code on many web servers. Both
+flaws were widespread and effected large swaths of third party sites
+and services, potentially exposing the user of such services to data
+exfiltration or manipulation (e.g. Violations of third party \emph{R}
+or \emph{W} capabilities).
+
+While open source code such as OpenSSL and Bash have been the source
+of several trust-violating software bugs, it is also possible for open
+source approaches to help remedy such bugs. While bugs like Heartbleed
+or Shellshock demonstrate that having publicly reviewable code is not
+sufficient for eliminating bugs, these bugs also demonstrate effective
+disclosure and patching processes inherent to one source code. Had
+similar bugs been discovered internally in non open source code bases,
+it is possible they would have gone unreported and no one would be the
+wiser. The difficulty of hiding bugs or ignoring publicly disclosed
+bugs in open source code bases has led a number of security and
+privacy enhancing software projects to specifically leverage open
+source models. Projects such as GnuPG~\cite{gnupg},
+Signal~\cite{openwhisper}, and End to End~\cite{google-endtoend,
+  yahoo-endtoend} are tout their open source nature as a mechanism for
+reading the likelihood of moth unintentional bugs as well as
+intentional back doors. Indeed, such practices can be viewed as a form
+of trust mitigation since they allow the user to reduce the trust they
+must place in third party provided code itself in favor of using
+publicly reviewable code. While open source implementations alone do
+not guarantee the lack of such bugs~\cite{frosch2014} or
+backdoors~\cite{thompson1984}, it does help to maximize the number of
+eye on the code base, making such violation harder to hide.
+
+%% Dropbox has been the target of
+%% various \emph{O}-type attempted violations, primarily built around
+%% advisories who obtain common user
+%% passwords~\cite{dropbox-passwords}.
+
 %% \item[PRISM and MUSCULAR:] The NSA PRISM program was/is a Foreign
 %%   Intelligence Surveillance Court (FISC)~\cite{fisc} approved system
 %%   for compelling service providers to provide user data to the
@@ -607,16 +667,6 @@ one of the most common form of third party trust violations.
 %%     krebs-premera}. While the details of the breaches were not made
 %%   public, such attacks demonstrate the risk of trusting a third party
 %%   with the storage of large quantities of sensitive data.
-%% \item[Heartbleed, Shellshock, etc:] In addition to targeted attacks,
-%%   third parties are also susceptible to software flaws. Prominent
-%%   examples of such flaws include Heartbleed~\cite{heartbleed}, a flaw
-%%   in OpenSSL~\cite{openssl} that allowed attackers to steal private
-%%   data from many secure servers, and
-%%   Shellshock~\cite{symantec-shellshock}, a GNU bash~\cite{gnu-bash}
-%%   flaw that allowed user to execute arbitrary code on many web
-%%   servers. Both flaws were widespread and effected large swaths of
-%%   web-connected sites and services, potentially exposing many users to
-%%   attacks and data breaches.
 %% \end{packed_desc}
 
 \subsubsection{Collusion Violations}
@@ -626,4 +676,5 @@ one of the most common form of third party trust violations.
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
-%%  LocalWords:  Lavabit Ladar Levison Bernardino
+%%  LocalWords:  Lavabit Ladar Levison Bernardino Heartbleed OpenSSL
+%%  LocalWords:  Shellshock

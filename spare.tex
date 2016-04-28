@@ -1,21 +1,6 @@
-%% Unintentional (\emph{U}), Insider (\emph{I}), or Outsider (\emph{O})
-%% violations are all possibilities when using Dropbox. On the \emph{U}
-%% front, Dropbox had an incident in 2011 that allowed anyone to log into
-%% the service using any password for a five hour
-%% period~\cite{dropbox-authbug}. So far, Dropbox appears to have
-%% avoided any \emph{I}-type violations, but it has been the target of
-%% various \emph{O}-type attempted violations, primarily built around
-%% advisories who obtain common user
-%% passwords~\cite{dropbox-passwords}. Needless to say, while Dropbox
-%% works to avoid these kinds of violations, they are certainly still
-%% possible, have occurred in the past, and may well occur in the future.
 
 
-%% In terms of trust violations, such ``secure'' cloud storage services
-%% are being paid to store user data, disincentivizing implicit
-%% violations. Compelled violations are possible, although as services
-%% that market themselves as ``privacy'' products, compelled violations
-%% (assuming they are public) are also disincentivized. Due to the CA
+%%  Due to the CA
 %% trust requirements that exists in such services' sharing
 %% implementations, however, it is possible that such a service could be
 %% compelled to mount a MitM attack on one of their users in order to
@@ -44,23 +29,6 @@
 %% version of their code due to a wide range of trust violations
 %% (e.g. they could be compelled to ship such code, or it could be an
 %% honest unintentional mistake).
-
-%% In terms of likelihood of trust violations, Facebook differs a bit
-%% from cloud-based system like Dropbox in that it is an ad-supported
-%% system. This increases the likelihood of implicit trust failures due
-%% to Facebook's business model being based around the sale of user
-%% data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
-%% Facebook has a record of implicit trust violations ranging from the
-%% Emotional Contagion Study~\cite{goel2014} to its use of users' photos
-%% in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
-%% violations, Facebook's trust violation profile is again similar to
-%% other traditional cloud services such as Dropbox. Like
-%% Dropbox~\cite{dropbox-transparency}, compelled violations are known to
-%% occur~\cite{facebook-transparency}. Unintentional, insider, and
-%% outsider violations are all possible, but Facebook has an active
-%% interest in avoiding them. Collusion violations aren't really
-%% applicable since Facebook is a single-party actor.
-
 
 %% Like Facebook, both services are ad-supported, increasing the
 %% likelihood of implicit trust violations (although unlike Facebook,
