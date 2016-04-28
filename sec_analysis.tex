@@ -616,6 +616,32 @@ not guarantee the lack of such bugs~\cite{frosch2014} or
 backdoors~\cite{thompson1984}, it does help to maximize the number of
 eye on the code base, making such violation harder to hide.
 
+Internal unintentional violations often pave the way of external
+unintentional violations. Negligence or incompetence on the apart of a
+third party might open the door for an external attack. Take, for
+example, the recent OPM data breach. In 2015, the U.S. Office of
+Personnel Management (OPM) announced that their systems had been
+breached, exposing the personal data of essentially anyone who had
+held or currently holds a U.S. Government security
+clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This breach,
+in addition to having high strategic value to foreign attackers,
+reveled sensitive personnel data of a huge number of U.S.  government
+employees and contractors. This leak was largely due to the use of old
+and outdated storage and security systems employed by the OPM. While
+such usage did not necessarily directly result in the lack of
+sensitive user data, it certainly made it far easier for an attacker
+to break in and steal such data. It is likelihood that a similar
+situation occurred in early 2015when several major U.S. health
+insurance companies were subject to attacks that breached their user
+records, allowing the release of personal, financial, and medical
+information on millions of users~\cite{krebs-anthem,
+  krebs-premera}. While the details of the breaches were not made
+public, it is likelihood that mistakes on the apart of the third party
+storing the data paved the way for external actors to steal user
+data. Recent investigations of common data breach causes list errors
+on the apart of third party data stewards as the leading cause of
+breaches~\cite{verizon-2016breach, gallagher-blame}.
+
 %% Dropbox has been the target of
 %% various \emph{O}-type attempted violations, primarily built around
 %% advisories who obtain common user
@@ -650,23 +676,6 @@ eye on the code base, making such violation harder to hide.
 %%   Apple's iCloud system, the weak default security requirements for
 %%   iCloud accounts made it relatively simple for attackers to
 %%   compromise such accounts and steal data.
-%% \item[Office of Personnel Management Breach:] In 2015, the U.S. Office
-%%   of Personnel Management (OPM) announced that their systems had been
-%%   breached, exposing the personal data of essentially anyone who had
-%%   held or currently holds a U.S. Government security
-%%   clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This
-%%   breach, in addition to having high strategic value to foreign
-%%   attackers, reveled sensitive personnel data of a huge number of U.S.
-%%   government employees and contractors. This leak was largely due to
-%%   the use of old and outdated storage and security systems employed by
-%%   the OPM.
-%% \item[Anthem and Premera Blue Cross Breaches:] In early 2015 two major
-%%   U.S. health insurance companies were subject to attacks that breached
-%%   their user records, allowing the release of personal, financial, and
-%%   medical information on millions of users~\cite{krebs-anthem,
-%%     krebs-premera}. While the details of the breaches were not made
-%%   public, such attacks demonstrate the risk of trusting a third party
-%%   with the storage of large quantities of sensitive data.
 %% \end{packed_desc}
 
 \subsubsection{Collusion Violations}
@@ -677,4 +686,4 @@ eye on the code base, making such violation harder to hide.
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
 %%  LocalWords:  Lavabit Ladar Levison Bernardino Heartbleed OpenSSL
-%%  LocalWords:  Shellshock
+%%  LocalWords:  Shellshock OPM
