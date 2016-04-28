@@ -694,10 +694,45 @@ attacks).
 
 \subsubsection{Collusion Violations}
 
+Collusion violations occur when multiple third parties work in concert
+to leverage or misuses capabilities each in manners that would not be
+possible for each individually to do. Inherent to the notion of
+collusion violations is the notion of trust separation -- e.g. the
+ability to spread trusted capabilities across multiple third parties,
+reducing the amount any individual third party must be trusted in the
+process. This fact makes examples of real world collusion violations
+harder to come by by nature of the fact that very few deployed systems
+require, or even allow, users to distribute trust in these manners.
+
+Still, one can imagine how certain collusion violations might
+occur. For example, a password manager provider such as LastPass could
+collude with a mobile keyboard provider such as Swype~\cite{swype} for
+the purpose of capturing a user's ``master'' LastPass encryption
+password and suing it to decrypt the users passwords. Normally,
+LastPass lacks access to the plain-text variants of the user passwords
+it stores since these are encrypted on the client's device prior to
+being sent to the LastPass servers. Similarly, mobile keyboard
+software such as Swype does not normally posses access to a LastPass
+user's passwords since these are encrypted and stored via the separate
+LastPass app. Thus, neither Swype nor LastPass can individually access
+a user's password data. Swype does, however, have the ability to
+modify their keyboard software to record a user's typed input and
+report it back to a central server. Thus, Swype could collude with
+LastPass to capture and provide LastPass with user master passwords
+which LastPass could then use to gain the ability to read stored
+passwords even though the user attempted to limit such access via the
+sue of client-side encryption.\footnote{This example is a bit
+  contrived for the purposes of demonstration. In reality, if LastPass
+  wished to capture user Master password input, or otherwise decrypt
+  user passwords, they could likely just modify the LastPass client
+  app directly to either record all user input or to add a backdoor to
+  the encryption mechanism. They would not inherently need to involve
+  an additional third party such as Swype in order to mount such an
+  attack.}
 
 \subsection{Risk Analysis}
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
 %%  LocalWords:  Lavabit Ladar Levison Bernardino Heartbleed OpenSSL
-%%  LocalWords:  Shellshock OPM iCloud NSA GCHQ MUSCULAR's
+%%  LocalWords:  Shellshock OPM iCloud NSA GCHQ MUSCULAR's Swype
