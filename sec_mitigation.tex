@@ -323,6 +323,85 @@ represent the best hope for reducing unnecessary compelled violations,
 ensuring such violations only occur in cases where the public interest
 in significantly favored by the violation of user trust.
 
-\subsubsection{Cyber Liability}
+\subsubsection{Third Party Liability}
+
+Another mechanism for disincentivizing trust violations, especially of
+the unintentional variety, would be to establish standards of
+liability for trust violations resulting in misuse of the capabilities
+with which they have been entrusted. If a third party violates a user
+trust, it is reasonable to expect that users should be able to seek
+some measure of relief for such violations. Such liability would
+follow the growing trend toward holding companies liable for digital
+data breaches resulting from poor security practices
+(e.g.~\cite{ftc-asus}).
+
+The nature of this liability could take several forms. The most
+obvious form would be to impose civil liability commensurate with the
+value of of the harm caused by a trust violation on the party
+committing said violation. This opens up the thorny issue of how to
+value such harms. For example, a trust violation resulting in the
+public exposure of a piece of user data may result in fairly minimal
+harm (e.g. the leaking of a set of not particularly sensitive photos
+taken in a public space), or it could result in fairly serious harms
+(e.g. the leaking of trade secret or other sensitive
+material)~\cite{acquisti2013, romanosky2009}. One way to overcome the
+harm valuation challenge would be to have users declare the value of
+the harm that would result from the misuse of trust capabilities when
+entrusting third parties with such capabilities. This approach is
+similar to the manner in which one might declare the value of a parcel
+when shipping it for the purpose of securing insurance. Given such a
+declaration, the third parties could charge a user varying amounts:
+entrusting third parties with access to more ``valuable'' data should
+increase the cost of the service to the end user, while entrusting
+access to less ``valuable'' data should cost less. Damages in the
+event that a secret is lost could then be calculated as a multiple of
+this value. In cases where a trust violation occurs due to an
+unforeseeable event or otherwise through no negligence on the part of
+the third party (e.g. a flaw in a respected third party library or
+similar unintentional trust violation), the user would be reimbursed
+the declared value of the harm (or potentially some fraction of
+it). In the case where a trust is violated due to third party
+negligence, malpractice, or malfeasance, (e.g. an implicit or
+particularly egregious unintentional trust violation) the user would
+be reimbursed several multiples of the declared harm (i.e. statutory
+damages).
+
+In addition to allowing users to seek compensation for harm suffered
+due to third party trust violations, this approach also favors the use
+of distributed trust architecture. Since such architecture reduce the
+number of capabilities with which any single third party must be
+trusted, they also reduce the declared value of any associated
+harms. Assuming that third parties charge users for their services on
+the basis of the declared value of the data the user wishes to store,
+distributed architecture thus end up reducing the cost of third party
+services to the end user by reducing associated harm cost. E.g., by
+distributing trust across multiple parties, the user devalues the harm
+each party can inflict, allowing the user to declare lower harm costs
+and pay less for the third party services they use. This arrangement
+both incentivize users to spread their trust across multiple parties
+and encourage third parties to avoid any trust violation that would
+require them to pay out the associated harm cost.
+
+To manage this liability, third parties would likely be required to
+secure insurance to cover the cost of liability payouts in the event
+that a trust violation occurs~\cite{ciab2015, starks2016}. These
+insurers are in a position to provide additional disincentive to third
+party trust violations. Insurers could charge each third party on the
+basis of both the harm violation value of the capabilities with which
+they have been entrusted, as well as on the basis of how ``secure''
+(or the inverse: how ``risky'') a third parties security
+capability-protection are. Indeed, it is even possible that the
+government itself might act as such an insurer (or underwriter), as
+they currently do with banks via the Federal Deposit Insurance
+Corporation (FDIC)~\cite{fdic}.
+
+Regardless of mechanism, establishing a standard system for trust
+violation liability will help to disincentivize trust violations
+across a range of third parties. Fostering policies encouraging the
+development of a robust liability insurance market will further
+incentivize best practices. Such practices also encourage the use of
+distribute trust architecture and the additional trust-preserving
+benefits they provide.
+
 
 %%  LocalWords:  SSaaS SSP OTR FP th ECPA
