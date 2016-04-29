@@ -189,6 +189,8 @@ mechanism that one might employ with an aim toward disincentivizing
 trust violations. I discusses several of the more prominent ones in
 this section.
 
+\subsubsection{Distributed Trust Markets}
+
 In today's single-trust relationships, users primarily select third
 party services on the basis of their features. When users pay for
 these services, they're primarily paying to support the core features
@@ -266,10 +268,61 @@ benefits:
   offers the best combination of cost and service.
 \end{packed_desc}
 
+Distributed trust markets are potentially useful at disincentivizing a range
+of trust violations, from implicit violations to unintentional
+violations. Such markets help to align economic incentives that
+practices that disfavor such violations.
 
-Distributed Trust Tor
+\subsubsection{Digital Due Process}
 
-Control Degree -> SSaaS, Etc
-Disincentivize Violation -> Liability, Policy, Markets
+While mechanisms such as distributes trust markets are useful for
+disincentivizing many classes of trust violations, other mechanisms
+are needed to disincentive compelled violations. Trust markets
+potentially encourage third parties to push back against compelled
+trust violations to the maxim extent permitted under the law, but they
+do little to protect users in cases where the law heavily favors
+compelled trust violations even in cases where such violations are not
+in the public interest. To reduce such violations, it is necessary to
+protect ``digital due process'' rights.
 
-%%  LocalWords:  SSaaS SSP OTR FP
+The first step toward protecting such rights is to ensure that user
+data stored or processed by third party services receives the same
+level of protection as data stored or processed locally. This concept
+runs counter to the Third Party Doctrine established bu current
+U.S. case law~\cite{thompson-thirdparty}. This doctrine holds that
+individuals who voluntarily store their data with third parties have
+no ``reasonable expectation of privacy''~\cite{scotus-katzvus} for
+such data. While such a viewpoint may have made sense in the mid
+20\textsuperscript{th} century when it was established via a series of
+Supreme Court rulings~\cite{scotus-usvmiller-privacy,
+  scotus-smithvmaryland}, it does not translate well to a world where
+third party access to user data is the norm. As shown in
+\S~\ref{sec:analysis:violations} compelled violations are a growing
+trend, and in many cases, such violations are served via third-party
+doctrine mechanisms. Such trends suggest a likely overreach of
+government data collection, leading to a range of potential adverse
+effect (e.g.~\cite{penney2016}). One possible way of halting or
+reversing this trend would be to eliminate the third party doctrine
+and begin requiring a 4\textsuperscript{th} Amendment warrant in order
+to compel third to provide or modify user data.
+
+Fortunately, changes to the third party doctrine are beginning to
+progress on multiple fronts. Recent Supreme Court decisions have
+suggested a willingness to expand user privacy rights in the digital
+realm, and may eventually lead the Supreme Court to revisit the third
+party doctrine~\cite{scotus-usvjones}.  Congress has also long been
+departing updates to third-party doctrine derived laws such a the
+Electronic Communications Privacy Act (ECPA)~\cite{ecpa} to include a
+warrant requirement for digitally stored
+emails~\cite{eff-ecpareform}. Recently, the U.S. House of Represents
+even unanimously passed a bill to amend the ECPA to required warrants
+in most cases~\cite{trujillo-ecpa}. Such movements suggest a growing
+recognition of the due process rights of digital data, regardless of
+whether it is stored locally or by third parties. Such trends likely
+represent the best hope for reducing unnecessary compelled violations,
+ensuring such violations only occur in cases where the public interest
+in significantly favored by the violation of user trust.
+
+\subsubsection{Cyber Liability}
+
+%%  LocalWords:  SSaaS SSP OTR FP th ECPA
