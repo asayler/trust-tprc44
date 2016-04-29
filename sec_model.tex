@@ -16,48 +16,50 @@ Before defining a model for trust, it is useful to define some of the
 relevant terms used in this model. To start, I'll define
 \textit{trust} as the expectation that a given entity will behave in a
 promised manner. \textit{Violations} of trust thus occur whenever said
-entities deviate from this expectation. Trust is closely related to
-two other properties inherent in modern computing ecosystems: security
-and privacy. Like trust, these terms have wide-ranging meanings across
-a variety of disciplines. For the purposes of this discussion, I'll
+entity deviates from this expectation. Trust is closely related to two
+other properties inherent in modern computing ecosystems: security and
+privacy. Like trust, these terms have wide-ranging meanings across a
+variety of disciplines. For the purposes of this discussion, I'll
 define \textit{security} as the notion of user control over the
 behavior of a given system. A \textit{secure system} is thus a system
 that behaves in the manner the user desires. Facets of this notion of
 security include \textit{confidentiality}, the ability to control who
 can read user data, and \textit{authenticity}, the ability to control
-the integrity and verifiable modification of user data. Finally,
-confidentiality and authenticity provide for a definition of
-\textit{privacy} as the ability to control both the access and
-modification of user data as well as the ability to control the
-historical record of such access or modification.
+who can modify of user data. Finally, confidentiality and authenticity
+provide for a definition of \textit{privacy} as the ability to control
+both the access and modification of user data as well as the ability
+to control the meta-record of such access or modification.
 
 When users leverage modern computing devices and services, they must
 trust third party manufacturers and service providers to be good
 stewards of digital data ranging from stored files to location
-information to communications. The nature of this trust has two main
-factors:
+information to communication messages. The nature of this trust has
+two main factors:
 
 \begin{packed_desc}
 \item[Degree:] How much trust must a user place in a third party
   (e.g. what capabilities do they allow a third party to exercises with
   respect to user data)?
-\item[Risk:] In what manners can the third party violate this trust
-  (e.g. how can the third party abuse the capabilities they have been
-  granted)?
+\item[Violation:] In what manners can the third party violate this
+  trust (e.g. how can the third party abuse the capabilities they have
+  been granted or why might they be inclined to do so)?
 \end{packed_desc}
 
 The security and privacy of a user's data is generally dependent on
 these two axis: the higher the degree of trust a user places in a
-third party, the more power that party has to violate the privacy or
-security of a user's data. Similarly, the higher the risk of trust
-violations, the higher the risk of a violation of the security or
-privacy of a user's data.  Intuitively, the best way to enhance the
-privacy of user data is thus to aim to either minimize degree of third
-party trust, to minimize risk of third party trust violations, or to
-minimize both.
+third party, the more power that party has to subvert the privacy or
+security of a user's data. Similarly, the higher the risk of third
+party trust violations, the higher the risk of adverse effects to the
+security or privacy of a user's data.  Intuitively, the best way to
+enhance the privacy and security of user data is thus to aim to either
+minimize degree of third party trust, to minimize the likelihood of
+third party trust violations, or to minimize both.
 
-In terms of degree of trust, I propose that third parties can be
-trusted with the following data-related capabilities:
+\subsection{Degree of Trust}
+
+Degrees of trust measure the capabilities a third party can exert over
+third party data. I propose that third parties can be trusted with the
+following data-related capabilities:
 
 \begin{packed_desc}
 \item[Storage (S-Capability):] \hfill \\ Can a third party faithfully
@@ -66,7 +68,7 @@ trusted with the following data-related capabilities:
   won't necessarily result in the exposure of user data.
 \item[Access (R-Capability):] \hfill \\ Can a third party read and
   interpret the user data they store? Misuse of this capability may
-  result in the exposure of user data.
+  result in the unapproved exposure of user data.
 \item[Manipulation (W-Capability):] \hfill \\ Can a third party modify
   the private user data to which they have access? Misuse of this
   capability may result in the ability to manipulate a user
@@ -78,13 +80,17 @@ trusted with the following data-related capabilities:
   user's friends are based on data sharing patterns).
 \end{packed_desc}
 
+While there are likely additional capabilities user can entrust to
+third parties, this collection represents the core set of data-related
+capabilities most commonly entrusted to third party service providers.
+
+\subsection{Trust Violations}
+
 Trust violation occurs when a third party exercises any of the above
 capabilities without explicit user knowledge and permission. Put
 another way, a trust violation occurs whenever a third party leverages
 a capability with which they are entrusted in a manner in which the
-user does not expect the capability to be leveraged.
-
-In order to aid in the analysis of trust violations, I propose
+user does not expect the capability to be leveraged. I propose
 classifying such violations into four high-level categories. Each
 category is defined by the manner in which the violation occurs and
 the motivations behind it:
@@ -103,23 +109,21 @@ the motivations behind it:
   violation occurs when a third party is compelled by another actor to
   violate a user's trust. The most common example would be a third
   party being forced to turn over user data or records in response to
-  a request from the government with jurisdiction over the
-  party. Another example might include a company going bankrupt and
-  being forced to sell its user data to another entity.
+  a request from the government with jurisdiction over the party.
 \item[Unintentional (U-Violation):] \hfill \\ This form of violation
   occurs when a third party unintentionally discloses or manipulates
   user data. An example would be a coding error that allows either the
   loss of or unfettered access to user data. Traditional ``hacking''
   attacks also fall into this class insofar that such attacks are
-  often possible due to intentional flaws in the design of a
+  often possible due to unintentional flaws in the design of a
   ``secure'' system.
 \item[Colluding (L-Violation):] \hfill \\ This class of violation
   occurs when multiple third parties collude to gain capabilities over
   user data beyond what the user intended each to have
   individually. An example of such a volition might occur if a user
   has granted two separate parties access to different portions of
-  user data (e.g. location data stored with their cellar service
-  provider and credit and transaction data stored with their bank)
+  user data (e.g. location data stored with their cellular service
+  provider and credit card transaction data stored with their bank)
   that could be combined to reveal more about the user to both parties
   than the user intended either party to know.
 \end{packed_desc}
