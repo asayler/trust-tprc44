@@ -6,7 +6,10 @@ FIG_TMP = tmp.eps
 CLS = $(wildcard *.cls)
 TEX = $(wildcard *.tex)
 REFS = $(wildcard *.bib)
-FIGS = $(patsubst %, figs/out/%.pdf, examplefig1)
+FIGS = $(patsubst %, figs/out/%.pdf, \
+         TrustModel-Seperated \
+         TrustModel-Traditional \
+         )
 SRCS = $(CLS) $(TEX) $(REFS) $(FIGS)
 
 all: pdf
