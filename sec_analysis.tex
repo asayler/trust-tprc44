@@ -63,7 +63,7 @@ the use of client-side cryptographic
 authentication.\footnote{E.g. asymmetric cryptographic signatures such
   as those provided by GnuPG~\cite{gnupg} or symmetric cryptographic
   message authentication codes (MACs) available via a variety of
-  algorithms~\cite{dworkin2005, dworkin2007, dworkin2008}.}  In the
+  algorithms~\cite{dworkin2005, dworkin2008, dworkin2007}.}  In the
 base case where a user merely wishes to store data on a single device
 and not share it with others, these systems are fairly successful in
 achieving their desired trust mitigations. In order to sync data
@@ -79,7 +79,7 @@ services tend to accomplish multi-user sharing by acting as a trusted
 certificate authority (CA) in charge of issuing user
 certificates.\footnote{A certificate is a combination of a user's
   public key and certain metadata signed by a trusted issuer. See for
-  more information.}These certificates are then used with various
+  more information.} These certificates are then used with various
 asymmetric cryptographic primitives) to exchange the necessary secrets
 for bootstrapping sharing between users. Unfortunately, as a trusted
 CA, these services are capable of issuing fraudulent user certificates
@@ -166,7 +166,7 @@ capability) or manipulating (\emph{W} capability) user
 messages.\footnote{Similar to Facebook, many communication services
   are ad-based, and thus the service provider often relies on their
   ability to access user data as the basis of their business
-  models.}Furthermore, since all communication flows through the
+  models.} Furthermore, since all communication flows through the
 service provider's servers, these providers have access to a range of
 potentially reveling meta-data about their users (\emph{M}
 capability).
@@ -174,18 +174,18 @@ capability).
 The need to place a high degree of trust in various third parties in
 order to leverage digital communication services has long been a
 concern. Indeed many early privacy-enhancing software projects,
-including the venerable PGP~\cite{zimmermann-pgp10,
-  zimmermann-pgpsource}, were created in response to the lack of
-privacy inherent in most digital communication systems. Modern
-implementation of such systems, such as those conforming to the
-OpenPGP protocol~\cite{callas2007}, aim to reduce the amount users
-must trust third party communication providers by adding end-to-end
-encryption and cryptographic authentication support to traditional
-digital communication mediums. The OpenPGP protocol can be applied
-atop mail traversing traditional email systems such as Gmail, as well
-as to messages traversing chat applications such as Hangouts. When
-used with such services, OpenPGP provides a level of trust mitigation
-above and beyond what is possible to achieve via the native services
+including the venerable PGP~\cite{zimmermann-pgpsource,
+  zimmermann-pgp10}, were created in response to the lack of privacy
+inherent in most digital communication systems. Modern implementation
+of such systems, such as those conforming to the OpenPGP
+protocol~\cite{callas2007}, aim to reduce the amount users must trust
+third party communication providers by adding end-to-end encryption
+and cryptographic authentication support to traditional digital
+communication mediums. The OpenPGP protocol can be applied atop mail
+traversing traditional email systems such as Gmail, as well as to
+messages traversing chat applications such as Hangouts. When used with
+such services, OpenPGP provides a level of trust mitigation above and
+beyond what is possible to achieve via the native services
 themselves. In terms of trusted capabilities, a user employing PGP
 atop a traditional third party cloud service such as Gmail minimizes
 both the third party's access (via encryption) and manipulation (via
@@ -200,7 +200,7 @@ also still capable of dropping or deleting the communication all
 together, and thus still possesses the \emph{S} capability.
 
 Due to the numerous challenges and deficiencies associated with using
-OpenPGP-based systems~\cite{green-pgp, borisov2004, whitten1999},
+OpenPGP-based systems~\cite{borisov2004, green-pgp, whitten1999},
 developers have created a number of alternate secure communication
 protocols. These protocols aim to provide forward-secrecy, metadata
 privacy, deniability, contact authentication, and message encryption
@@ -224,7 +224,7 @@ TextSecure exchange, but higher level details are not
 available.\footnote{It is possible to couple TextSecure with existing
   network anonymity systems such as Tor~\cite{dingledine2004} to
   mitigate such network-level
-  meta-analysis~\cite{intercept-chatting}.}TextSecure users are still
+  meta-analysis~\cite{intercept-chatting}.} TextSecure users are still
 dependent on a third party to operate a TextSecure server in order to
 communicate in the first place (e.g. it is not a distributed
 protocol), but beyond this ``storage''-like capability, TextSecure
@@ -290,7 +290,7 @@ all (e.g. a purely local password manager)\footnote{Such purely
   client-side solutions limit third party trust, but do so at the
   expense of usability -- e.g. such solutions rarely provide users
   with the ability to access their passwords from multiple devices or
-  to share passwords with colleagues.}or by allowing the user to
+  to share passwords with colleagues.} or by allowing the user to
 decouple encryption and authentication operation from optional third
 party backend data storage and sync providers such as Dropbox. In
 addition to liming third party access capability via encryption, such
@@ -537,7 +537,7 @@ speed~\cite{eff-applecrypto}. Apple was disinclined to acquiesce to
 this request~\cite{apple-fbiletter}. The case wound up being dropped
 by the FBI after they were able to leverage an undisclosed security
 vulnerability to bypass Apple's passcode guessing limits
-directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
+directly~\cite{ars-fbi-breakthrough, ars-fbi-greyhats}. As in the
 Lavabit case, this case demonstrates the government's interest in
 compelling companies to assist them in accessing private user data,
 even going so far as to potentially require companies to avoid the use
@@ -548,8 +548,8 @@ Not all compelled trust violations inherently involve government
 requests for user data. Sometimes third parties may be compelled to
 turn over user data due to business circumstances. In particular, it
 is not unusual for user data to be bought or sold in the event that a
-third party goes bankrupt~\cite{singer2015, solove2015,
-  nguyen2004}. Since the sale of such data in a bankrupt situation or
+third party goes bankrupt~\cite{nguyen2004, singer2015,
+  solove2015}. Since the sale of such data in a bankrupt situation or
 acquisition is often beyond the direct control of the third party,
 such data transfers represent a compelled trust violation (as opposed
 to the implicit trust violation that would occur if a third party
@@ -631,7 +631,7 @@ and outdated storage and security systems employed by the OPM. While
 such usage did not necessarily directly result in the lack of
 sensitive user data, it certainly made it far easier for an attacker
 to break in and steal such data. It is likelihood that a similar
-situation occurred in early 2015when several major U.S. health
+situation occurred in early 2015 when several major U.S. health
 insurance companies were subject to attacks that breached their user
 records, allowing the release of personal, financial, and medical
 information on millions of users~\cite{krebs-anthem,
@@ -640,7 +640,7 @@ public, it is likelihood that mistakes on the apart of the third party
 storing the data paved the way for external actors to steal user
 data. Recent investigations of common data breach causes list errors
 on the part of third party data stewards as the leading cause of
-breaches~\cite{verizon-2016breach, gallagher-blame}.
+breaches~\cite{gallagher-blame, verizon-2016breach}.
 
 Some external unintentional violations occur not due to the fault of the
 third parties, but due to a fault of the user themselves. The most
