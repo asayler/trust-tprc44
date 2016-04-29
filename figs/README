@@ -1,0 +1,22 @@
+The figs directory is organized as follows:
+
+./src/
+
+   This directory holds SVG source files. They can be created or
+   edited with any vector graphics editor (e.g. InkScape, Google
+   Drawings, etc). Since SVG graphics are vectorized, they can scale
+   to any size. But first they need to be converted to PDFs so LaTeX
+   can read them.
+
+./pre/
+
+   This directory holds pre-rendered raster files (png, jpg, etc).
+   These can be included directly in the LaTeX.
+
+./out/
+
+   This directory holds rendered PDF versions of the files in the
+   ./src/ directory. To generate PDF figs, run 'make figs' from the
+   repo's top level directory. InkScape must be installed for this
+   command to work.
+

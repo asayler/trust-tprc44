@@ -1,6 +1,0 @@
-This folder holds automatically generated PDF figures for inclusion in
-the report. It will be empty on a fresh git pull since the PDF images
-are purposely not tracked by git.
-
-To generate PDF figs, run 'make figs' from the repo's top level
-directory. InkScape must be installed for this command to work.

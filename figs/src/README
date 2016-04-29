@@ -1,7 +1,0 @@
-This folder holds SVG source files. They can be created or edited with
-any vector graphics editor (e.g. InkScape, Google Drawings,
-etc). Since SVG graphics are vectorized, they can scale to any
-size. But first they need to be converted to PDFs so LaTeX can read them.
-
-To generate PDF figs, run 'make figs' from the repo's top level
-directory. InkScape must be installed for this command to work.
