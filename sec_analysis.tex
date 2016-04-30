@@ -11,7 +11,7 @@ violated.
 \subsection{Capability Examples}
 \label{sec:analysis:capabilites}
 
-Third party based ``cloud'' computing services have become extremely
+Third party based cloud computing services have become extremely
 popular over the previous 10 years.  The question of how
 \textit{trustworthy} these services are is addressed later in
 ~\S~\ref{sec:analysis:violations}. In this section, I explore how
@@ -300,37 +300,37 @@ use of client-side cryptography.
 \subsection{Violation Examples}
 \label{sec:analysis:violations}
 
-Beyond the capabilities with with users must trust modern cloud
-services lie the analysis of the likelihood that such trust will be
-violated. In this section, I present an analysis of the factors and
-incentivize and disincentive certain classes of trust violation (as
-outlined in \S~\ref{sec:model}). I also provide examples of specific
-trust violation events that have occurred over the previous ten years.
+Capabilities measure the degree of trust users must place in third
+party services. But how likely is that trust to be violated? In this
+section, I present an analysis of the motivations behind certain
+classes of trust violation as outlined in \S~\ref{sec:model}. I also
+provide examples of specific trust violation events that have occurred
+over the previous ten years.
 
 \subsubsection{Implicit Violations}
 
 Implicit trust violations represent the most direct form of trust
-violation. Implicit violation occur when a trust party intentionally
-misuses a trusted capability in a eminent the user did not intend. As
-the most direct for of violation, implicit violates are also present
-the simplest analysis of incentives and disincentive regarding such
-violations.
+violation. Implicit violation occur when a trusted third party
+intentionally misuses a capability in a manner the user did not
+intend. As the most direct form of trust violation, implicit
+violations also present the simplest analysis of motivations regarding
+such violations.
 
 One of the clearest potential incentives for companies to commit
-implicit trust violation comes via advertising-supported business
-models employed by many cloud services. In these models, the user is
-provided with access to a cloud service for ``free''. The service
-provider monetizes their service either by selling advertising space
-on the service directly or by collecting and selling user data to
-third party advertising firms. In contrast to more traditional
-mass-media based advertising schemes, cloud services are often
-designed as platforms for highly targeted advertising. That is, cloud
-services can leverage the vast amount of user data to which they have
-access as a mechanism for building detailed dossiers on each user and
-using these dossiers as the basis for serving personally tailored
-adds. Advertisers are generally willing to pay higher prices for more
-carefully tag red ads, incentivizing cloud providers to harvest user
-data is pursuit of such targeting.
+implicit trust violations comes via the advertising-supported business
+models employed by many cloud services~\cite{evans2009}. In these
+models, the user is provided with access to a cloud service for
+``free''. The service provider monetizes their service either by
+selling advertising space on the service directly or by collecting and
+selling user data to third party advertising firms. In contrast to
+more traditional mass-media based advertising schemes, cloud services
+are often designed as platforms for highly targeted advertising. That
+is, cloud services can leverage the vast amount of user data to which
+they have access as a mechanism for building detailed dossiers on each
+user and using these dossiers as the basis for serving personally
+tailored adds. Advertisers are generally willing to pay higher prices
+for more carefully targeted ads, incentivizing cloud providers to
+harvest user data is pursuit of such targeting.
 
 While such advertising practices do not inherently represents an
 implicit trust violation, they do setup a series of perverse
@@ -340,29 +340,30 @@ service require the user to agree to a terms of service that grants
 the service provider the right to harvest user data for advertising
 purposes. But it's well known that few, if any users, actually read
 such terms, leading to situations where users are often surprised by
-the way in which their data is used~\cite{hern2015}. Thus, while the
-user may have technically ``agreed'' to certain advertising practices,
-it is reasonable to still fault a service provider with having
-committed an implicit trust violation in situations where their use of
-user data deviations from that which the user would generally expect.
+the way in which their data is used~\cite{ hern2015,
+  mcdonald2010}. Thus, while the user may have technically ``agreed''
+to certain advertising practices, it is reasonable to still fault a
+service provider with having committed an implicit trust violation in
+situations where their use of user data deviations from that which the
+user would generally expect.
 
 Target provides an example of an implicit trust violation triggered by
 ad-motivated misuses of access to user data. In 2012, it became public
 that Target had developed a statistical system for predicting if its
 shoppers were pregnant based on the kind of items they bought. Target
-would then leverage this data to send customers coupons optimized for
-pregnant individuals. In one case, this practice lead to the outing of
-a pregnant teenager to her previously unaware
+would then leverage this data to send customers coupons tailored
+toward pregnant individuals. In one case, this practice lead to the
+outing of a pregnant teenager to her previously unaware
 father~\cite{hill2012}. Clearly such outcomes are not within the realm
 of what most shoppers expect when purchasing items at Target. Facebook
 committed a similar ad-motivated implicit trust violations when it
 begin to incorporate user-provided images into the ads it served to
 other users~\cite{mashable-socialads}. These actions caught many users
-by sup rise as one does not normally expect their personal photos to
+by surprise as one does not normally expect their personal photos to
 be re-purposed for the purpose of endorsing third party products.
 
-Not all implicit violations are tied to the kinds of preference
-incentives user-data driven advertising often elicits. Sometimes third
+Not all implicit violations are tied to the kinds of perverse
+incentives user data driven advertising often elicits. Sometimes third
 parties just make poor decisions about the manner in which to use the
 capabilities a user has granted them. One of the more infamous
 examples of such misuse comes from Facebook's ability to manipulate
@@ -384,12 +385,12 @@ Uber~\cite{uber} made headlines when it used the travel history of a
 number of its more prominent users to display a live user-location map
 at a launch party~\cite{sims2014}. This map allowed party guests to
 track these users in real time -- an outcome the average Uber user
-certainly does not expect. Similarly, Uber also used stored user
-travel history to compose a blog post detailing its ability to detect
-a given user's proclivity for ``one night
-stands''~\cite{pagliery2014}. In both cases, Uber committed implicit
-trust violations by leveraging data it had about users in manners
-users did not approve of or intend.
+certainly does not expect when trusting Uber with access to their
+location data. Similarly, Uber also used user travel history data to
+compose a blog post detailing its ability to detect a given user's
+proclivity for ``one night stands''~\cite{pagliery2014}. In both
+cases, Uber committed implicit trust violations by leveraging data it
+had about users in manners users did not approve of or intend.
 
 \subsubsection{Compelled Violations}
 
@@ -468,35 +469,36 @@ Court (FISC)~\cite{fisc} orders.
   \label{tab:analysis:violations:reports}
 \end{table}
 
-The scope of compelled violation can be partially evaluated by
+The scope of compelled violations can be partially evaluated by
 studying the transparency reports published by many cloud
 companies. Companies such as Dropbox~\cite{dropbox-transparency},
 Amazon~\cite{amazon-transparency},
 Facebook~\cite{facebook-transparency},
 Google~\cite{google-transparency}, and
 Twitter~\cite{twitter-transparency} all published bi-annual
-transparency reports detailing the number of type of data requests
+transparency reports detailing the number and type of data requests
 they received as well as the frequency at which they turn over user
-data or metadata in response to these requests. While the requests
-outlined in these reports are generally lawful, and in some cases, are
-likely important for protecting the safety of the public, turning over
-data in response to such requests without user permissions represents
-a compelled violation since users do not generally intend for third
-parties to provide their data to government
-actors. Table~\ref{tab:analysis:violations:reports} shows the number
-of instances in which several major third parity service providers
-were compelled to turn over user data or metadata over the previous
-five years. As shown, the largest third party service providers turn
-over user data on the order of 10s of thousands of times per
-year. Furthermore, the number of compelled violations committed each
-year has steadily risen from year to year.
+data in response to these requests. While the requests outlined in
+these reports are generally lawful, and in some cases, are likely
+important for protecting the safety of the public, turning over data
+in response to such requests without user permissions represents a
+compelled violation since users do not generally intend for third
+parties to provide their data to government actors -- especially in
+cases where the user is given no notice or ability to contest the
+provision of such data. Table~\ref{tab:analysis:violations:reports}
+shows the number of instances in which several major third party
+service providers were compelled to turn over user data or metadata
+over the previous five years. As shown, the largest third party
+service providers turn over user data on the order of tens of
+thousands of times per year. Furthermore, the number of compelled
+violations committed each year has steadily risen from year to year.
 
-The high numbers of compelled violations that occur each year likely
+The high number of compelled violations that occur each year likely
 represent a fairly significant increase in the amount of user data
 being provided to government actors relative to pre-cloud computing
-times. While it is possible that governments would serve the same
+times. While it is possible that governments could serve the same
 number of data request on individual users were we to live in a world
-where most Eur data was individually stored instead of held by third
+where most user data was individually stored instead of held by third
 parties, it seems unlikely that this would be the case. The
 concentration of user data in a handful of third parties greatly
 reduces the effort required by government actors to request access to
@@ -504,7 +506,8 @@ such data. Furthermore, while certain types of compelled legal orders,
 e.g. probable cause warrants, could in fact be served on individuals
 instead of third parties, other legal orders, e.g.  subpoenas served
 under the third party doctrine, would not be legally valid if served
-on an individual.
+on an individual due to the higher protection personally stored data
+enjoys relative to third party stored data.
 
 Beyond the kinds of direct requests for user data discussed in
 published transparency reports, there are also several notable
@@ -540,33 +543,30 @@ vulnerability to bypass Apple's passcode guessing limits
 directly~\cite{ars-fbi-breakthrough, ars-fbi-greyhats}. As in the
 Lavabit case, this case demonstrates the government's interest in
 compelling companies to assist them in accessing private user data,
-even going so far as to potentially require companies to avoid the use
-of certain forms of encryption or security-enhancing features that
-would make such assistance difficult or impossible to provide.
+even going so far as to require companies to avoid the use of certain
+forms of encryption or security-enhancing features that would make
+such assistance difficult or impossible to provide.
 
 Not all compelled trust violations inherently involve government
 requests for user data. Sometimes third parties may be compelled to
-turn over user data due to business circumstances. In particular, it
-is not unusual for user data to be bought or sold in the event that a
-third party goes bankrupt~\cite{nguyen2004, singer2015,
-  solove2015}. Since the sale of such data in a bankrupt situation or
-acquisition is often beyond the direct control of the third party,
-such data transfers represent a compelled trust violation (as opposed
-to the implicit trust violation that would occur if a third party
-willfully sold or shared user data in a manner the user does to expect
-their data to be sold or shared).
-
-Regardless of the method in which they occur, compelled violations are
-one of the most common form of third party trust violations.
+turn over user data due to civil or business circumstances. In
+particular, it is not unusual for user data to be bought or sold in
+the event that a third party goes bankrupt~\cite{nguyen2004,
+  singer2015, solove2015}. Since the sale of such data in a bankruptcy
+or acquisition is often beyond the direct control of the third party
+holding the data, such data transfers represent a compelled trust
+violation.\footnote{As opposed to the implicit trust violation that
+  would occur if a third party willfully sold or shared user data in a
+  manner the user does to expect their data to be sold or shared.}
 
 \subsubsection{Unintentional Violations}
 
 As mentioned in \S~\ref{sec:model}, unintentional violations occur
-when a third party violates a user trust in a manner that they neither
-intended or were forced to do. Unintentional violations can be broadly
-sorted into two subcategories: external and internal
+when a third party violates a users trust in a manner that they
+neither intended or were forced to do. Unintentional violations can be
+broadly sorted into two subcategories: external and internal
 violations. External violations are caused by an external actor
-(e.g. an adversarial attacker) leveraging a third parties capabilities
+(e.g. an adversarial attacker) leveraging a third party's capabilities
 to cause a trust violation. Internal violations are caused by mistakes
 within the third party (e.g. a coding error) leading to a trust
 violation. Often, internal violations beget external violations -- for
@@ -578,157 +578,151 @@ violations committed by third parties over the past ten years. For
 example, in 2011 Dropbox introduced a bug into their authentication
 system that allowed anyone to log into the service using any password
 for a five hour period~\cite{dropbox-authbug}. While Dropbox certainly
-did not intend to share many users files with the entire world, they
-unintentionally did so via a coding error. In some cases, internal
-violations occur due to factors beyond the third parties direct
-control. For example, third parties are susceptible to a range of
-software flaws in externally maintained libraries they rely
+did not intend to effectively share their users files with the entire
+world, they unintentionally did so via a coding error. In some cases,
+internal violations occur due to factors beyond the third parties
+direct control. For example, third parties are susceptible to a range
+of software flaws in externally maintained libraries they rely
 on. Prominent examples of such flaws include
 Heartbleed~\cite{heartbleed}, a flaw in OpenSSL~\cite{openssl} that
-allowed attackers to steal private data from many secure servers, and
+allowed attackers to steal private data from secure web servers, and
 Shellshock~\cite{symantec-shellshock}, a GNU bash~\cite{gnu-bash} flaw
-that allowed user to execute arbitrary code on many web servers. Both
-flaws were widespread and effected large swaths of third party sites
-and services, potentially exposing the user of such services to data
-exfiltration or manipulation (e.g. Violations of third party \emph{R}
-or \emph{W} capabilities).
+that allowed attackers to execute arbitrary code on certain web
+servers. Both flaws were widespread and effected large swaths of third
+party sites and services, potentially exposing the users of these
+services to data exfiltration or manipulation (e.g. violations of
+third party \emph{R} or \emph{W} capabilities).
 
 While open source code such as OpenSSL and Bash have been the source
 of several trust-violating software bugs, it is also possible for open
 source approaches to help remedy such bugs. While bugs like Heartbleed
 or Shellshock demonstrate that having publicly reviewable code is not
 sufficient for eliminating bugs, these bugs also demonstrate effective
-disclosure and patching processes inherent to one source code. Had
-similar bugs been discovered internally in non open source code bases,
-it is possible they would have gone unreported and no one would be the
-wiser. The difficulty of hiding bugs or ignoring publicly disclosed
-bugs in open source code bases has led a number of security and
-privacy enhancing software projects to specifically leverage open
-source models. Projects such as GnuPG~\cite{gnupg},
+disclosure and patching processes inherent to open source
+communities. Had similar bugs been discovered internally in closed
+source code bases, it is possible they would have gone unreported and
+potentially exploitable for long periods of time. The difficulty of
+hiding bugs or ignoring publicly disclosed bugs in open source code
+bases has led a number of security and privacy enhancing software
+projects to specifically leverage open source models for security and
+trust related purposes. Projects such as GnuPG~\cite{gnupg},
 Signal~\cite{openwhisper}, and End to End~\cite{google-endtoend,
-  yahoo-endtoend} are tout their open source nature as a mechanism for
-reading the likelihood of moth unintentional bugs as well as
-intentional back doors. Indeed, such practices can be viewed as a form
-of trust mitigation since they allow the user to reduce the trust they
-must place in third party provided code itself in favor of using
-publicly reviewable code. While open source implementations alone do
-not guarantee the lack of such bugs~\cite{frosch2014} or
-back doors~\cite{thompson1984}, it does help to maximize the number of
-eye on the code base, making such violation harder to hide.
+  yahoo-endtoend} all tout their open source nature as a mechanism for
+reducing the likelihood of both unintentional bugs and intentional
+back doors. Such practices can be viewed as a form of trust mitigation
+since they allow the user to reduce the trust they must place in third
+party provided code itself in favor of using publicly reviewable
+code. While open source implementations alone do not guarantee the
+lack of such bugs~\cite{frosch2014} or back doors~\cite{thompson1984},
+it does help to maximize the number of eyes on the code base, making
+such violation harder to hide.
 
 Internal unintentional violations often pave the way of external
-unintentional violations. Negligence or incompetence on the apart of a
-third party might open the door for an external attack. Take, for
+unintentional violations. E.g. negligence or incompetence on the apart
+of a third party might open the door for an external attack. Take, for
 example, the recent OPM data breach. In 2015, the U.S. Office of
 Personnel Management (OPM) announced that their systems had been
 breached, exposing the personal data of essentially anyone who had
 held or currently holds a U.S. Government security
 clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This breach,
 in addition to having high strategic value to foreign attackers,
-reveled sensitive personnel data of a huge number of U.S.  government
+reveled sensitive personnel data of a huge number of U.S. government
 employees and contractors. This leak was largely due to the use of old
 and outdated storage and security systems employed by the OPM. While
-such usage did not necessarily directly result in the lack of
+such usage did not necessarily directly result in the exposure of
 sensitive user data, it certainly made it far easier for an attacker
-to break in and steal such data. It is likelihood that a similar
-situation occurred in early 2015 when several major U.S. health
-insurance companies were subject to attacks that breached their user
-records, allowing the release of personal, financial, and medical
-information on millions of users~\cite{krebs-anthem,
-  krebs-premera}. While the details of the breaches were not made
-public, it is likelihood that mistakes on the apart of the third party
-storing the data paved the way for external actors to steal user
-data. Recent investigations of common data breach causes list errors
-on the part of third party data stewards as the leading cause of
+to break in and steal such data. It is likely that a similar situation
+occurred in early 2015 when several major U.S. health insurance
+companies were subject to attacks that breached their user records,
+allowing the release of personal, financial, and medical information
+on millions of users~\cite{krebs-anthem, krebs-premera}. While the
+details of these breaches have not been made public, it is reasonable
+to assume that mistakes on the apart of the third party storing the
+data paved the way for external actors to steal user data. Indeed,
+recent investigations of common data breach causes list errors on the
+part of third party data stewards as the leading cause of
 breaches~\cite{gallagher-blame, verizon-2016breach}.
 
-Some external unintentional violations occur not due to the fault of the
-third parties, but due to a fault of the user themselves. The most
+Some external unintentional violations occur not due to the fault of
+the third parties, but due to a fault of the user themselves. The most
 common example of such failures involve the use of weak passwords by
 users to protect their accounts on third-party services.  Dropbox has
 been the target of various external trust violations built around
 advisories who obtain common and exploit user
 passwords~\cite{dropbox-passwords}. While it is tempting to not
-attribute these faults to third parties themselves, third party service
-providers must shoulder at least some of the blame for allowing users
-to utilize weak credentials or similar error-prone authentication
-mechanisms. For example in 2014, a number of celebrity users of
-Apple's iCloud data storage service~\cite{apple-icloud} were subject
-to a public release of personal photos they had stored with the
-service. This leak was the result of a targeted attack on the
+attribute these faults to third parties themselves, third party
+service providers must shoulder at least some of the blame for
+allowing users to utilize weak credentials or similar error-prone
+authentication mechanisms. For example in 2014, a number of celebrity
+users of Apple's iCloud data storage service~\cite{apple-icloud} were
+subject to a public release of personal photos they had stored with
+the service. This leak was the result of a targeted attack on the
 corresponding users' passwords and iCloud
 accounts~\cite{apple-icloudleak}. These attacks appear to have been
 propagated over several months prior to the public release. While this
 leak was not a result of an overt flaw in Apple's iCloud system, the
-weak default security requirements for iCloud accounts made it
+weak default password requirements for iCloud accounts made it
 relatively simple for attackers to compromise such accounts and steal
-data.
+user data.
 
 Finally, some external unintentional violations occur due to an
 adversaries use of techniques that many third parities could not be
 reasonably expected to defend against. Nation-state level outsider
-attacks generally fall into this category. While governments are
-generally able to access user data via by compelling third parties to
-turn it over, in some cases, they prefer to attack the third party
-directly, triggering an unintentional outsider type violation. For
-example, the NSA PRISM program was/is a Foreign Intelligence
-Surveillance Court (FISC)~\cite{fisc} approved system for compelling
-service providers to provide user data to the
-government~\cite{greenwald-prism}. It is believed to be one of the
-largest programs used by the government to extract user data from
-various cloud-based services (e.g. Google, Yahoo, Microsoft,
-etc). Similarly, MUSCULAR was/is a joint NSA and U.K. Government
-Communication Headquarters (GCHQ) effort to intercept and monitor
-traffic traversing Google's and Yahoo's inter-datacenter
+attacks generally fall into this category. While governments are often
+able to access user data via by compelling third parties to turn it
+over, in some cases, they prefer to attack the third party directly,
+triggering an unintentional outsider type violation. For example,
+MUSCULAR was/is a joint NSA and U.K. Government Communication
+Headquarters (GCHQ) effort to intercept and monitor traffic traversing
+Google's and Yahoo's inter-datacenter
 networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure, this
 intra-datacenter traffic was not generally encrypted, and thus was an
 ideal point for the government to intercept and monitor user data,
-especially in cases where the government is able to utilities such
-far-reaching technique as tapping undersea communication tables or
+especially in cases where the government is able to utilize such
+far-reaching technique as tapping undersea communication cables or
 forcing access to ``secure'' Internet exchange facilities. These types
 of violations are often bootstrapped either via internal unintentional
 violations (e.g. exploitable bugs in a crypto algorithm used by a
 third party) or via compelled orders (e.g. such as those granting
-government access to the underlying infrastructure mounting such
-attacks).
+government access to the underlying facilitates from which to mount
+such attacks).
 
 \subsubsection{Collusion Violations}
 
 Collusion violations occur when multiple third parties work in concert
-to leverage or misuses capabilities each in manners that would not be
+to leverage or misuse capabilities in manners that would not be
 possible for each individually to do. Inherent to the notion of
 collusion violations is the notion of trust separation -- e.g. the
 ability to spread trusted capabilities across multiple third parties,
 reducing the amount any individual third party must be trusted in the
 process. This fact makes examples of real world collusion violations
-harder to come by by nature of the fact that very few deployed systems
+harder to come by due to the fact that very few deployed systems
 require, or even allow, users to distribute trust in these manners.
 
 Still, one can imagine how certain collusion violations might
 occur. For example, a password manager provider such as LastPass could
 collude with a mobile keyboard provider such as Swype~\cite{swype} for
-the purpose of capturing a user's ``master'' LastPass encryption
-password and suing it to decrypt the users passwords. Normally,
-LastPass lacks access to the plain-text variants of the user passwords
-it stores since these are encrypted on the client's device prior to
-being sent to the LastPass servers. Similarly, mobile keyboard
-software such as Swype does not normally posses access to a LastPass
-user's passwords since these are encrypted and stored via the separate
-LastPass app. Thus, neither Swype nor LastPass can individually access
-a user's password data. Swype does, however, have the ability to
-modify their keyboard software to record a user's typed input and
-report it back to a central server. Thus, Swype could collude with
-LastPass to capture and provide LastPass with user master passwords
-which LastPass could then use to gain the ability to read stored
-passwords even though the user attempted to limit such access via the
-sue of client-side encryption.\footnote{This example is a bit
-  contrived for the purposes of demonstration. In reality, if LastPass
-  wished to capture user Master password input, or otherwise decrypt
-  user passwords, they could likely just modify the LastPass client
-  app directly to either record all user input or to add a backdoor to
-  the encryption mechanism. They would not inherently need to involve
-  an additional third party such as Swype in order to mount such an
-  attack.}
+the purpose of capturing a user's ``master'' encryption password and
+using it to decrypt the users stored passwords. Normally, LastPass
+lacks access to the plain-text variants of the user passwords it
+stores since these are encrypted on the client's device prior to being
+sent to the LastPass servers. Similarly, mobile keyboard software such
+as Swype does not normally posses access to a LastPass user's
+passwords since these are filled directly via the LastPass app. Thus,
+neither Swype nor LastPass can individually access a user's password
+data. Swype does, however, have the ability to modify their keyboard
+software to record a user's typed input and report it back to a
+central server. Thus, Swype could collude with LastPass to capture and
+provide LastPass with a users master password. LastPass could then use
+this information to read the user's stored passwords even though the
+user attempted to limit such access via the use of client-side
+encryption.\footnote{This example is a bit contrived for the purposes
+  of demonstration. In reality, if LastPass wished to capture a users
+  master password, or otherwise decrypt user passwords, they could
+  simply modify the LastPass client directly to either record all user
+  input or to backdoor the encryption mechanism. They would not
+  inherently need to involve an additional third party such as Swype
+  in order to mount such an attack.}
 
 While real-world collusion violations appear to be relatively rare
 today as a side effect of the singular nature of most third-party
@@ -736,11 +730,13 @@ trust arrangements, this may change in the
 future. \S~\ref{sec:mitigation} discusses techniques for reducing
 trust in singular third parties, the side effects of which may be a
 reduction in the kinds of violations that are common today, but an
-increase in the potential for compelled violations.
+increase in the potential for compelled violations. Thus, it is worth
+keeping an eye on the nature and frequency of such violations over
+time.
 
-\subsection{Overall Risk}
+%% \subsection{Overall Risk}
 
-To Do
+%% To Do
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
