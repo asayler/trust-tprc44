@@ -2,10 +2,11 @@
 \label{sec:analysis}
 
 The trust model proposed in \S~\ref{sec:model} is primarily useful for
-what it can tell us about the nature of user trust and the modern
-computing landscape. As such, I apply the model to analyze the
-capabilities granted to a number of popular third party computing
-services.
+describing the nature of user trust in the modern computing
+landscape. In this section, I apply the model to the analysis of both
+the capabilities users must entrust to a variety of popular third
+party services as well as to examples of how that trust can be
+violated.
 
 \subsection{Capability Examples}
 \label{sec:analysis:capabilites}
@@ -15,20 +16,19 @@ popular over the previous 10 years.  The question of how
 \textit{trustworthy} these services are is addressed later in
 ~\S~\ref{sec:analysis:violations}. In this section, I explore how
 \textit{trusted} such service are. That is, how much trust must users
-place in such services? The capability axis of my proposed model is
-useful to quantify this trust.
+place in such services?
 
 \subsubsection{File Storage}
 
 Cloud file storage is a popular third party use case. Services such as
 Dropbox~\cite{dropbox}, Google Drive~\cite{google-drive}, and
 Microsoft OneDrive~\cite{microsoft-onedrive} all provide users with
-mechanisms for storing their files in the cloud, often for the purpose
-of keeping files synced across multiple devices or to provide the
-ability to share files or collaboratively edit them with other
-users. Traditional cloud storage services such as Dropbox, Drive, and
-OneDrive are similar enough in their operation that I will use Dropbox
-as a stand in for the analysis of all three.
+mechanisms for storing their files in the cloud. These services allow
+users to keep files synced across multiple devices and provide the
+ability to share files with other users. Traditional cloud storage
+services such as Dropbox, Drive, and OneDrive are similar enough in
+their operation that I will use Dropbox as a stand in for the analysis
+of all three.
 
 What capabilities is a normal Dropbox user entrusting to Dropbox?
 Clearly, users must trust Dropbox to faithfully store their data since
@@ -37,60 +37,64 @@ that is Dropbox's core purpose. Users therefore grant Dropbox the
 ability to read and access their data (i.e. the \emph{R} capability)
 in order to support Dropbox's sharing and syncing features. While
 Dropbox doesn't generally utilize it, users are also effectively
-granting Dropbox the manipulation (\emph{W} capability) as well since
+granting Dropbox the manipulation (\emph{W}) capability as well since
 the user has no mechanisms for ensuring that Dropbox can't manipulate
 their data. Finally, Dropbox has full access to user metadata related
 to their usage of the service, granting them the \emph{M}
 capability. Therefore, Dropbox users must trust Dropbox with all
-possible capabilities. Traditional cloud storage services such as
-Dropbox, Drive, and OneDrive are thus classified as ``fully trusted''
-services: service that require the highest possible level of user
-trust. Such services, are thus also in a position to do the greatest
-degree of damage to user privacy should a users trust in them as
-faithful stewards of private data turn out to be misplaced.
+possible data-related capabilities. Traditional cloud storage services
+are thus classified as ``fully trusted'' services: service that
+require the highest possible level of user trust. Such services are
+thus also in a position to do the greatest degree of damage to user
+privacy should a users trust in them as faithful stewards of private
+data turn out to be misplaced.
 
-The level of trust requested by tradition cloud storage servers
-rightfully makes some user nervous or unwilling to use such
+The level of trust requested by traditional cloud storage services
+rightfully makes some users nervous or unwilling to use such
 services. In response to such aversion, a number of systems have been
 developed with the aim of overcoming third party trust challenges in
-the storage space. These systems include ``end-to-end'' encrypted file
+the storage space. Such systems include
+``end-to-end''\footnote{``End-to-end'' cryptography refers to a style
+  of cryptographic system where all sensitive cryptographic operations
+  are performed by the end-user/client. Such systems aim to minimize
+  the trust places in third party services or systems.} encrypted file
 storage services such as Tresorit~\cite{tresorit}, or
-SpiderOak~\cite{spideroak}. These systems aim to place limits on a
-third party's ability to leverage the access (\emph{R}) capability
-through the use of client-side encryption. Likewise, they aim to limit
-third party access to the manipulation (\emph{W}) capability through
-the use of client-side cryptographic
-authentication.\footnote{E.g. asymmetric cryptographic signatures such
-  as those provided by GnuPG~\cite{gnupg} or symmetric cryptographic
-  message authentication codes (MACs) available via a variety of
-  algorithms~\cite{dworkin2005, dworkin2008, dworkin2007}.}  In the
-base case where a user merely wishes to store data on a single device
-and not share it with others, these systems are fairly successful in
-achieving their desired trust mitigations. In order to sync data
-across multiple devices using such systems, a user must manually
-provide some secret (e.g. a password, etc) on each device to secure
-its operation. While potentially burdensome and inconvenient, this
-practice is in line with these services trusted capabilities
-mitigation since it does not require any additional third party trust.
+SpiderOak~\cite{spideroak}. These systems aim to limit third party use
+of the access (\emph{R}) capability through the use of client-side
+encryption. Likewise, they aim to limit third party use of the
+manipulation (\emph{W}) capability through the use of client-side
+cryptographic authentication.\footnote{E.g. asymmetric cryptographic
+  signatures such as those provided by GnuPG~\cite{gnupg} or symmetric
+  cryptographic message authentication codes (MACs) available via a
+  variety of algorithms~\cite{dworkin2005, dworkin2008, dworkin2007}.}
+In the trivial case where a user merely wishes to store data on a
+single device and not share it with others, these systems are fairly
+successful in achieving their desired trust mitigations. In order to
+sync data across multiple devices using such systems, however, a user
+must manually provide some secret (e.g. a password, etc) on each
+device to secure its operation. While potentially burdensome and
+inconvenient, this practice is in line with these services trusted
+capabilities mitigation since it does not require any additional third
+party trust.
 
 The place where these systems falter at mitigating third party trust
 is via their support for multi-user sharing and collaboration. Such
 services tend to accomplish multi-user sharing by acting as a trusted
 certificate authority (CA) in charge of issuing user
 certificates.\footnote{A certificate is a combination of a user's
-  public key and certain metadata signed by a trusted issuer. See for
-  more information.} These certificates are then used with various
-asymmetric cryptographic primitives) to exchange the necessary secrets
-for bootstrapping sharing between users. Unfortunately, as a trusted
-CA, these services are capable of issuing fraudulent user certificates
-to themselves or other parties. This allows them to mount
-man-in-the-middle (MitM) attacks on any user trying to share data by
-impersonating the recipient of the shared data. This deficiency is
-discussed in depth at~\cite{wilson2014}, and leads to a breakdown of
-such services' claim that their users need not trust them, at least
-when employing multi-user sharing. By mounting a MitM attack on a user
-trying to share data with another user, such service providers can
-regain the \emph{R} and \emph{W} capabilities they claim not to
+  public key and identifying metadata signed by a trusted issuer.}
+These certificates are then used with various asymmetric cryptographic
+primitives to exchange the necessary secrets for sharing files between
+users. Unfortunately, as a trusted CA, these services are capable of
+issuing fraudulent user certificates to themselves or other
+parties. This allows them to mount man-in-the-middle (MitM) attacks on
+any user trying to share data by impersonating the recipient of the
+shared data. This deficiency is discussed in depth
+at~\cite{wilson2014}, and leads to a breakdown of such services' claim
+that their users need not trust them, at least when employing
+multi-user sharing. By mounting a MitM attack on a user trying to
+share data with another user, such service providers can regain the
+\emph{R} and \emph{W} capabilities they claim not to
 have. Furthermore, these services do little to mitigate their access
 to metadata (\emph{M} capability). Nor do they provide ways for users
 to avoid data loss in the event that one of the services goes offline
@@ -102,45 +106,45 @@ services such as Dropbox. In single-user scenarios, such services
 succeed at reducing the degree of user trust from full (all four
 capabilities) to partial (only requiring the \emph{S} and \emph{M}
 capabilities). Yet, when implementing multi-user use cases, such
-services fall back to requiring a more-or-less full degree of trust,
-leaving much to be desired.
+services fall back to requiring a more-or-less full degree of trust.
 
 \subsubsection{Social Media}
 
-Social media sites such as Facebook, Google Plus, etc have become
-popular since the early 2000s. Such sites maintain a ``social-graph''
-of connections between users, and facilitate communication and sharing
-of pictures, events, and other data between users. Such sites are
-generally ``free'' to users -- monetizing user data and interactions
-for the purpose of selling targeted advertising. Given their ubiquity
-in the modern Internet landscape, as well as their position as
-ad-supported services, it is useful to evaluate the trust profile of
-modern social media sites. Facebook is the largest social media site
-today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
-such, Facebook serves as an example of the variety of social media
-sites available today.
+Social media sites such as Facebook~\cite{facebook} or
+Google+~\cite{google-plus} are a popular class of cloud service. Such
+sites maintain a ``social-graph'' of connections between users, and
+facilitate communication and sharing of pictures, events, and other
+data between users. Such sites are generally ``free'' to users --
+instead of charging users for the service, they monetize user data and
+interactions for the purpose of selling targeted advertising. Given
+their ubiquity in the modern Internet landscape, as well as their
+position as ad-supported services, it is useful to evaluate the trust
+profile of modern social media sites. Facebook is the largest social
+media site today, serving over 1.5 billion users as of
+2015~\cite{foster2014}. As such, Facebook serves as an example of the
+variety of social media sites available today.
 
 In terms of capabilities, Facebook, like Dropbox and other traditional
 cloud services, must be trusted with a full range of capabilities.
 Facebook is responsible for faithfully storing user data such as
-photos, videos, and messages. Facebook can access and read all data it
-stores, and indeed relies on the ability to read such data as the
-basis of their advertising-based business model. Facebook can
-manipulate the data it stores, and routinely does so for the purpose
-of curating user ``news feeds'' or even integrating user pictures into
-targets ads~\cite{mashable-socialads}. Finally, Facebook is capable of
+photos, videos, and messages (\emph{S} capability). Facebook can read
+all data it stores (\emph{R} capability), and indeed relies on the
+ability to read such data as the basis of their advertising-based
+business model. Facebook can manipulate the data it stores (\emph{W}
+capability), and routinely does so for the purpose of curating user
+``news feeds'' or even integrating user pictures into targets
+ads~\cite{mashable-socialads}. Finally, Facebook is capable of
 applying a range of meta-analytic techniques to acquire additional
-data about users for the purpose of targeting both ads as well as
-content from other users.
+data about users (\emph{M} capability) for the purpose of targeting
+both ads and curating displayed content from other users.
 
-Other social media sites such as Google+~\cite{google-plus}
-require similar levels of trust. And since all mainstream social media
-services operate on add-supported business models, there are
-business-related barriers to reducing this level of trust where doing
-so would also reduce the level of access to user data. Thus, unlike in
-the storage space, there are not really any options for ``secure''
-social media platforms that specifically aim to minimize third party
-trust.
+Other social media sites such as Google+ require similar levels of
+trust. And since all mainstream social media services operate on
+ad-supported business models, there are business-related barriers to
+reducing this level of trust where doing so would also reduce the
+level of access to user data. Thus, unlike in the storage space, there
+are not many options for ``secure'' social media platforms that
+specifically aim to minimize third party trust.
 
 \subsubsection{Communications}
 
@@ -157,44 +161,45 @@ TextSecure~\cite{otr-advanced-ratchet}.
 
 Email services such as Gmail~\cite{google-gmail} or chat services such
 as Hangouts~\cite{google-hangouts} represent a fairly traditional
-approach to third party communication services. As was the case with
-Dropbox and Facebook, users of such services must rely on the third
-party service provider (in this case, Google) to properly store
-(\emph{S} capability) their messages while the design of these systems
-do nothing to prevent the service provider from accessing (\emph{R}
+approach to third party cloud services. As was the case with Dropbox
+and Facebook, users of such services must rely on the third party
+service provider (in this case, Google) to properly store (\emph{S}
+capability) their messages, and the design of these systems does
+little to prevent the service provider from accessing (\emph{R}
 capability) or manipulating (\emph{W} capability) user
 messages.\footnote{Similar to Facebook, many communication services
   are ad-based, and thus the service provider often relies on their
-  ability to access user data as the basis of their business
-  models.} Furthermore, since all communication flows through the
-service provider's servers, these providers have access to a range of
-potentially reveling meta-data about their users (\emph{M}
+  ability to access user data as the basis of their business models.}
+Furthermore, since all communication flows through the service
+provider's servers, these providers have access to a range of
+potentially revealing meta-data about their users (\emph{M}
 capability).
 
 The need to place a high degree of trust in various third parties in
 order to leverage digital communication services has long been a
-concern. Indeed many early privacy-enhancing software projects,
-including the venerable PGP~\cite{zimmermann-pgpsource,
-  zimmermann-pgp10}, were created in response to the lack of privacy
-inherent in most digital communication systems. Modern implementation
-of such systems, such as those conforming to the OpenPGP
-protocol~\cite{callas2007}, aim to reduce the amount users must trust
-third party communication providers by adding end-to-end encryption
-and cryptographic authentication support to traditional digital
-communication mediums. The OpenPGP protocol can be applied atop mail
-traversing traditional email systems such as Gmail, as well as to
-messages traversing chat applications such as Hangouts. When used with
-such services, OpenPGP provides a level of trust mitigation above and
-beyond what is possible to achieve via the native services
-themselves. In terms of trusted capabilities, a user employing PGP
-atop a traditional third party cloud service such as Gmail minimizes
-both the third party's access (via encryption) and manipulation (via
-authentication) capabilities. In such a scenario, only the end users
-involved in a given communication, and not any third party through
-which that communication might pass, have access to the necessary
-cryptographic keys required to read or alter the message. The third
-party, however, can still capture metadata (\emph{M} capability) about
-the communication since such metadata is outside of the scope of the
+concern amongst users of such services. Indeed many early
+privacy-enhancing software projects, including the venerable
+PGP~\cite{zimmermann-pgpsource, zimmermann-pgp10}, were created in
+response to the lack of privacy inherent in most digital communication
+systems. Modern implementation of such systems, such as those
+conforming to the OpenPGP protocol~\cite{callas2007}, aim to reduce
+the amount users must trust third party communication providers by
+adding end-to-end encryption and authentication support to traditional
+digital communication mediums. The OpenPGP protocol can be applied
+atop mail traversing traditional email systems such as
+Gmail~\cite{google-endtoend}, as well as to messages traversing chat
+applications such as Hangouts. When used with such services,
+OpenPGP provides a level of trust mitigation above and beyond what is
+possible to achieve via the native services themselves. In terms of
+trusted capabilities, a user employing PGP atop a traditional third
+party cloud service such as Gmail minimizes both the third party's
+access (via encryption) and manipulation (via authentication)
+capabilities. In such a scenario, only the end users involved in a
+given communication, and not any third party through which that
+communication might pass, have access to the necessary cryptographic
+keys required to read or alter the message. The third party, however,
+can still capture metadata (\emph{M} capability) about the
+communication since such metadata is outside of the scope of the
 message content that PGP is capable of securing. The third party is
 also still capable of dropping or deleting the communication all
 together, and thus still possesses the \emph{S} capability.
@@ -211,91 +216,86 @@ TextSecure~\cite{otr-advanced-ratchet}. The TextSecure protocol is
 used by several apps such Open Whisper System's
 Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. TextSecure
 uses various forms of asymmetric cryptography to provide users with
-end-to-end encrypted and authenticated individual and group messaging
-capabilities. Use of TextSecure denies any third party through which
-TextSecure messages might pass (including the TextSecure server
-itself) the access or manipulation capabilities. Furthermore,
-TextSecure makes efforts to secure metadata from third party actors,
-including the TextSecure server provider itself. These efforts curtail
-a third party's ability to analyze message metadata. It is still
-possible for a network-level adversary or the TextSecure server
-provider to discover the raw network (e.g. IP) endpoints involved in a
-TextSecure exchange, but higher level details are not
-available.\footnote{It is possible to couple TextSecure with existing
-  network anonymity systems such as Tor~\cite{dingledine2004} to
-  mitigate such network-level
-  meta-analysis~\cite{intercept-chatting}.} TextSecure users are still
-dependent on a third party to operate a TextSecure server in order to
-communicate in the first place (e.g. it is not a distributed
-protocol), but beyond this ``storage''-like capability, TextSecure
-grants no other capabilities to any third party.
+end-to-end encrypted and authenticated messaging capabilities. Use of
+TextSecure denies any third party through which TextSecure messages
+might pass (including the TextSecure server itself) the access or
+manipulation capabilities. Furthermore, TextSecure makes efforts to
+secure metadata from third party actors, including the TextSecure
+server provider itself. These efforts curtail a third party's ability
+to analyze message metadata.\footnote{It is still possible for a
+  network-level adversary or the TextSecure server provider to
+  discover the raw network (e.g. IP) endpoints involved in a
+  TextSecure exchange, but higher level details are not available. It
+  is possible to couple TextSecure with existing network anonymity
+  systems such as Tor~\cite{dingledine2004} to mitigate such
+  network-level meta-analysis~\cite{intercept-chatting}.} TextSecure
+users are still dependent on a third party to operate a TextSecure
+server in order to communicate in the first place (e.g. it is not a
+distributed protocol), but beyond this ``storage''-like capability,
+TextSecure grants no other capabilities to any third party.
 
 Following the trend set by traditional cloud services such as Dropbox
 and Facebook, traditional communication systems such as Gmail (and
-email in general) or Hangouts (and related chat systems) require user
-to place a high degree of trust in the corresponding third party
-service providers. Overlay privacy-enhancing systems such as those
-implementation the OpenPGP protocol allow users to reduce this level
-of trust by leveraging client-side cryptography to prevent third
-parties from levering the access (\emph{R}) or manipulation (\emph{W})
-capabilities. Modern full-stack privacy-focused communication
-protocols such as those implementing flavors of the OTR protocol take
-these privacy-preserving cryptography techniques a step further by
-providing primitives for limiting third party metadata access in
-addition to protecting user data from third party access or
+email in general) or Hangouts (and related unencrypted chat systems)
+require user to place a high degree of trust in the corresponding
+third party service providers. Overlay privacy-enhancing systems such
+as those leveraging the OpenPGP protocol allow users to reduce this
+level of trust by employing client-side cryptography to limited third
+party use of the access and manipulation capabilities. Modern
+full-stack privacy-focused communication protocols such as those
+employing flavors of the OTR protocol take these privacy-preserving
+cryptographic techniques a step further by limiting third party
+metadata access in addition to limiting third party access or
 manipulation.
 
 \subsubsection{Password Managers}
 
 Password management programs are commonly used by end users wishing to
 both manage and increase the security of the credentials they use to
-access web-based resources. Such programs are useful for helping end
-users remember passwords, and by extension, for encouraging users to
-use stronger (i.e. longer and/or more random)
+access various digital services. Such programs are useful for helping
+end users remember passwords, and by extension, for encouraging users
+to use stronger (i.e. longer and/or more random)
 passwords~\cite{brodkin-passman, krebs-passwords,
-  schneier-passwords}. Since Password managers potentially have access
-to user credentials -- access to which would allow an adversary to
-access a range of user data, including many of the cloud services
-previously discussed, it is worth evaluating the trust user much place
-in such services.
+  schneier-passwords}. Since cloud-based password managers potentially
+allow third parties access to sensitive user credentials, it is worth
+evaluating the trust user much place in such services.
 
 LastPass~\cite{lastpass} is one of the most popular cloud-based
-password managers. LastPass operates by storing encrypted user
-passwords on a LastPass-controlled server. Passwords are encrypted on
-the client and only encrypted passwords are sent to LastPass. Each
-password is encrypted using a key derived from a user-supplied
-``master'' password. LastPass never stores this master password
-directly, making it difficult for them to derive the key necessary to
-decrypt the encrypted data they store. Thus, LastPass intentionally
-limits its ``access'' (\emph{R} capability) to user
-passwords. LastPass does not, however, appear to perform any kind of
-cryptographic authentication on the data it stores, meaning it still
-has full capabilities over the ``manipulation'' (\emph{W})
-capability.\footnote{Such a lack of client-side cryptographic
-  protections against modification leaves the door open to a range of
-  potential attacks on LastPass's client side encryption as per the
-  ``cryptographic doom'' principle~\cite{marlinspike-doom}.}Similarly,
-LastPass is fully responsible for faithfully storing user data and has
-full access to all user metadata associated with any stored
-password. Thus LastPass, requires users to trust it with three of the
-possible four capabilities -- less trust than cloud services such as
-Facebook or Dropbox, but more than is strictly necessary to perform
-its password storage duties.
+password managers. Using LastPass, passwords are encrypted by the
+client and then stored on LastPass servers. Each password is encrypted
+using a key derived from a user-supplied ``master'' password. LastPass
+never stores this master password directly, making it difficult for
+them to derive the key necessary to decrypt the encrypted data they
+store. Thus, LastPass intentionally limits its access (\emph{R}
+capability) to user passwords. LastPass does not, however, appear to
+perform any kind of cryptographic authentication on the data it
+stores, meaning it still has the ability to manipulate (\emph{W})
+capability user data.\footnote{Such a lack of client-side
+  cryptographic protections against modification leaves the door open
+  to a range of potential attacks on LastPass's client side encryption
+  as per the ``cryptographic doom''
+  principle~\cite{marlinspike-doom}.}Similarly, LastPass is
+responsible for faithfully storing user data and has full access to
+all user metadata associated with any stored password. Thus LastPass,
+requires users to trust it with three of the possible four
+capabilities -- less trust than cloud services such as Facebook or
+Dropbox, but more than is strictly necessary to perform its password
+storage duties.
 
 Other open-source password managers such as KeePass~\cite{keepass},
-Password Safe~\cite{passwordsafe}, or Pass~\cite{pass} exist with the
-aim toward reducing the need to trust one or more third parties. Such
-systems accomplish this by either requiring no third party support at
-all (e.g. a purely local password manager)\footnote{Such purely
-  client-side solutions limit third party trust, but do so at the
-  expense of usability -- e.g. such solutions rarely provide users
-  with the ability to access their passwords from multiple devices or
-  to share passwords with colleagues.} or by allowing the user to
-decouple encryption and authentication operation from optional third
-party backend data storage and sync providers such as Dropbox. In
-addition to liming third party access capability via encryption, such
-services often aim to limit both manipulation and metadata
-capabilities via the use of client-side cryptography.
+Password Safe~\cite{passwordsafe}, or Pass~\cite{pass} aim to reducing
+the need to trust one or more third parties. Such systems accomplish
+this by either requiring no third party support at all (e.g. a purely
+local password manager)\footnote{Such purely client-side solutions
+  limit third party trust, but do so at the expense of usability --
+  e.g. such solutions rarely provide users with the ability to easily
+  access their passwords from multiple devices or to share passwords
+  with trusted colleagues.} or by allowing the user to decouple
+encryption and authentication operations from optional third party
+backend data storage and sync providers such as Dropbox. In addition
+to liming third party access capability via encryption, such services
+often aim to limit both manipulation and metadata capabilities via the
+use of client-side cryptography.
 
 \subsection{Violation Examples}
 \label{sec:analysis:violations}
@@ -740,7 +740,7 @@ increase in the potential for compelled violations.
 
 \subsection{Overall Risk}
 
-ToDo
+To Do
 
 %%  LocalWords:  OneDrive FISC Tresorit SpiderOak MACs MitM CALEA OTR
 %%  LocalWords:  TextSecure WhatsApp LastPass LastPass's KeePass Uber
