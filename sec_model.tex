@@ -2,8 +2,8 @@
 \label{sec:model}
 
 Researchers from a variety of disciplines have proposed a range of
-trust definitions and models~\cite{grandison2000, camp2003,
-  sabater2005, flowerday2006}. These models range from technical
+trust definitions and models~\cite{camp2003, flowerday2006,
+  grandison2000, sabater2005}. These models range from technical
 models for calculating reputations via machine-learning algorithms to
 sociological models for exploring legal and societal notions of
 trust. In this section, I propose a trust model for exploring the
@@ -25,8 +25,8 @@ behavior of a given system. A \textit{secure system} is thus a system
 that behaves in the manner the user desires. Facets of this notion of
 security include \textit{confidentiality}, the ability to control who
 can read user data, and \textit{authenticity}, the ability to control
-who can modify of user data. Finally, confidentiality and authenticity
-provide for a definition of \textit{privacy} as the ability to control
+who can modify user data. Finally, confidentiality and authenticity
+provide a definition of \textit{privacy} as the ability to control
 both the access and modification of user data as well as the ability
 to control the meta-record of such access or modification.
 
@@ -38,22 +38,22 @@ two main factors:
 
 \begin{packed_desc}
 \item[Degree:] How much trust must a user place in a third party
-  (e.g. what capabilities do they allow a third party to exercises with
+  (e.g., what capabilities do they allow a third party to exercises with
   respect to user data)?
 \item[Violation:] In what manners can the third party violate this
-  trust (e.g. how can the third party abuse the capabilities they have
+  trust (e.g., how can the third party abuse the capabilities they have
   been granted or why might they be inclined to do so)?
 \end{packed_desc}
 
 The security and privacy of a user's data is generally dependent on
-these two axis: the higher the degree of trust a user places in a
+these two axes: the higher the degree of trust a user places in a
 third party, the more power that party has to subvert the privacy or
 security of a user's data. Similarly, the higher the risk of third
-party trust violations, the higher the risk of adverse effects to the
-security or privacy of a user's data.  Intuitively, the best way to
-enhance the privacy and security of user data is thus to aim to either
-minimize degree of third party trust, to minimize the likelihood of
-third party trust violations, or to minimize both.
+party trust violations, the higher the risk of adverse effects to
+security or privacy.  Intuitively, the best ways to enhance the
+privacy and security of user data is thus to minimize degree of third
+party trust, to minimize the likelihood of third party trust
+violations, or to minimize both.
 
 \subsection{Degree of Trust}
 
@@ -72,15 +72,15 @@ following data-related capabilities:
 \item[Manipulation (W-Capability):] \hfill \\ Can a third party modify
   the private user data to which they have access? Misuse of this
   capability may result in the ability to manipulate a user
-  (e.g. changing appointments on a user's calendar, etc).
+  (e.g., changing appointments on a user's calendar, etc).
 \item[Meta-analysis (M-Capability):] \hfill \\ Can a third party
   gather user metadata related to any stored user data or user
   behavior interacting with this data? Misuse of this capability may
-  result in the ability to infer information about a user (e.g. who a
-  user's friends are based on data sharing patterns).
+  result in the ability to infer information about a user (e.g., a
+  user's friends).
 \end{packed_desc}
 
-While there are likely additional capabilities user can entrust to
+While there are likely additional capabilities users can entrust to
 third parties, this collection represents the core set of data-related
 capabilities most commonly entrusted to third party service providers.
 
@@ -99,12 +99,11 @@ the motivations behind it:
 \item[Implicit (P-Violation):] \hfill \\ This class of trust violation
   occurs when a third party violates a user's trust in a manner
   approved by the third party. An example might be sharing user data
-  with a business partner (e.g. an advertiser). Often these forms of
-  violations aren't really ``violations'' in the sense that a user may
-  have clicked through a Terms of Service agreement that ``granted''
-  permission for such use, but if the third party is engaging in
-  behavior that the user would not generally expect, an implicit trust
-  violation has occurred.
+  with a business partner (e.g. an advertiser). Often these violations
+  aren't really ``violations'' since a user may have clicked through a
+  Terms of Service agreement that ``granted'' permission for such use,
+  but if the third party is engaging in behavior that the user would
+  not generally expect, an implicit trust violation has occurred.
 \item[Compelled (C-Violation):] \hfill \\ This class of trust
   violation occurs when a third party is compelled by another actor to
   violate a user's trust. The most common example would be a third
@@ -120,15 +119,14 @@ the motivations behind it:
 \item[Colluding (L-Violation):] \hfill \\ This class of violation
   occurs when multiple third parties collude to gain capabilities over
   user data beyond what the user intended each to have
-  individually. An example of such a volition might occur if a user
+  individually. An example of such a violation might occur if a user
   has granted two separate parties access to different portions of
-  user data (e.g. location data stored with their cellular service
+  user data (e.g., location data stored with their cellular service
   provider and credit card transaction data stored with their bank)
   that could be combined to reveal more about the user to both parties
   than the user intended either party to know.
 \end{packed_desc}
 
 While this list of violation categories is far from exhaustive, it
-does provide a good high-level mapping useful for exploring the
-patterns underlying trust violations and potential methods of
-mitigation.
+does provide a good high-level map for exploring the patterns
+underlying trust violations and potential methods of mitigation.
