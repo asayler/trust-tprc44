@@ -26,7 +26,7 @@ all. I'll discuss on strategies for pursuing both of these goals
 below.
 
 \subsection{Limiting Capabilities}
-\label{sec:mitigation:capabilites}
+\label{sec:mitigation:capabilities}
 
 Limiting the number of capabilities granted to third parties is an
 obvious way to reduce the risk of privacy harms due to third party
@@ -54,7 +54,7 @@ Fortunately (at least from the perspective of users hoping to find
 ways to reduce the amount they must trust third parties), trust
 surpluses appear to be relatively common in modern third party
 services. Take, for example, the Dropbox file syncing service. As
-discussed in \S~\ref{sec:analysis:capabilites}, users must currently
+discussed in \S~\ref{sec:analysis:capabilities}, users must currently
 entrust Dropbox with all available capabilities: storage (\emph{S}),
 access (\emph{R}), modification (\emph{W}), and metadata
 (\emph{M}). In order to provide Dropbox's core service, however,
@@ -135,7 +135,7 @@ are accustom.
     \caption{Distributed Trust Relationship}
     \label{fig:mitigation:trust:distributed}
   \end{subfigure}
-  \caption{Trust Relationships}
+  \caption{SSaaS Model Relationships}
   \label{fig:mitigation:trust}
 \end{figure}
 
@@ -177,7 +177,7 @@ capabilities afforded to third parties is as follows:
   manually.
 \end{packed_enum}
 
-This process eliminates trust surplusess by distributing user trust
+This process eliminates trust surpluses by distributing user trust
 across multiple third parties in a manner such that individual third
 parties can not subvert this trust. As mentioned in
 \S~\ref{sec:analysis:violations}, such arrangements do have the
@@ -190,8 +190,8 @@ be discussed in the next section.
 \label{sec:mitigation:violations}
 
 Beyond limiting the number of capabilities users must entrust to third
-parties, it is also desirable to disincentive the mechanism by which
-third parties might violate such trust.  While technological solution
+parties, it is also desirable to disincentive the mechanisms by which
+third parties might violate such trust.  While technological solutions
 provide options for reducing degree of trust, it is largely policy
 solution that will drive the disincentivization of common classes of
 trust violations. By disincentivizing certain classes of trust
@@ -204,51 +204,51 @@ this section.
 
 \subsubsection{Distributed Trust Markets}
 
-In today's single-trust relationships, users primarily select third
-party services on the basis of their features. When users pay for
-these services, they're primarily paying to support the core features
-such services provide. Privacy and security, while potential concerns,
-are at best secondary goals. Furthermore, on many free cloud services,
-the ability to harvest user data is the basis of the service
-provider's business model. As discussed in
-Section~\ref{sec:mitigation:capabilites}, these situations create a
-number of perverse incentives in terms of a third party's respect to
-user security and privacy. In the first case, the third party simply
-does not prioritize user security since that is not the primary basis
-on which users are choosing to pay for a service. In the second case,
-a third party service provider actively works to subvert user security
-and privacy in order to further leverage user data to generate income.
+In today's traditional third party trust relationships, users
+primarily select third party services on the basis of their
+features. When users pay for these services, they're primarily paying
+to support the core features such services provide. Privacy and
+security, while potential end-user concerns, are at best secondary
+goals. Furthermore, on many free cloud services, the ability to
+harvest user data is the basis of the service provider's business
+model. As discussed in Section~\ref{sec:mitigation:capabilities}, these
+situations create a number of perverse incentives in terms of a third
+party's respect to user security and privacy. In the first case, the
+third party simply does not prioritize user security since that is not
+the primary basis on which users are choosing to use a service. In the
+second case, a third party service provider actively works to subvert
+user privacy in order to further leverage user data to generate
+income.
 
-Distributed trust relationships such as those provided by the SSaaS
-architecture aim to rectify these issues by introducing additional
-third party actors whose primary goal is the protection of user
-secrets and from whom users purchase secret storage services on the
-basis of security and privacy guarantees. The ability of distributed
-trust architectures to separate secret storage duties from feature
+Distributed trust relationships (Figure~\ref{fig:mitigation:trust}),
+such as those employed by the aforementioned SSaaS model, aim to
+rectify these issues by introducing additional third party actors
+whose primary goal is the protection of user secrets and by proxy, the
+data such secrets can be used to cryptographically protect. The
+ability of distributed trust architectures to separate
+privacy-oriented secret storage duties from feature-oriented service
 provider duties allows users to purchase each service on the basis of
-its associated merits, avoiding the issues associated with putting
-features in direct competition with security and privacy -- a
-competition that security and privacy have historically lost. Thus,
-distributed trust relationships not only allow users to eliminate
-trust surpluses, they also allow users to escape from the artificial
-trade off between desirable feature sets and the control and privacy
-of their data. Given such separation, independent markets can form
-around feature provision and secret protection, optimized for the
-respective priorities of each field.
+its associated merits. This quality avoids the issues associated with
+putting desirable features in direct competition with security and
+privacy -- a competition that security and privacy have historically
+lost. Thus, distributed trust relationships not only allow users to
+eliminate trust surpluses as discussed in
+\S~\ref{sec:mitigation:capabilities}, they also allow users to escape
+from traditional, but largely artificial, trade offs between desirable
+third party features and the control of their data. Given such
+separation, independent markets can form around feature provision and
+secret protection, optimized for the respective priorities of each
+field.
 
-Beyond the removal of perverse incentives brought about by the
-distribution of trust across multiple parties, it is also desirable to
-encourage a competitive market amongst multiple secret storage
-providers. In order to achieve such a market, it is necessary to
-standardize a single multi-party-compatible distributed trust
-protocol. Such a standard protocol gives users a high degree of
-mobility between competing secret storage providers, avoiding vendor
-lock-in. This mobility, in turn, increases the competitive pressures
-between providers. In short, the aim of a distributed trust ecosystem
-is to make security and privacy tradable commodities, and to leverage
-market powers to price and improve both. A competitive market for
-secret storage has a number of security and privacy enhancing
-benefits:
+In order to achieve such a market, it is necessary to standardize on a
+single distributed trust protocol. Such a standard protocol gives
+users a high degree of mobility between competing secret storage
+providers, avoiding vendor lock-in. This mobility, in turn, increases
+the competitive pressures between providers. In short, the aim of a
+distributed trust ecosystem is to make security and privacy tradable
+commodities, and to leverage market powers to price and improve
+both. A competitive market for secret storage has a number of security
+and privacy enhancing benefits:
 
 \begin{packed_desc}
 \item[Reputation:] If users can easily switch between secret storage
@@ -264,7 +264,7 @@ benefits:
   providers.\footnote{As an example, consider Facebook's numerous
     trust violations~\cite{goel2014, lomas2014, tsukayama2014} and the
     fact that such violations have had no noticeable impact on the
-    number of people using Facebook~\cite{foster2014}. An secret
+    number of people using Facebook~\cite{foster2014}. A secret
     storage provider would enjoy no such network benefit from
     providing additional services beyond secret storage were they to
     violate user's trust; instead, users would simply switch to a new
@@ -281,140 +281,150 @@ benefits:
   offers the best combination of cost and service.
 \end{packed_desc}
 
-Distributed trust markets are potentially useful at disincentivizing a range
-of trust violations, from implicit violations to unintentional
-violations. Such markets help to align economic incentives that
+Distributed trust markets are potentially useful at disincentivizing a
+range of trust violations, from implicit violations to unintentional
+violations. Such markets help to align economic incentives with
 practices that disfavor such violations.
 
 \subsubsection{Digital Due Process}
 
-While mechanisms such as distributes trust markets are useful for
+While mechanisms such as distributed trust markets are useful for
 disincentivizing many classes of trust violations, other mechanisms
 are needed to disincentive compelled violations. Trust markets
 potentially encourage third parties to push back against compelled
-trust violations to the maxim extent permitted under the law, but they
-do little to protect users in cases where the law heavily favors
-compelled trust violations even in cases where such violations are not
-in the public interest. To reduce such violations, it is necessary to
-protect ``digital due process'' rights.
+trust violations to the maximum extent permitted under the law, but
+they do little to protect users in cases where the law requires such
+violations. While there are some cases where such violations are in
+the public interest, it appears that in many (if not most) compelled
+violations cases, the public interest in not being well
+served~\cite{greenwald-prism, greenwald-collect}. To reduce such
+unnecessary compelled violations, it is important to ensure ``digital
+due process'' rights.
 
 The first step toward protecting such rights is to ensure that user
 data stored or processed by third party services receives the same
 level of protection as data stored or processed locally. This concept
-runs counter to the Third Party Doctrine established bu current
+runs counter to the Third Party Doctrine established by current
 U.S. case law~\cite{thompson-thirdparty}. This doctrine holds that
 individuals who voluntarily store their data with third parties have
 no ``reasonable expectation of privacy''~\cite{scotus-katzvus} for
-such data. While such a viewpoint may have made sense in the mid
-20\textsuperscript{th} century when it was established via a series of
-Supreme Court rulings~\cite{scotus-usvmiller-privacy,
+such data. While such a viewpoint may have made sense in the
+mid-20\textsuperscript{th} century when it was established via a
+series of Supreme Court rulings~\cite{scotus-usvmiller-privacy,
   scotus-smithvmaryland}, it does not translate well to a world where
 third party access to user data is the norm. As shown in
 \S~\ref{sec:analysis:violations} compelled violations are a growing
 trend, and in many cases, such violations are served via third-party
 doctrine mechanisms. Such trends suggest a likely overreach of
-government data collection, leading to a range of potential adverse
-effect (e.g.~\cite{penney2016}). One possible way of halting or
+government data collection, leading to a range of adverse ``chilling''
+effects (e.g.~\cite{penney2016}). One possible way of halting or
 reversing this trend would be to eliminate the third party doctrine
-and begin requiring a 4\textsuperscript{th} Amendment warrant in order
-to compel third to provide or modify user data.
+and begin requiring a 4\textsuperscript{th} Amendment warrants in
+order to compel third parties to provide or modify user data.
 
 Fortunately, changes to the third party doctrine are beginning to
 progress on multiple fronts. Recent Supreme Court decisions have
 suggested a willingness to expand user privacy rights in the digital
 realm, and may eventually lead the Supreme Court to revisit the third
 party doctrine~\cite{scotus-usvjones}.  Congress has also long been
-departing updates to third-party doctrine derived laws such a the
+debating updates to third-party doctrine derived laws such the
 Electronic Communications Privacy Act (ECPA)~\cite{ecpa} to include a
 warrant requirement for digitally stored
 emails~\cite{eff-ecpareform}. Recently, the U.S. House of Represents
-even unanimously passed a bill to amend the ECPA to required warrants
-in most cases~\cite{trujillo-ecpa}. Such movements suggest a growing
+unanimously passed a bill to amend the ECPA to required warrants in
+most cases~\cite{trujillo-ecpa}. Such movements suggest a growing
 recognition of the due process rights of digital data, regardless of
 whether it is stored locally or by third parties. Such trends likely
 represent the best hope for reducing unnecessary compelled violations,
 ensuring such violations only occur in cases where the public interest
-in significantly favored by the violation of user trust.
+in significantly favored by the compelled violation of user trust.
 
 \subsubsection{Third Party Liability}
 
 Another mechanism for disincentivizing trust violations, especially of
 the unintentional variety, would be to establish standards of
-liability for trust violations resulting in misuse of the capabilities
-with which they have been entrusted. If a third party violates a user
-trust, it is reasonable to expect that users should be able to seek
-some measure of relief for such violations. Such liability would
-follow the growing trend toward holding companies liable for digital
-data breaches resulting from poor security practices
-(e.g.~\cite{ftc-asus}).
+liability for trust violations that result in harms to user
+privacy. If a third party violates a users trust, and harms the user
+in the process, it is reasonable to expect that users should be able
+to seek some measure of relief for such violations. Trust violation
+liability would follow the growing trend toward holding companies
+liable for digital data breaches resulting from poor security
+practices (e.g.~\cite{ftc-asus}).
 
 The nature of this liability could take several forms. The most
 obvious form would be to impose civil liability commensurate with the
-value of of the harm caused by a trust violation on the party
-committing said violation. This opens up the thorny issue of how to
-value such harms. For example, a trust violation resulting in the
-public exposure of a piece of user data may result in fairly minimal
-harm (e.g. the leaking of a set of not particularly sensitive photos
-taken in a public space), or it could result in fairly serious harms
-(e.g. the leaking of trade secret or other sensitive
-material)~\cite{acquisti2013, romanosky2009}. One way to overcome the
-harm valuation challenge would be to have users declare the value of
-the harm that would result from the misuse of trust capabilities when
-entrusting third parties with such capabilities. This approach is
-similar to the manner in which one might declare the value of a parcel
-when shipping it for the purpose of securing insurance. Given such a
-declaration, the third parties could charge a user varying amounts:
-entrusting third parties with access to more ``valuable'' data should
-increase the cost of the service to the end user, while entrusting
-access to less ``valuable'' data should cost less. Damages in the
-event that a secret is lost could then be calculated as a multiple of
-this value. In cases where a trust violation occurs due to an
-unforeseeable event or otherwise through no negligence on the part of
-the third party (e.g. a flaw in a respected third party library or
-similar unintentional trust violation), the user would be reimbursed
-the declared value of the harm (or potentially some fraction of
-it). In the case where a trust is violated due to third party
+harm caused by a trust violation on the party committing the
+violation. This opens up the thorny issue of how to value such
+harms. Anecdotally, how much a user is harmed by a third party trust
+violation that results in the leak of user data varies widely from
+case to case. For example, the harm resulting from a trust violation
+resulting in the public exposure of a set of not particularly
+sensitive photos taken in a public space is likely to be far less that
+caused by a violation that leaks trade secrets, medical data, or other
+sensitive material~\cite{acquisti2013, romanosky2009}.
+
+One way to overcome the harm valuation challenge would be to have
+users declare the value of the harm that would result from the misuse
+of trust capabilities when entrusting third parties with such
+capabilities. This approach is similar to the manner in which one
+might declare the value of a parcel when shipping it via a delivery
+service for the purpose of securing insurance. Third parties could
+even use such declarations to charge a user varying amounts for the
+services they provide: entrusting a third party with access to more
+``valuable'' data would increase the cost of the provided service to
+the end user, while entrusting a third party with access to less
+``valuable'' data reduce the cost. The damages owed to the user in the
+event that the third party violates their trust could then be
+calculated relative to this value. In cases where a trust violation
+occurs due to an unforeseeable event or otherwise through no
+negligence on the part of the third party (e.g. a flaw in a respected
+external code library or similar unintentional trust violation), the
+user would be reimbursed at or below the declared value of the
+harm. In the case where trust is violated due to third party
 negligence, malpractice, or malfeasance, (e.g. an implicit or
 particularly egregious unintentional trust violation) the user would
-be reimbursed several multiples of the declared harm (i.e. statutory
-damages).
+be reimbursed several multiples of the declared harm (e.g. similar to
+the damages multiplier leveraged in patent infringement cases where
+the infringement is found to be ``willful'').
 
 In addition to allowing users to seek compensation for harm suffered
-due to third party trust violations, this approach also favors the use
-of distributed trust architecture. Since such architecture reduce the
-number of capabilities with which any single third party must be
-trusted, they also reduce the declared value of any associated
-harms. Assuming that third parties charge users for their services on
-the basis of the declared value of the data the user wishes to store,
-distributed architecture thus end up reducing the cost of third party
-services to the end user by reducing associated harm cost. E.g., by
-distributing trust across multiple parties, the user devalues the harm
-each party can inflict, allowing the user to declare lower harm costs
-and pay less for the third party services they use. This arrangement
-both incentivize users to spread their trust across multiple parties
-and encourage third parties to avoid any trust violation that would
-require them to pay out the associated harm cost.
+do to third party trust violations, this approach also further
+incentivizes the use of the aforementioned distributed trust
+architectures. Since such architectures reduce the number of
+capabilities with which any single third party must be trusted, they
+also reduce the declared value of any associated harms. E.g. the loss
+of user data (violation of the \emph{S} capability) is in most cases a
+lessor harm than the public exposure of user data (violation of the
+\emph{R} capability). By distributing trust across multiple parties,
+the user devalues the harm each party can inflict, allowing the user
+to declare lower harm costs and pay less for the third party services
+they use. A mechanism of trust-violation liability thus both
+incentivize users to spread their trust across multiple parties and
+encourages third parties to avoid any trust violation that would
+require them to pay out the associated damages.
 
 To manage this liability, third parties would likely be required to
-secure insurance to cover the cost of liability payouts in the event
-that a trust violation occurs~\cite{ciab2015, starks2016}. These
-insurers are in a position to provide additional disincentive to third
-party trust violations. Insurers could charge each third party on the
-basis of both the harm violation value of the capabilities with which
-they have been entrusted, as well as on the basis of how ``secure''
-(or the inverse: how ``risky'') a third parties security
-capability-protection are. Indeed, it is even possible that the
-government itself might act as such an insurer (or underwriter), as
-they currently do with banks via the Federal Deposit Insurance
-Corporation (FDIC)~\cite{fdic}.
+secure insurance to cover the cost of damages in the event that a
+trust violation occurs~\cite{ciab2015, starks2016}.\footnote{It is
+  even possible that the government itself might act as such an
+  insurer (or insurance underwriter), as they currently do with banks
+  via the Federal Deposit Insurance Corporation (FDIC)~\cite{fdic}.}
+These insurers are in a position to provide additional economic
+disincentives to third party trust violations. For example, insurers
+could charge each third party on the basis of how ``secure'' (or the
+inverse: how ``risky'') a third party's service are. Third parties who
+employ additional security protections or who otherwise adhere to
+security best practice would end up paying lower insurance premiums to
+indemnify them against claims for trust violation damages.
 
 Regardless of mechanism, establishing a standard system for trust
-violation liability will help to disincentivize trust violations
-across a range of third parties. Fostering policies encouraging the
-development of a robust liability insurance market will further
-incentivize best practices. Such practices also encourage the use of
-distribute trust architecture and the additional trust-preserving
-benefits they provide.
-
+violation liability will help to disincentivize trust violations via a
+variety of mechanisms. Tying financial penalties to such undesirable
+behaviors encourages third parties to avoid trust violations, even
+when such parties act only in their own self interest. Using a
+declaratory harm valuation model avoids the challenges associated with
+properly accessing the harm caused by breaches of user privacy, and
+provides a straight forward mechanism for compensating users for
+breaches of third party trust.
 
 %%  LocalWords:  SSaaS SSP OTR FP th ECPA
