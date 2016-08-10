@@ -9,9 +9,9 @@ degree of risk for unapproved exposure or manipulation. It is natural
 to ask what solutions might aid in better controlling third party
 trust arrangements, reducing the degree of risk involved when
 leveraging third party services. While there are a myriad of potential
-solutions in this space, ranging from technical to policy-based, I
-suggest a few high-level approaches to managing third party trust and
-minimizing third party trust violations in this section.
+solutions in this space, ranging from technical to policy-based. In
+this section I suggest a few high-level approaches to managing third
+party trust and minimizing third party trust violations.
 
 The trust model presented in \S~\ref{sec:model} discusses two axes of
 third party trust: the capabilities we entrust to third parties and
@@ -22,7 +22,7 @@ capabilities third parties are granted -- users can limit the amount
 of harm a third party can inflict should this trust be violated. By
 disincentivizing the various types of trust violations, a user can
 decrease the likelihood that a third party violates their trust at
-all. I'll discuss strategies for pursuing both of these goals below.
+all.
 
 \subsection{Limiting Capabilities}
 \label{sec:mitigation:capabilities}
@@ -37,82 +37,81 @@ third party services, effectively granting third parties no
 data-related capabilities at all. For most users, however, such an
 approach is at best impractical and in some cases simply not
 possible. Therein lies the crux of third party capability reduction --
-simply reducing capabilities is not enough. Instead, users must have a
-way to both reduce capabilities while also maintaining the ability to
-benefit from third party services in the manners to which they are
-accustomed. Thus the true aim of third party trust reduction is to
-identify ``trust surpluses'' -- situations where third parties are
-being trusted with more capabilities than are strictly necessary to
-provide the benefits derived from the service. Finding and eliminating
-such surpluses allows users to reduce the degree by which they must
-trust third parties while also continuing to leverage third party
-services to for desirable benefits.
+simply reducing capabilities is not enough. Instead, users must reduce
+capabilities while also maintaining the ability to benefit from third
+party services in the manners to which they are accustomed. Thus the
+true aim of third party trust reduction is to identify ``trust
+surpluses'' -- situations where third parties are being trusted with
+more capabilities than are strictly necessary to provide the benefits
+the user derives from the service. Finding and eliminating such
+surpluses allows users to reduce the degree by which they must trust
+third parties while also continuing to leverage third party services
+for desirable benefits.
 
-Fortunately (at least from the perspective of users hoping to find
-ways to reduce the amount they must trust third parties), trust
-surpluses appear to be relatively common in modern third party
-services. Take for example the Dropbox file syncing service. As
-discussed in \S~\ref{sec:analysis:capabilities}, users must currently
-entrust Dropbox with all available capabilities: storage (\emph{S}),
-access (\emph{R}), modification (\emph{W}), and metadata
-(\emph{M}). In order to provide Dropbox's core service, however,
-Dropbox only requires a single capability: storage. Thus, granting
-Dropbox the access, modification, and metadata capabilities represents
-a trust surplus that can conceivably be eliminated without reducing
-Dropbox's ability to provide the syncing and sharing benefits users
-expect.\footnote{The techniques discussed here focus primarily on
-  limiting surplus access and manipulation
+Fortunately,\footnote{Or unfortunately, depending on your
+  perspective.} trust surpluses appear to be relatively common in
+modern third party services. Take for example the Dropbox file syncing
+service. As discussed in \S~\ref{sec:analysis:capabilities}, users
+must currently entrust Dropbox with all available capabilities:
+storage (\emph{S}), access (\emph{R}), modification (\emph{W}), and
+metadata (\emph{M}). In order to provide Dropbox's core service,
+however, Dropbox only requires a single capability: storage. Thus,
+granting Dropbox the access, modification, and metadata capabilities
+represents a trust surplus that can conceivably be eliminated without
+reducing Dropbox's ability to provide the syncing and sharing benefits
+users expect.\footnote{The techniques discussed here focus primarily
+  on limiting surplus access and manipulation
   capabilities. Unfortunately, limiting the metadata capability is
   historically much more difficult than limiting capabilities such as
   access or manipulation. Thus, until better solutions present
   themselves, it may be necessary to continue granting third party
   service providers the metadata capability -- even in surplus.}
 
-The question then becomes how best to limit Dropbox's access to these
-surplus capabilities. As mentioned, client-side cryptographic
-techniques provide tools for limiting the access capability (e.g. via
-encryption) as well as the modification capability
-(e.g. authentication). In the case of Dropbox, a client could encrypt
-and authenticate their data prior to uploading it to Dropbox and then
-decrypt and verify the data when retrieving it from Dropbox. Dropbox
-is unable to read or modify such encrypted and authenticated data when
-stored on their servers. However, such techniques have a
-downside. They require the user to mange and maintain certain secrets
-to which Dropbox is not privy -- namely, the private keys necessary to
-perform data encryption or authentication. Furthermore, the user must
-find a way to manually distribute these keys across any device from
-which they wish to access their files, or share them with any user
-with whom they wish to share their files. These requirements impose an
-additional burden on the user, violating the original premise that
-users should be able to reduce third party trust without also reducing
-their ability to derive benefits from third party services. Such
-burdens significantly reduce the ease of use that draws so many users
-to solutions such as Dropbox.
+But how does one best to limit Dropbox's access to these surplus
+capabilities? As mentioned, client-side cryptographic techniques
+provide tools for limiting the access capability (e.g. via encryption)
+as well as the modification capability (e.g. authentication). In the
+case of Dropbox, a client could encrypt and authenticate their data
+prior to uploading it to Dropbox and then decrypt and verify the data
+when retrieving it from Dropbox. Dropbox is unable to read or modify
+such encrypted and authenticated data when stored on their
+servers. Such techniques, however, have a downside. They require the
+user to mange and maintain certain secrets to which Dropbox is not
+privy -- namely, the private keys necessary to perform data encryption
+or authentication. Furthermore, the user must find a way to manually
+distribute these keys across any device from which they wish to use
+Dropbox or to manually share them with any user with whom they wish to
+collaborate. These requirements impose an additional burden on the
+user, violating the original premise that users should be able to
+reduce third party trust without also reducing their ability to derive
+benefits from third party services. Such burdens significantly reduce
+the ease of use that draws most users to solutions such as Dropbox in
+the first place.
 
-There are mechanisms, however, that allow users to both leverage
-cryptographic techniques to limit Dropbox's capabilities while also
-avoiding the need to impose additional usability burdens on users. For
-example, the user could turn to an additional third party Secret
-Storage as a Service (SSaaS) provider capable of automatically
-storing, syncing, and sharing secrets such as cryptographic keys on
-the users behalf. Such a service is discussed in depth
-at~\cite{custos-trios}. When used in conjunction with a traditional
+In order to overcome this deficiency, users require mechanisms that
+allow them to both leverage cryptographic techniques to limit
+Dropbox's capabilities while also avoiding additional usability
+burdens. For example, the user could turn to an additional third party
+service provider capable of automatically storing, syncing, and
+sharing secrets such as cryptographic keys on the users behalf. Such
+Secret Storage as a Service (SSaaS) models have been proposed
+in~\cite{sayler-phd},~\cite{tutamen-socc},
+and~\cite{custos-trios}. When used in conjunction with a traditional
 cloud storage provider and existing cryptographic techniques, a secret
 storage service can be employed to transparently limit third party
-trust without imposing any additional burden on the end
-user~\cite{sayler-phd}. In such an arrangement, the end user stores
-only encrypted and authenticated file data with Dropbox, limiting
-Dropbox's access to the \emph{R} and \emph{W} capabilities. The user
-then stores the associated cryptographic secrets with a secret storage
-provider (SSP) capable of controlling access to the secrets in a
-user-defined manner and syncing or sharing them as requested. Neither
-Dropbox (called a ``feature Provider'' (FP) in the SSaaS model due to
-the fact that they primary exist to provide an end user with a
-feature-focused service) nor the SSP have the ability to access or
-manipulate user data since Dropbox lacks the keys necessary to perform
-such operations and the SSP lacks the data on which these operations
-are to be performed. Figure~\ref{fig:mitigation:trust} illustrates
-such an arrangement. Using these techniques, the user can successfully
+trust without imposing any significant additional burden on the end
+user. In such an arrangement, the end user stores only encrypted and
+authenticated file data with Dropbox, limiting Dropbox's access to the
+\emph{R} and \emph{W} capabilities. The user then stores the
+associated cryptographic secrets with a ``secret storage provider''
+(SSP) capable of controlling access to the secrets in a user-defined
+manner and syncing or sharing them as requested. Neither Dropbox
+(called a ``feature provider'' (FP) in the SSaaS model) nor the SSP
+have the ability to access or manipulate user data since Dropbox lacks
+the keys necessary to perform such operations and the SSP lacks the
+data on which these operations are to be
+performed. Figure~\ref{fig:mitigation:trust} illustrates such an
+arrangement. Using these techniques, the user can successfully
 eliminate two of the surplus capabilities traditionally granted to
 Dropbox in a manner that allows them to continue using Dropbox to sync
 and share files as they are accustom.
@@ -136,13 +135,13 @@ and share files as they are accustom.
   \label{fig:mitigation:trust}
 \end{figure}
 
-Techniques such as these are a form of ``trust distribution'' -- a
+Techniques such as SSaaS are a form of ``trust distribution'' -- a
 technique for reducing trust in individual third parties by instead
 spreading it across multiple parties. Similar techniques have been
 used within cryptographic protocols for the purpose of eliminating
-single-points-of-trust~\cite{shamir1979}.\footnote{Such techniques
-  also bear some resemble to previously proposed ``key escrow
-  systems'', albeit with a somewhat opposite
+single-points-of-trust in the past~\cite{shamir1979}.\footnote{Such
+  techniques also bear some resemble to previously proposed ``key
+  escrow systems'', albeit with a somewhat opposite
   end-goal~\cite{denning1996}: escrow systems aim to allow additional
   third parties access to user data whereas trust distribution systems
   aim to reduce the access to user data any single party can achieve.}
@@ -152,12 +151,13 @@ introducing significant additional usage burdens. While there are
 approaches to limiting third party trust that aim to avoid trusting
 any third party (e.g. the OTR chat protocol~\cite{otr-v3}), such
 techniques are often difficult to apply generally or to use without
-imposing additional usability burdens. Trust distribution strategies,
-however, provide a relatively generic framework for eliminating trust
-in any single third party.\footnote{When coupled with techniques such
-  as~\cite{shamir1979}, trust reduction techniques can eliminate trust
-  in even larger subsets of all involved parties, e.g. not having to
-  trust up to three of any five parties.}
+creating additional usability challenges. Trust distribution
+strategies, however, provide a relatively generic framework for
+eliminating trust in any single third party.\footnote{When coupled
+  with techniques such as~\cite{shamir1979}, trust distribution
+  techniques can eliminate trust in even larger subsets of third
+  parties, e.g. not having to trust up to three of five total
+  parties.}
 
 To summarize, the proposed recipe for reducing the number of trusted
 capabilities afforded to third parties is as follows:
@@ -166,25 +166,24 @@ capabilities afforded to third parties is as follows:
 \item Identity any surplus capabilities
 \item Leverage cryptographic techniques to limit third party access to
   these capabilities
-\item Leverage trust distribution techniques such as SSaaS to store
-  and control access to any secret materials required by the
-  aforementioned cryptographic techniques in a manner that avoids
-  burdening the end user with the need to manage such secrets
-  manually.
+\item Leverage trust distribution techniques to store and control
+  access to the secrets required by the aforementioned cryptographic
+  techniques in a manner that avoids burdening the end user with the
+  need to manage such secrets manually.
 \end{packed_enum}
 
 This process eliminates trust surpluses by distributing user trust
 across multiple third parties so that individual third parties can not
 subvert this trust. As mentioned in \S~\ref{sec:analysis:violations},
-such arrangements have the potential to encourage collusion-type trust
+such arrangements do run the risk of encouraging collusion-type trust
 violations where multiple third parties work together to regain
 capabilities that have been denied to them individually. Nonetheless,
 such collusion violations are strictly less likely to occur than
 single-party violations since they require multiple parties to all be
-willing to commit an equivalent single-party violation, but in
-concert. The techniques discussed in the next section for
-disincentivizing single-party violations thus also help to
-disincentive collusion violations.
+willing to commit an equivalent single-party violation in concert. The
+techniques discussed in the next section for disincentivizing
+single-party violations thus also help to disincentive collusion
+violations.
 
 \subsection{Disincentivizing Violations}
 \label{sec:mitigation:violations}
@@ -192,15 +191,14 @@ disincentive collusion violations.
 Beyond limiting the number of capabilities users must entrust to third
 parties, it is also desirable to disincentivize the mechanisms by
 which third parties might violate such trust.  While technological
-solutions provide options for reducing degree of trust, it is largely
-policy solutions that will drive the disincentivization of common
-classes of trust violations. By disincentivizing certain classes of
-trust violations, we can reduce the likelihood that third parties will
-commit such violations, leading to more ``trustworthy'' third parties
-and fewer instances of trust violations. There are a variety of
-mechanisms that one might employ with an aim toward disincentivizing
-trust violations. I discuss several of the more prominent ones in this
-section.
+solutions provide options for reducing the degree of trust, it is
+largely policy solutions that will drive the disincentivization of
+common classes of trust violations. By disincentivizing certain
+classes of trust violations, we can reduce the likelihood that third
+parties will commit such violations, leading to more ``trustworthy''
+third parties and fewer instances of trust violations. There are a
+variety of mechanisms that one might employ with an aim toward
+disincentivizing trust violations.
 
 \subsubsection{Distributed Trust Markets}
 
@@ -215,10 +213,9 @@ model. As discussed in Section~\ref{sec:mitigation:capabilities},
 these situations create a number of perverse incentives in terms of a
 third party's respect for user security and privacy. In the first
 case, the third party simply does not prioritize user security since
-that is not the primary basis on which users are choosing to use a
-service. In the second case, a third party service provider actively
-works to subvert user privacy in order to further leverage user data
-to generate income.
+that is not the basis on which users are choosing to use a service. In
+the second case, a third party actively works to subvert user security
+in order to further leverage user data for the generation of profit.
 
 Distributed trust relationships (Figure~\ref{fig:mitigation:trust}),
 such as those employed by the aforementioned SSaaS model, aim to
@@ -227,7 +224,7 @@ whose primary goal is the protection of user secrets and, by proxy,
 the data such secrets can be used to cryptographically protect. The
 ability of distributed trust architectures to separate
 privacy-oriented secret storage duties from feature-oriented service
-provider duties allows users to purchase each service on the basis of
+provider duties allows users to select each service on the basis of
 its associated merits. This quality avoids the issues associated with
 putting desirable features in direct competition with security and
 privacy -- a competition that security and privacy have historically
@@ -235,29 +232,26 @@ lost. Distributed trust relationships not only allow users to
 eliminate trust surpluses as discussed in
 \S~\ref{sec:mitigation:capabilities}, they also allow users to escape
 from traditional, but largely artificial, trade-offs between desirable
-third party features and the control of their data. Given such
-separation, independent markets can form around feature provision and
-secret protection, optimized for the respective priorities of each
-field.
+third party features and the control of their data.
 
-In order to achieve such a market, it is necessary to standardize a
-single distributed trust protocol. A standard protocol gives users a
-high degree of mobility between competing secret storage providers,
-avoiding vendor lock-in. This mobility in turn increases the
-competitive pressures between providers. In short, the aim of a
-distributed trust ecosystem is to make security and privacy tradable
-commodities, and to leverage market powers to price and improve
-both. A competitive market for secret storage has a number of security
-and privacy enhancing benefits:
+By severing desirable features from desirable security-enhancing
+properties, independent markets can form around feature provision and
+secret protection, optimized for the respective priorities of each
+field. A distributed trust ecosystem is thus able to make security and
+privacy tradable commodities, and to leverage market powers to price
+and improve both. A competitive market for secret storage has a number
+of security and privacy enhancing benefits:
 
 \begin{packed_desc}
-\item[Reputation:] If users can easily switch between secret storage
-  providers, such providers must compete on the basis of their
-  security and privacy preserving reputations. Providers who can do a
-  superior job avoiding the trust violations discussed in
+\item[Reputation:] A user's ability to easily switch between secret
+  storage providers forces providers to compete on the basis of their
+  security and privacy preserving reputations.\footnote{In order to
+    achieve such mobility, it is likely necessary to standardize a
+    common distributed trust protocol~\cite{sayler-phd}.} Providers
+  who do a superior job avoiding the trust violations discussed in
   \S~\ref{sec:analysis:violations} can attract more users and/or
   command a higher price for their services. Since a secret storage
-  provider reputation is tied solely to their ability to faithfully
+  provider's reputation is tied solely to their ability to faithfully
   protect user secrets, they will not be able to ``iron over'' any
   privacy-related reputation failings with superior end user feature
   sets -- a practice employed by many traditional feature
@@ -267,12 +261,12 @@ and privacy enhancing benefits:
     number of people using Facebook~\cite{foster2014}. A secret
     storage provider would enjoy no such network benefit from
     providing additional services beyond secret storage were they to
-    violate user's trust; instead, users would simply switch to a new
+    violate user trust; instead, users would simply switch to a new
     provider.}
 \item[Multiple Providers:] A healthy ecosystem of competing secret
-  storage providers will allow users to select from multiple
-  independent providers over which they may further distribute their
-  trust beyond a binary feature provider/secret storage provider
+  storage providers allows users to select from multiple independent
+  providers over which they may further distribute their trust beyond
+  a binary ``feature provider + secret storage provider''
   relationship. Such secret ``sharding'' provides a number of benefits
   over relying on a single SSP, from additional trust reduction to
   data redundancy.
@@ -289,17 +283,17 @@ that do not favor such violations.
 \subsubsection{Digital Due Process}
 
 While mechanisms such as distributed trust markets are useful for
-disincentivizing many classes of trust violations, other mechanisms
-are needed to disincentivize compelled violations. Trust markets
-potentially encourage third parties to push back against compelled
-trust violations to the maximum extent permitted under the law, but
-they do little to protect users in cases where the law requires such
-violations. While there are some cases where such violations are in
-the public interest, it appears that in many (if not most) compelled
-violations cases, the public interest is not well
-served~\cite{greenwald-collect, greenwald-prism}. To reduce
-unnecessary compelled violations, it is important to ensure ``digital
-due process'' rights.
+disincentivizing the implicit, unintentional, and colluding classes of
+trust violations, other mechanisms are needed to disincentivize
+compelled violations. While, trust markets potentially encourage third
+parties to push back against compelled trust violations to the maximum
+extent permitted under the law, they do little to protect users in
+cases where the law requires such violations. While there are some
+cases where such violations are in the public interest, it appears
+that in many (if not most) compelled violation cases, the public
+interest is not well served~\cite{greenwald-collect,
+  greenwald-prism}. To reduce unnecessary compelled violations, it is
+important to ensure ``digital due process'' rights.
 
 The first step toward protecting such rights is to ensure that user
 data stored or processed by third party services receives the same
@@ -307,10 +301,10 @@ level of protection as data stored or processed locally. This concept
 runs counter to the Third Party Doctrine established by current
 U.S. case law~\cite{thompson-thirdparty}. This doctrine holds that
 individuals who voluntarily store their data with third parties have
-no ``reasonable expectation of privacy''~\cite{scotus-katzvus} for
-such data. While this viewpoint may have made sense in the
-mid-20\textsuperscript{th} century when it was established by a series
-of Supreme Court rulings~\cite{scotus-usvmiller-privacy,
+no ``reasonable expectation of privacy'' for such
+data~\cite{scotus-katzvus}. While this viewpoint may have made sense
+in the mid-20\textsuperscript{th} century when it was established by a
+series of Supreme Court rulings~\cite{scotus-usvmiller-privacy,
   scotus-smithvmaryland}, it does not translate well to a world where
 third party access to user data is the norm. As shown in
 \S~\ref{sec:analysis:violations}, compelled violations are a growing
@@ -322,12 +316,12 @@ reversing this trend would be to eliminate the third party doctrine
 and begin requiring 4\textsuperscript{th} Amendment warrants in order
 to compel third parties to provide or modify user data.
 
-Fortunately, changes to the third party doctrine are beginning to
-progress on multiple fronts. Recent Supreme Court decisions have
-suggested a willingness to expand user privacy rights in the digital
-realm, and may eventually lead the Supreme Court to revisit the third
-party doctrine~\cite{scotus-usvjones}.  Congress has also long been
-debating updates to third party doctrine-derived laws such the
+Recently, changes to the third party doctrine have begun to progress
+on multiple fronts. Recent Supreme Court decisions have suggested a
+willingness to expand user privacy rights in the digital realm, and
+may eventually lead the Supreme Court to revisit the third party
+doctrine directly~\cite{scotus-usvjones}.  Congress has also long
+debated updates to third party doctrine-derived laws such the
 Electronic Communications Privacy Act (ECPA)~\cite{ecpa} to include a
 warrant requirement for digitally stored
 emails~\cite{eff-ecpareform}. Recently, the U.S. House of
@@ -347,7 +341,7 @@ the unintentional variety, would be to establish standards of
 liability for trust violations that result in harms to user
 privacy. If a third party violates a user's trust and harms the user
 in the process, it is reasonable to expect that users should be able
-to seek some measure of relief for such violations. Trust violation
+to seek some measure of relief from such violations. Trust violation
 liability would follow the growing trend toward holding companies
 liable for digital data breaches resulting from poor security
 practices (e.g.~\cite{ftc-asus}).
@@ -359,9 +353,9 @@ violation. This opens up the thorny issue of how to value such
 harms. Anecdotally, how much a user is harmed by a trust violation
 varies widely from case to case. For example, the harm from a trust
 violation resulting in the public exposure of a set of not
-particularly sensitive scenic photos is likely to be far less than
-that caused by a violation that leaks trade secrets, medical data, or
-other sensitive material~\cite{acquisti2013, romanosky2009}.
+particularly sensitive scenic landscape photos is likely to be far
+less than that caused by a violation that leaks trade secrets, medical
+data, or other sensitive material~\cite{acquisti2013, romanosky2009}.
 
 One way to overcome this challenge would be to have users declare the
 value of the harm that would result from the misuse of trust
@@ -383,9 +377,9 @@ at or below the declared value of the harm. In the case where trust is
 violated due to third party negligence, malpractice, or malfeasance,
 (e.g. an implicit or particularly egregious unintentional trust
 violation) the user would be reimbursed several multiples of the
-declared harm (e.g. similar to the damage multiplier leveraged in
-patent infringement cases where the infringement is found to be
-``willful'').
+declared harm (e.g. similar to the statutory damage multiplier
+leveraged in some intellectual property cases where the infringement
+is found to be ``willful'').
 
 In addition to allowing users to seek compensation for harm suffered
 due to third party trust violations, this approach also further
@@ -412,10 +406,10 @@ trust violation occurs~\cite{ciab2015, starks2016}.\footnote{It is
 These insurers would be in a position to provide additional economic
 disincentives to third party trust violations. For example, insurers
 could charge each third party on the basis of how ``secure'' (or the
-inverse, how ``risky'') a third party's service are. Third parties who
-employ additional security protections or who otherwise adhere to
-security best practices would end up paying lower insurance premiums
-to indemnify them against claims for trust violation damages.
+inverse, how ``risky'') a third party's infrastructure is. Third
+parties who employ additional security protections or who otherwise
+adhere to security best practices would end up paying lower insurance
+premiums to indemnify them against claims for trust violation damages.
 
 Regardless of mechanism, establishing a standard system for trust
 violation liability will help disincentivize trust violations via a
