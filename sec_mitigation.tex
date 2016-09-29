@@ -8,12 +8,12 @@ ideal. This state places private user data and metadata at a high
 degree of risk for unapproved exposure or manipulation. It is natural
 to ask what solutions might aid in better controlling third party
 trust arrangements, reducing the degree of risk involved when
-leveraging third party services. While there are a myriad of potential
+leveraging third party services. There are a myriad of potential
 solutions in this space, ranging from technical to policy-based. In
 this section I suggest a few high-level approaches to managing third
 party trust and minimizing third party trust violations.
 
-The trust model presented in \S~\ref{sec:model} discusses two axes of
+The trust model presented in \S\ref{sec:model} discusses two axes of
 third party trust: the capabilities we entrust to third parties and
 the manners in which this trust might be violated. Both axes can be
 targeted when seeking to increase the security and privacy of user
@@ -51,7 +51,7 @@ for desirable benefits.
 Fortunately,\footnote{Or unfortunately, depending on your
   perspective.} trust surpluses appear to be relatively common in
 modern third party services. Take for example the Dropbox file syncing
-service. As discussed in \S~\ref{sec:analysis:capabilities}, users
+service. As discussed in \S\ref{sec:analysis:capabilities}, users
 must currently entrust Dropbox with all available capabilities:
 storage (\emph{S}), access (\emph{R}), modification (\emph{W}), and
 metadata (\emph{M}). In order to provide Dropbox's core service,
@@ -67,18 +67,18 @@ users expect.\footnote{The techniques discussed here focus primarily
   themselves, it may be necessary to continue granting third party
   service providers the metadata capability -- even in surplus.}
 
-But how does one best to limit Dropbox's access to these surplus
+But how does one best limit Dropbox's access to these surplus
 capabilities? As mentioned, client-side cryptographic techniques
-provide tools for limiting the access capability (e.g. via encryption)
-as well as the modification capability (e.g. authentication). In the
-case of Dropbox, a client could encrypt and authenticate their data
-prior to uploading it to Dropbox and then decrypt and verify the data
-when retrieving it from Dropbox. Dropbox is unable to read or modify
-such encrypted and authenticated data when stored on their
-servers. Such techniques, however, have a downside. They require the
-user to mange and maintain certain secrets to which Dropbox is not
-privy -- namely, the private keys necessary to perform data encryption
-or authentication. Furthermore, the user must find a way to manually
+provide tools for limiting the access capability (via encryption) as
+well as the modification capability (via authentication). In the case
+of Dropbox, a client could encrypt and authenticate their data prior
+to uploading it to Dropbox and then decrypt and verify the data after
+retrieving it from Dropbox. Dropbox is unable to read or modify such
+encrypted and authenticated data when stored on their servers. Such
+techniques, however, have a downside. They require the user to mange
+and maintain certain secrets to which Dropbox is not privy -- namely,
+the private keys necessary to perform data encryption or
+authentication. Furthermore, the user must find a way to manually
 distribute these keys across any device from which they wish to use
 Dropbox or to manually share them with any user with whom they wish to
 collaborate. These requirements impose an additional burden on the
@@ -139,25 +139,26 @@ Techniques such as SSaaS are a form of ``trust distribution'' -- a
 technique for reducing trust in individual third parties by instead
 spreading it across multiple parties. Similar techniques have been
 used within cryptographic protocols for the purpose of eliminating
-single-points-of-trust in the past~\cite{shamir1979}.\footnote{Such
-  techniques also bear some resemble to previously proposed ``key
-  escrow systems'', albeit with a somewhat opposite
-  end-goal~\cite{denning1996}: escrow systems aim to allow additional
-  third parties access to user data whereas trust distribution systems
-  aim to reduce the access to user data any single party can achieve.}
-Trust distribution techniques are capable of allowing users to reduce
-or eliminate trust surpluses across a range of use cases without
-introducing significant additional usage burdens. While there are
-approaches to limiting third party trust that aim to avoid trusting
-any third party (e.g. the OTR chat protocol~\cite{otr-v3}), such
-techniques are often difficult to apply generally or to use without
-creating additional usability challenges. Trust distribution
-strategies, however, provide a relatively generic framework for
-eliminating trust in any single third party.\footnote{When coupled
-  with techniques such as~\cite{shamir1979}, trust distribution
-  techniques can eliminate trust in even larger subsets of third
-  parties, e.g. not having to trust up to three of five total
-  parties.}
+single-points-of-trust in the past~\cite{shamir1979} and have also
+been proposed as the basis for new cryptographic standards
+today~\cite{milagro, nakamoto2008}.\footnote{Such techniques also bear
+  some resemble to previously proposed ``key escrow systems'', albeit
+  with a somewhat opposite end-goal~\cite{denning1996}: escrow systems
+  aim to allow additional third parties access to user data whereas
+  trust distribution systems aim to reduce the access to user data any
+  single party can achieve.}  Trust distribution techniques are
+capable of allowing users to reduce or eliminate trust surpluses
+across a range of use cases without introducing significant additional
+usage burdens. While there are approaches to limiting third party
+trust that aim to avoid trusting any third party (e.g. the OTR chat
+protocol~\cite{otr-v3}), such techniques are often difficult to apply
+generally or to use without creating additional usability
+challenges. Trust distribution strategies, however, provide a
+relatively generic framework for eliminating trust in any single third
+party.\footnote{When coupled with techniques such
+  as~\cite{shamir1979}, trust distribution techniques can eliminate
+  trust in even larger subsets of third parties, e.g. not having to
+  trust up to three of five total parties.}
 
 To summarize, the proposed recipe for reducing the number of trusted
 capabilities afforded to third parties is as follows:
@@ -174,7 +175,7 @@ capabilities afforded to third parties is as follows:
 
 This process eliminates trust surpluses by distributing user trust
 across multiple third parties so that individual third parties can not
-subvert this trust. As mentioned in \S~\ref{sec:analysis:violations},
+subvert this trust. As mentioned in \S\ref{sec:analysis:violations},
 such arrangements do run the risk of encouraging collusion-type trust
 violations where multiple third parties work together to regain
 capabilities that have been denied to them individually. Nonetheless,
@@ -230,7 +231,7 @@ putting desirable features in direct competition with security and
 privacy -- a competition that security and privacy have historically
 lost. Distributed trust relationships not only allow users to
 eliminate trust surpluses as discussed in
-\S~\ref{sec:mitigation:capabilities}, they also allow users to escape
+\S\ref{sec:mitigation:capabilities}, they also allow users to escape
 from traditional, but largely artificial, trade-offs between desirable
 third party features and the control of their data.
 
@@ -239,7 +240,7 @@ properties, independent markets can form around feature provision and
 secret protection, optimized for the respective priorities of each
 field. A distributed trust ecosystem is thus able to make security and
 privacy tradable commodities, and to leverage market powers to price
-and improve both. A competitive market for secret storage has a number
+and improve both. A competitive distributed trust market has a number
 of security and privacy enhancing benefits:
 
 \begin{packed_desc}
@@ -249,7 +250,7 @@ of security and privacy enhancing benefits:
     achieve such mobility, it is likely necessary to standardize a
     common distributed trust protocol~\cite{sayler-phd}.} Providers
   who do a superior job avoiding the trust violations discussed in
-  \S~\ref{sec:analysis:violations} can attract more users and/or
+  \S\ref{sec:analysis:violations} can attract more users and/or
   command a higher price for their services. Since a secret storage
   provider's reputation is tied solely to their ability to faithfully
   protect user secrets, they will not be able to ``iron over'' any
@@ -307,14 +308,14 @@ in the mid-20\textsuperscript{th} century when it was established by a
 series of Supreme Court rulings~\cite{scotus-usvmiller-privacy,
   scotus-smithvmaryland}, it does not translate well to a world where
 third party access to user data is the norm. As shown in
-\S~\ref{sec:analysis:violations}, compelled violations are a growing
+\S\ref{sec:analysis:violations}, compelled violations are a growing
 trend, and in many cases such violations are served via third party
 doctrine mechanisms. Such trends suggest a likely overreach of
 government data collection, leading to a range of adverse ``chilling''
 effects (e.g.~\cite{penney2016}). One possible way of halting or
 reversing this trend would be to eliminate the third party doctrine
-and begin requiring 4\textsuperscript{th} Amendment warrants in order
-to compel third parties to provide or modify user data.
+and begin requiring probable cause warrants in order to compel third
+parties to provide or modify user data.
 
 Recently, changes to the third party doctrine have begun to progress
 on multiple fronts. Recent Supreme Court decisions have suggested a
